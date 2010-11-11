@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Super Craques</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="static/css/supercraques.css" type="text/css" media="screen" charset="utf-8" />
+</head>
+
+<body>
+ 
+<div>
+SUPER CRAQUES<br> 
+Equipe: ${equipe['nome_popular']}<br><br>
+</div>
+% for atleta in equipe['elenco']:
+	<div style="border:solid 1px;float:left;padding:5px;margin:5px">
+		Nome: ${atleta['nome']} <br>
+		Nome polular: ${atleta['nome_popular']} <br>
+		Posicao: ${atleta['posicao']} <br>
+	</div>
+% endfor
+
+	
+ 
+ 
+</body>
+</html>
