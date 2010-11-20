@@ -1,0 +1,109 @@
+<%inherit file="/base.html"/>
+
+<%def name="css()">
+    ${parent.css()}
+    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/cards.css" />
+</%def>
+
+
+<%def name="javascript()">
+    ${parent.javascript()}
+    
+    <script type="text/javascript"><!--
+	$(function() {	
+        //bind dos botoes do social
+        //$(".share-button a").mediaShare();
+        var profilePicsDiv = document.getElementById('profile_pics');
+        `100001830967449
+        $(".share-button a").click(function(){
+        	
+	        FB.login(function(response) {
+	        	  if (response.session) {
+	        	    if (response.perms) {
+	        	    	
+	        	    	FB.api({ method: 'friends.get' }, function(result) {
+	        	    		//alert(result);
+	        	    		//console.log('friends.get response', result);
+	        	    	    var markup = '';
+	        	    	    var numFriends = result ? Math.min(5, result.length) : 0;
+	        	    	    if (numFriends > 0) {
+	        	    	      for (var i=0; i<numFriends; i++) {
+	        	    	        markup += (
+	        	    	          '<fb:profile-pic size="square" ' +
+	        	    	                          'uid="' + result[i] + '" ' +
+	        	    	                          'facebook-logo="true"' +
+	        	    	          '></fb:profile-pic>'
+	        	    	        );
+	        	    	      }
+	        	    	    }
+	        	    	    profilePicsDiv.innerHTML = markup;
+	        	    	    FB.XFBML.parse(profilePicsDiv);
+	        	    	  });
+	        	    	
+	        	    	//console.log("permissao ACEITA");
+	        	      // user is logged in and granted some permissions.
+	        	      // perms is a comma separated list of granted permissions
+	        	    } else {
+	        	    	//console.log("permissao NEGADA");
+	        	    	alert("permissao NEGADA");
+	        	      // user is logged in, but did not grant any permissions
+	        	    }
+	        	  } else {
+	        		  //console.log("usuario NAO ESTA LOGADO");
+	        		  alert("usuario NAO ESTA LOGADO");
+	        	    // user is not logged in
+	        	  }
+	        	}, {perms:'read_stream,publish_stream,offline_access'});
+        	
+        	
+        	
+        });
+        
+        
+        
+
+        // if we have a session, query for the user's profile picture and name
+        FB.api(
+          {
+            method: 'fql.query',
+            query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
+          },
+          function(response) {
+            var user = response[0];
+            $('#user-info').html('<img src="' + user.pic + '">' + user.name).show('fast');
+          }
+        );
+
+        
+	});
+		
+	--></script>
+    
+</%def>
+
+
+
+<%def name="content()">
+
+Desafios
+
+<div class='tweet-button share-button'>
+	<img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='twitter' data-text="Janilton super craque twitter!" data-url="http://cartolafc.globo.com/time/abc" title='Compartilhar super craques no Twitter'><img src="/media/img/twitter_ico.gif" alt='Compartilhar minha pontua&ccedil;&atilde;o no Twitter' /></a>
+	<img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='facebook' data-text="Janilton super craque facebook" data-url="http://www.supercraques.com.br/" data-url-name="chico" title='Compartilhar minha pontua&ccedil;&atilde;o no Facebook'><img src="/media/img/facebook_ico.gif" alt='Compartilhar minha pontua&ccedil;&atilde;o no Facebook' /></a>
+</div>				
+
+<div id="profile_pics"></div>
+
+  	
+    	<form class="form-busca-jogadores" action="" method="post">
+	    <fieldset>
+	        <legend>busca de jogadores</legend>
+	        <label for="nome-jogador">buscar</label>
+	        <input type="text" value="busca por jogador" maxlength="250" id="nome-jogador" name="nome-jogador"><button id="btn-buscar" name="b" type="submit">buscar</button>            
+	    </fieldset>
+	</form>
+    
+
+ 
+</%def>
+

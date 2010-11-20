@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="ltr" xml:lang="pt-br" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Super Craques</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%def name="css()">
+		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/supercraques.css" />
+    </%def>
+    ${next.css()}
+
+    <%def name="javascript()">
+		<script type="text/javascript" src="/media/js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="/media/js/jquery.media.share.js"></script>
+    </%def>
+    ${next.javascript()}
+</head>
+
+
+<body>
+
+    <div id="glb-doc">
+        <div id="glb-topo">
+        
+            <!-- header -->
+            <div id="glb-cabecalho">
+	            <div class="cabecalho-direita">
+		            <div class="cabecalho-esquerda">
+		                <div class="glb-conteudo">
+	                        <h1><a class="marca-produto" title="Home do Super Craques" href="http://cartolafc.globo.com">Super Craques</a></h1>
+		                </div>
+		            </div>
+	            </div>
+            </div>
+            <!-- /header -->
+            
+        </div>
+
+        <div id="glb-corpo">
+            <div class="glb-conteudo">
+
+                <!-- content -->
+                ${self.content()}
+                <!-- /content -->
+
+            </div>
+        </div>
+
+        
+        <!-- rodape -->
+        <%def name="rodape()">
+	        <div id="glb-rodape" class="clear">
+	            <div class="glb-conteudo">
+	                <div class="glb-bloco">
+	                 <span>Meus cards</span><span>Banca</span><span>Desafiar</span> 
+	                </div>
+	            </div>
+	        </div>
+    	</%def>
+    	${next.rodape()}
+        <!-- / rodape -->
+        
+    </div>
+
+	
+    
+    <div id="fb-root"></div>
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+	  FB.init({
+	    appId  : '166942923329088',
+	    status : true, // check login status
+	    cookie : true, // enable cookies to allow the server to access the session
+	    xfbml  : true  // parse XFBML
+	   });
+	</script>
+	
+</body>
+</html>

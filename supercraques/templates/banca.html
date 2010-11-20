@@ -1,0 +1,161 @@
+<%inherit file="/base.html"/>
+
+<%def name="css()">
+    ${parent.css()}
+    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/cards.css" />
+</%def>
+
+
+<%def name="javascript()">
+    ${parent.javascript()}
+    
+	<script type="text/javascript" src="/media/js/jquery.flip.min.js"></script>
+    
+    <script type="text/javascript"><!--
+	$(function() {	
+		
+		
+	  	//var markupFlip = '<div class="sponsor" title="Click to flip"><div class="sponsorFlip">{frontFlip}</div><div class="sponsorData">{backFlip}</div></div>';
+		
+	  	var markupFlip = '<div class="sponsor" title="Click to flip"><div class="sponsorFlip"><div class="box-jogadores"> \
+	  		<ul class="info"> \
+		  		<li class="box"> \
+			        <div class="player-header"> \
+			            <img height="60" width="60" border="0" src="{img}"> \
+						<div class="right"><div> \
+						    <span class="position">{posicao}</span> \
+						    <span class="player">{nome}</span> \
+						</div></div> \
+			        </div> \
+			        <ul class="numbers"> \
+						<li><span class="num">{qualidade}</span>Qualidade</li> \
+						<li><span class="num">{assiduidade}</span>Assiduidade</li> \
+						<li class="last"><span class="num">{disciplina}</span>Disciplina</li> \
+			        </ul> \
+			     </li> \
+			 </ul> \
+		</div><div class="sponsorData">{backFlip}</div></div></div>'
+	  	
+	  	
+		// Vai para o primeiro option do combo de servicos
+		$("#equipes option:first").attr("selected", "selected");
+		
+		$('.sponsorFlip').live("click",function(){
+			
+			// $(this) point to the clicked .sponsorFlip element (caching it in elem for speed):
+			
+			var elem = $(this);
+			
+			// data('flipped') is a flag we set when we flip the element:
+			
+			if(elem.data('flipped'))
+			{
+				// If the element has already been flipped, use the revertFlip method
+				// defined by the plug-in to revert to the default state automatically:
+				
+				elem.revertFlip();
+				
+				// Unsetting the flag:
+				elem.data('flipped',false)
+			}
+			else
+			{
+				// Using the flip method defined by the plugin:
+				
+				elem.flip({
+					direction:'lr',
+					speed: 350,
+					onBefore: function(){
+						// Insert the contents of the .sponsorData div (hidden from view with display:none)
+						// into the clicked .sponsorFlip div before the flipping animation starts:
+						
+						elem.html(elem.siblings('.sponsorData').html());
+					}
+				});
+				
+				// Setting the flag:
+				elem.data('flipped',true);
+			}
+		});
+	
+		
+		
+		// Carrega os parametros do metodo escolhido
+		$("#equipes").bind('change keyup',function() {
+			equipe_id = $(this).val()
+			if (equipe_id != "") {
+			
+         $.ajax({
+					  url: "/equipe/"+ equipe_id + "/atletas.json",
+					  success: function(data) {
+						   var html = "";
+						   var frontFlip = "";
+						   var backFlip = "";
+						   
+							$.each(data, function( i ) {
+							    var tmp = markupFlip;
+								
+					      tmp = tmp.replace("{img}", data[i].foto_fpath);
+								tmp = tmp.replace("{posicao}", (data[i].funcao.faixa_campo? data[i].funcao.faixa_campo : "-"));
+								tmp = tmp.replace("{nome}", data[i].nome_popular_atleta);
+								tmp = tmp.replace("{qualidade}", (data[i].estatisticas.vitorias? data[i].estatisticas.vitorias : "-"));
+								tmp = tmp.replace("{assiduidade}", (data[i].estatisticas.empates? data[i].estatisticas.empates : "-"));
+								tmp = tmp.replace("{disciplina}", (data[i].estatisticas.derrotas? data[i].estatisticas.derrotas : "-"));
+							    //console.log(data[i].pessoafuncao_id, data[i].nome_popular_atleta);
+								//frontFlip = "<img src='"+  data[i].foto_fpath + "'>";
+								//frontFlip += "<br>Nome:" + data[i].nome_popular_atleta;
+								//frontFlip += "<br>Posição:" + (data[i].funcao.faixa_campo? data[i].funcao.faixa_campo : "-");
+								backFlip = ""
+								//backFlip = "<br>Vitoria:" + data[i].estatisticas.vitorias
+								//backFlip += "<br>Empates:" + data[i].estatisticas.empates;
+								//backFlip += "<br>Derrotas:" + data[i].estatisticas.derrotas;
+								//backFlip += "<br>Jogos:" + data[i].estatisticas.jogos;
+								//console.log(tmp);		
+								//tmp = tmp.replace("{frontFlip}", frontFlip);
+								//tmp = tmp.replace("{backFlip}", backFlip)
+								html += tmp;
+								
+							});
+							
+							$("#content-template").html(html).show()
+					  },
+					  error:function(x,e) {
+						  console.log(data);
+					  }
+					});
+			}
+		});
+		
+	});
+		
+	--></script>
+    
+</%def>
+
+
+
+<%def name="content()">
+
+	<form class="form-filtro" action="" method="post">
+		<fieldset>
+	    <legend>filtro de jogadores</legend>
+	    <select id="equipes" name="equipes">
+	        <option value="">Time</option>
+			% for equipe in equipes:
+				<option value="${equipe['equipe_id']}">${equipe['nome_popular']}</option>
+			% endfor
+	        </select>
+	    </fieldset>
+	</form>
+	
+	<div class="conteudo-jogadores">
+		<div id="jogadores-lista" class="conteudo-jogadores-lista">
+	    	<div id="content-template" style="display:none"></div>
+		</div>
+	</div> 
+
+
+
+ 
+</%def>
+

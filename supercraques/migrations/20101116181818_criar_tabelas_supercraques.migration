@@ -1,0 +1,41 @@
+SQL_UP = """
+	CREATE TABLE  `usuario` (
+	  `usuario_id` varchar(30) NOT NULL,
+	  `nome` varchar(100) NOT NULL,
+	  `primeiro_nome` varchar(50) NULL,
+  	  `ultimo_nome` varchar(50) NULL,
+	  `link` varchar(300) NULL,
+	  `localizacao` varchar(300) NULL,
+	  `sexo` varchar(10) NULL,
+	  `email` varchar(100) NULL,
+	  `patrimonio` float(6,2) NOT NULL DEFAULT '0.00',
+	  PRIMARY KEY  (`usuario_id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+
+	CREATE TABLE  `desafio` (
+	  `desafio_id` int(11) NOT NULL auto_increment,
+	  `usuario_desafiou_id` varchar(30) NOT NULL,
+	  `atleta_desafiou_id` varchar(30) NOT NULL,
+	  `usuario_desafiado_id` varchar(30) NOT NULL,
+	  `atleta_desafiado_id` varchar(30) NULL,
+	  `usuario_vencedor_id` varchar(30) NULL,
+	  `valor_ganho` float(6,2) NULL DEFAULT '0.00',
+	  `descricao` varchar(1024) NULL,
+  	  `data_criacao` datetime NOT NULL,
+  	  `data_update` datetime NULL,
+  	  `status` varchar(1) NOT NULL,
+	  PRIMARY KEY  (`desafio_id`),
+	  KEY `FK_USUARIO_DESAFIOU` (`usuario_desafiou_id`),
+	  KEY `FK_USUARIO_DESAFIADO` (`usuario_desafiado_id`),
+	  KEY `FK_USUARIO_VENCEDOR` (`usuario_vencedor_id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+	
+"""
+
+SQL_DOWN = """
+	DROP TABLE desafio;
+	DROP TABLE usuario;
+"""
+
+ 
