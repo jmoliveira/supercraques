@@ -52,10 +52,10 @@ body{
 .sponsorFlip img{
 	/* Centering the logo image in the middle of the sponsorFlip div */
 	
-	position:absolute;
+	#position:absolute;
 	top:50%;
 	left:50%;
-	margin:-70px 0 0 -70px;
+	margin:6px 0px 0 60px;
 }
 
 .sponsorData{

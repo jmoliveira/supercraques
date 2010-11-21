@@ -3,7 +3,7 @@ SQL_UP = """
 	  `usuario_id` varchar(30) NOT NULL,
 	  `nome` varchar(100) NOT NULL,
 	  `primeiro_nome` varchar(50) NULL,
-  	  `ultimo_nome` varchar(50) NULL,
+	  `ultimo_nome` varchar(50) NULL,
 	  `link` varchar(300) NULL,
 	  `localizacao` varchar(300) NULL,
 	  `sexo` varchar(10) NULL,
@@ -22,19 +22,33 @@ SQL_UP = """
 	  `usuario_vencedor_id` varchar(30) NULL,
 	  `valor_ganho` float(6,2) NULL DEFAULT '0.00',
 	  `descricao` varchar(1024) NULL,
-  	  `data_criacao` datetime NOT NULL,
-  	  `data_update` datetime NULL,
-  	  `status` varchar(1) NOT NULL,
+	  `data_criacao` datetime NOT NULL,
+	  `data_update` datetime NULL,
+	  `status` varchar(1) NOT NULL,
 	  PRIMARY KEY  (`desafio_id`),
 	  KEY `FK_USUARIO_DESAFIOU` (`usuario_desafiou_id`),
 	  KEY `FK_USUARIO_DESAFIADO` (`usuario_desafiado_id`),
-	  KEY `FK_USUARIO_VENCEDOR` (`usuario_vencedor_id`)
+	  KEY `FK_USUARIO_VENCEDOR` (`usuario_vencedor_id`),
+	  UNIQUE KEY `uk_usuario_atleta_status` (`usuario_desafiou_id`,`atleta_desafiou_id`,`status`)
 	) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+  CREATE TABLE  `card` (
+    `card_id` int(11) NOT NULL auto_increment,
+    `usuario_id` varchar(30) NOT NULL,
+    `atleta_id` varchar(30) NOT NULL,
+    `valor` float(6,2) NULL DEFAULT '0.00',
+    PRIMARY KEY  (`card_id`),
+    UNIQUE KEY `uk_usuario_atleta` (`usuario_id`,`atleta_id`),
+    KEY `FK_USUARIO` (`usuario_id`),
+    KEY `FK_ATLETA` (`atleta_id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
 	
 """
 
 SQL_DOWN = """
 	DROP TABLE desafio;
+	DROP TABLE card;
 	DROP TABLE usuario;
 """
 

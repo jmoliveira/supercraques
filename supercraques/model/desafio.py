@@ -12,7 +12,6 @@ class DesafioRepository(Repository):
     
     @staticmethod
     def get_desafios_recebidos(usuario_id):
-        #, usuario_desafiou_id, usuario_desafiado_id, descricao, data_criacao, data_update, status
         session = meta.get_session()
         query = " select desafio_id from desafio"
         query = query + " where usuario_desafiado_id=%s and status='%s'" % (usuario_id, Desafio.STATUS_PENDENTE)
@@ -20,7 +19,7 @@ class DesafioRepository(Repository):
         if result:
             return [Desafio().get(r[0]) for r in result]
         
-        return None
+        return []
 
 
     @staticmethod
@@ -32,7 +31,7 @@ class DesafioRepository(Repository):
         if result:
             return [Desafio().get(r[0]) for r in result]
         
-        return None
+        return []
 
 
 class Desafio(Model, DesafioRepository):
