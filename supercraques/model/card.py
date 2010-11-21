@@ -13,18 +13,28 @@ from sqlalchemy.orm import relation
 
 
 class CardRepository(Repository):
-    
+
     @staticmethod
-    def get_cards(usuario_id):
+    def ids(usuario_id):
         session = meta.get_session()
         query = " select card_id from card"
         query = query + " where usuario_id=%s" % usuario_id
         result = session.execute(query)
-        if result:
-            return [Card().get(r[0]) for r in result]
-        
-        return []
-    
+        return [row['card_id'] for row in result.fetchall()]
+
+    @staticmethod
+    def get_cards(usuario_id):
+        ids = Card().ids(usuario_id)
+        return [Card().get(id) for id in ids]
+
+    @staticmethod
+    def get_atleta_ids(usuario_id):
+        session = meta.get_session()
+        query = " select atleta_id from card"
+        query = query + " where usuario_id=%s" % usuario_id
+        result = session.execute(query)
+        return [row['atleta_id'] for row in result.fetchall()]
+
     
     @staticmethod
     def comprar_card(usuario_id, atleta_id, valor):

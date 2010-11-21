@@ -14,6 +14,7 @@ __engine_readable__ = None
 __engine_writable__ = None
 _MODELS = {}
 EQUIPE_MAP = {}
+ATLETAS_MAP = {}
 
 class TimerProxy(ConnectionProxy):
     def cursor_execute(self, execute, cursor, statement, parameters, context, executemany):

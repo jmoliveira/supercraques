@@ -7,6 +7,8 @@ urls = (
     url("/auth/login", HomeController, action="auth_login", name="auth_login"),
     url("/home", HomeController, action="home", name="home"),
     url("/banca", BancaController, action="banca", name="banca"),
+    url("/cards.{extension}", BancaController, action="cards", name="cards"),
+    url("/cards", BancaController, action="cards_box", name="cards_box"),
     url("/atleta/{atleta_id}/comprar", BancaController, action="comprar_card", name="comprar_card"),
     url("/equipe/{equipe_id}/atletas.{extension}", BancaController, action="busca_atletas_por_equipe", name="busca_atletas_por_equipe"),
 )

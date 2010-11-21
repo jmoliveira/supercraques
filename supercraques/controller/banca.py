@@ -35,18 +35,37 @@ class BancaController (BaseController):
     @logged
     @render_to_extension
     def busca_atletas_por_equipe(self, usuario, equipe_id, *args, **kargs):
-        print "Usuario ID:", usuario.id
         atletas = self.get_atletas_estatisticas_por_equipe(equipe_id) 
         return self.adicionar_status_compra(atletas, usuario.id)
    
+    @logged
+    @render_to_extension
+    def cards(self, usuario, *args, **kargs):
+        return {}
+#        return Card().get_cards(usuario.id)
+
+    @logged
+    def cards_box(self, usuario, *args, **kargs):
+        cards = self.get_atletas_que_possui(usuario.id)
+        return self.render_to_template("/cards.html",  usuario=usuario, cards=cards)
+
 
     #############################################
     def adicionar_status_compra(self, atletas, usuario_id):
-        cards_comprado = Card().get_cards(usuario_id)
-        atleta_ids = [card.atleta_id for card in cards_comprado]
+        atleta_ids = Card().get_atleta_ids(usuario_id)
         for atleta in atletas:
             atleta.update({"possui": str(atleta["atleta_id"]) in atleta_ids})
         
+        return atletas
+
+    def get_atletas_que_possui(self, usuario_id):
+        atletas = []
+        atleta_ids = Card().get_atleta_ids(usuario_id)
+        for id in atleta_ids:
+            atleta = self.get_atleta(id)
+            if atleta:
+                atletas.append(atleta)
+                
         return atletas
         
     def get_equipes(self):
@@ -61,6 +80,10 @@ class BancaController (BaseController):
     def get_equipe_map(self, equipe_id=None):
         if not meta.EQUIPE_MAP or (equipe_id and not meta.EQUIPE_MAP.has_key(int(equipe_id))) : self.__load__(equipe_id)
         return meta.EQUIPE_MAP
+    
+    def get_atleta(self, atleta_id):
+#        import pdb;pdb.set_trace()
+        return meta.ATLETAS_MAP.get(atleta_id)
 
     def get_atletas_estatisticas_por_equipe(self, equipe_id):
         equipe_map = self.get_equipe_map(equipe_id)
@@ -84,8 +107,11 @@ class BancaController (BaseController):
                                          "disciplina": scout["estatisticas"]["derrotas"] if scout["estatisticas"].get("derrotas") else "-"});
             
             meta.EQUIPE_MAP[int(equipe["equipe_id"])] = {"equipe": equipe, "atletas":atletas}
- 
 
+ 
+        for key in meta.EQUIPE_MAP.keys(): 
+            for atleta in meta.EQUIPE_MAP[key]["atletas"]:
+                meta.ATLETAS_MAP[str(atleta["atleta_id"])] = atleta
 
      
      

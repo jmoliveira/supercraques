@@ -1,0 +1,31 @@
+<%inherit file="/base.html"/>
+
+<%def name="css()">
+    ${parent.css()}
+    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/cards.css" />
+</%def>
+
+
+<%def name="javascript()">
+    ${parent.javascript()}
+    
+    <script type="text/javascript"><!--
+	$(function() {	
+
+        
+	});
+		
+	--></script>
+    
+</%def>
+
+
+
+<%def name="content()">
+  MEUS CARDS<BR>
+	<div class="glb-bloco">
+		<%include file="/box/box_cards.html"/>
+	</div>
+
+</%def>
+
