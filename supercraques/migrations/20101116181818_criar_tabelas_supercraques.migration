@@ -28,8 +28,7 @@ SQL_UP = """
 	  PRIMARY KEY  (`desafio_id`),
 	  KEY `FK_USUARIO_DESAFIOU` (`usuario_desafiou_id`),
 	  KEY `FK_USUARIO_DESAFIADO` (`usuario_desafiado_id`),
-	  KEY `FK_USUARIO_VENCEDOR` (`usuario_vencedor_id`),
-	  UNIQUE KEY `uk_usuario_atleta_status` (`usuario_desafiou_id`,`atleta_desafiou_id`,`status`)
+	  KEY `FK_USUARIO_VENCEDOR` (`usuario_vencedor_id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
   CREATE TABLE  `card` (

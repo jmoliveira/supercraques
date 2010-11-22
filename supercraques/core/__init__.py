@@ -11,6 +11,11 @@ class SaldoInsuficienteError(Exception):
     def __init__(self, message="Usuário não tem dinheiro suficiente para comprar o card!"):
         Exception.__init__(self, message)
 
+
 class CardJaCompradoError(Exception):
     def __init__(self, message="Card já comprado!"):
+        Exception.__init__(self, message)
+
+class DesafioJaExisteError(Exception):
+    def __init__(self, message="Desafio já existe!"):
         Exception.__init__(self, message)

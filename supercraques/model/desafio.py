@@ -1,14 +1,19 @@
 # coding: utf-8
 #!/usr/bin/env python
 
+import logging
+from datetime import datetime
+from supercraques.core import SuperCraquesError, DesafioJaExisteError
 from supercraques.model.usuario import Usuario
+from supercraques.model.card import Card
 from supercraques.core import meta
 from supercraques.model.base import Model, Repository
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Float
 from sqlalchemy.orm import relation
-
+from sqlalchemy.exceptions import IntegrityError
 
 class DesafioRepository(Repository):
+    
     
     @staticmethod
     def get_desafios_recebidos(usuario_id):
@@ -16,10 +21,7 @@ class DesafioRepository(Repository):
         query = " select desafio_id from desafio"
         query = query + " where usuario_desafiado_id=%s and status='%s'" % (usuario_id, Desafio.STATUS_PENDENTE)
         result = session.execute(query)
-        if result:
-            return [Desafio().get(r[0]) for r in result]
-        
-        return []
+        return [Desafio().get(r[0]) for r in result]
 
 
     @staticmethod
@@ -28,10 +30,67 @@ class DesafioRepository(Repository):
         query = " select desafio_id from desafio"
         query = query + " where usuario_desafiou_id=%s and status='%s'" % (usuario_id, Desafio.STATUS_PENDENTE)
         result = session.execute(query)
-        if result:
-            return [Desafio().get(r[0]) for r in result]
+        return [Desafio().get(r[0]) for r in result]
+    
+    @staticmethod
+    def existe_desafio(usuario_desafiou_id, atleta_desafiou_id):
+        session = meta.get_session()
         
-        return []
+        query = " select count(desafio_id) from desafio"
+        query = query + " where usuario_desafiou_id=%s and atleta_desafiou_id=%s and status in (%s)" % (usuario_desafiou_id, atleta_desafiou_id, Desafio.IN_STATUS)
+        result = session.execute(query)
+        if result:
+            return True
+        else:
+            return False
+        
+        
+    
+    @staticmethod
+    def criar_desafio(card_id, usuario_desafiado_id):
+        
+        try:
+            
+            session = meta.get_session()
+            session.begin()
+        
+            card = Card().get(card_id)
+            
+            if Desafio.existe_desafio(card.usuario_id, card.atleta_id):
+                raise DesafioJaExisteError()
+            
+            
+            desafio = Desafio()
+            desafio.usuario_desafiou_id = card.usuario_id
+            desafio.atleta_desafiou_id = card.atleta_id
+            desafio.usuario_desafiado_id = usuario_desafiado_id
+            desafio.status = Desafio.STATUS_PENDENTE
+            desafio.data_criacao = datetime.now()
+            
+            # cria o desafio 
+            session.add(desafio)
+            
+            # faz commit
+            session.commit()
+    
+            return desafio
+        
+        except IntegrityError, e:
+            session.rollback()
+            logging.error("desafio já existe %s " % e)
+            raise SuperCraquesError("Ops! Ocorreu um erro na intertidade!")
+       
+        except DesafioJaExisteError, e:
+            session.rollback()
+            logging.error("desafio já existe %s " % e)
+            raise e
+        
+        except Exception, e:
+            session.rollback()
+            logging.error("Erro ao comprar card! %s " % e)
+            raise SuperCraquesError("Ops! Ocorreu um erro na transação!")
+
+        
 
 
 class Desafio(Model, DesafioRepository):
@@ -42,6 +101,7 @@ class Desafio(Model, DesafioRepository):
     STATUS_FINALIZADO = "F"
     STATUS_VISTO = "V"
     STATUS_ESCONDIDO = "E"
+    IN_STATUS = "'%s','%s'" % (STATUS_PENDENTE, STATUS_ACEITE)
     
     id = Column('desafio_id', Integer, primary_key=True)
     usuario_desafiou_id = Column('usuario_desafiou_id', String, ForeignKey("usuario.usuario_id"))

@@ -12,47 +12,7 @@
     <script type="text/javascript"><!--
 	$(function() {	
         //bind dos botoes do social
-        //$(".share-button a").mediaShare();
-        var profilePicsDiv = document.getElementById('profile_pics');
-        
-        $(".share-button a").click(function(){
-        	
-	        FB.login(function(response) {
-	        	  if (response.session) {
-	        	    if (response.perms) {
-	        	    	//message, picture, link, name, caption, description, source
-	        	    	//parms = "?message=message neoneo&name=name noenoene&caption=caption neoneoneoe&description=desciption neoeone&picture=http://s.glbimg.com/es/ge/f/original/2010/05/07/site_flamengo.jpg"
-	        	    	parms = "?link=http://www.supercraques.com.br&caption=Super Craques&description=Vc foi desafiado para jogar no SuperCraques!!Vai correr?!&picture=http://sabadao-santamonica.zip.net/images/craque.jpg"
-	        	    			
-	        	    	FB.api('/100001830967449/feed' + parms, 'post', function(response) {
-	        	    	  if (!response || response.error) {
-	        	    	    alert('Error occured');
-	        	    	  } else {
-	        	    	    alert('Post ID: ' + response);
-	        	    	  }
-	        	    	});
-	        	    	
-	        	    	
-	        	    	//console.log("permissao ACEITA");
-	        	      // user is logged in and granted some permissions.
-	        	      // perms is a comma separated list of granted permissions
-	        	    } else {
-	        	    	//console.log("permissao NEGADA");
-	        	    	alert("permissao NEGADA");
-	        	      // user is logged in, but did not grant any permissions
-	        	    }
-	        	  } else {
-	        		  //console.log("usuario NAO ESTA LOGADO");
-	        		  alert("usuario NAO ESTA LOGADO");
-	        	    // user is not logged in
-	        	  }
-	        	}, {perms:'read_stream,publish_stream,offline_access'});
-        	
-        	
-        	
-        });
-        
-        
+        $(".share-button a").mediaShare();
 	});
 		
 	--></script>
@@ -73,15 +33,15 @@
 		<%include file="/box/box_desafios_recebidos.html"/>
 	</div>
 		
+  <div class="glb-bloco2">
+    <BR>
+    <%include file="/box/box_desafios_enviados.html"/>
+  </div>
 
 
 
 
 <BR><BR><BR>
-<div class='tweet-button share-button'>
-	<img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='twitter' data-text="Janilton super craque twitter!" data-url="http://cartolafc.globo.com/time/abc" title='Compartilhar super craques no Twitter'><img src="/media/img/twitter_ico.gif" alt='Compartilhar minha pontua&ccedil;&atilde;o no Twitter' /></a>
-	<img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='facebook' data-text="Janilton super craque facebook" data-url="http://www.supercraques.com.br/" data-url-name="chico" title='Compartilhar minha pontua&ccedil;&atilde;o no Facebook'><img src="/media/img/facebook_ico.gif" alt='Compartilhar minha pontua&ccedil;&atilde;o no Facebook' /></a>
-</div>				
 
  
 </%def>

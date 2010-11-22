@@ -11,6 +11,37 @@
     
     <script type="text/javascript"><!--
 	$(function() {	
+// https://graph.facebook.com/100001830967449/picture
+
+    $('.btn_comprar').live("click",function(){
+        var $elem = $(this);
+        $.ajax({
+            url: "/card/19/usuario_desafiado/"+ $elem.attr("usuario_id") + "/desafiar",
+            success: function(data) {
+              alert(data.sucesso + " - " + data.message);
+              // $elem.hide();
+            },
+            error:function(x,e) {
+              alert("errosr:" + e);
+            }
+          });
+    });
+    
+    var $contenTemplate = $("#content-template");
+    var $cardTemplate = $("#friendTemplate");
+
+
+      $.ajax({
+            url: "/fb/friends.json",
+            success: function(result) {
+              $contenTemplate.html("");
+              $cardTemplate.tmpl( result ).appendTo($contenTemplate);
+              $contenTemplate.show();
+            },
+            error:function(x,e) {
+              alert("errosr:" + e);
+            }
+          });
 
         
 	});
@@ -26,6 +57,21 @@
 	<div class="glb-bloco">
 		<%include file="/box/box_cards.html"/>
 	</div>
+  <br />
+
+<div style="clear:both"></div>
+<div id="content-template" style="display:none; height:250px;width:300px; overflow:auto"></div>
+
+
+<BR>AMIGOS
+<script id="friendTemplate" type="text/x-jquery-tmpl">
+    <div>
+        <img height="60" width="60" border="0"  src="https://graph.facebook.com/{{= id}}/picture">
+        {{= name}}
+      <a href="javascript:void(0);"><img border="0" src="/media/img/btn_comprar.jpg" class="btn_comprar" usuario_id="{{= id}}"></a>
+    </div>
+</script>    
+
 
 </%def>
 

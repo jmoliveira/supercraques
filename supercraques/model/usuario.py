@@ -50,6 +50,7 @@ class UsuarioRepository(Repository):
 
 class Usuario(Model, UsuarioRepository):
     __tablename__ = 'usuario'
+    access_token = None
     
     id = Column('usuario_id', String, primary_key=True)
     nome = Column('nome', String)
@@ -60,3 +61,4 @@ class Usuario(Model, UsuarioRepository):
     sexo = Column('sexo', String)
     email = Column('email', String)
     patrimonio = Column('patrimonio', Float)
+    

@@ -100,6 +100,10 @@ class GraphAPI(object):
         """Fetchs the connections for given object."""
         return self.request(id + "/" + connection_name, args)
 
+    def get_friends(self, id, **args):
+        """Fetchs the connections for given object."""
+        return self.request(id + "/friends", args)
+
     def put_object(self, parent_object, connection_name, **data):
         """Writes the given object to the graph, connected to the given parent.
 

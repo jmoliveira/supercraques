@@ -87,6 +87,8 @@ def logged(fn):
             if not usuario:
                 kw.get('request_handler').redirect("/login")
                 return
+            else:
+                usuario.access_token = user_cookie["access_token"]
         else:
             kw.get('request_handler').redirect("/login")
             return
@@ -94,71 +96,3 @@ def logged(fn):
         return fn(self, usuario=usuario, *args, **kw)
     
     return logged_fn
-
-
-
-
-#{'uid': '100001830967449', 'access_token': '166942923329088|91973d991dfad32ea0110f4b-100001830967449|zORtlkhMPbjkQlk7qGw-XFfLf7k', 
-#'expires': '0', 'base_domain': 'supercraques.com.br', 'secret': '6315afbaf58f5a49ad87686351c79a06', 'sig': '555880acdf0ef6d9274fdc4a892a370e',
-# 'session_key': '91973d991dfad32ea0110f4b-100001830967449'}
-
-#"id" : 100001830967449,
-#   "name" : "SuperCraques Cards",
-#   "first_name" : "SuperCraques",
-#   "last_name" : "Cards",
-#   "link" : http://www.facebook.com/profile.php?id=100001830967449,
-#   "birthday" : "11/05/1977",
-#   "location": {
-#    "id" : 110346955653479,
-#    "name" : "Rio de Janeiro, Rio de Janeiro"
-#    },
-#   "gender" : "male",
-#   "relationship_status" : "Single",
-#   "email" : "cururuzteitei@gmail.com",
-#   "timezone" : -2,
-#   "locale" : "en_US",
-#   "updated_time" : "2010-11-15T21:47:03+0000"
-
-
-
-
-#    @property
-#    def current_user(self):
-#        """Returns the logged in Facebook user, or None if unconnected."""
-#        if not hasattr(self, "_current_user"):
-#            self._current_user = None
-#            user_id = parse_cookie(self.request.cookies.get("fb_user"))
-#            if user_id:
-##                self._current_user = User.get_by_key_name(user_id)
-#                self._current_user = None
-#        return self._current_user
-#    
-
-
-#def parse_cookie(value):
-#    """Parses and verifies a cookie value from set_cookie"""
-#    if not value: return None
-#    parts = value.split("|")
-#    if len(parts) != 3: return None
-#    if cookie_signature(parts[0], parts[1]) != parts[2]:
-#        logging.warning("Invalid cookie signature %r", value)
-#        return None
-#    timestamp = int(parts[1])
-#    if timestamp < time.time() - 30 * 86400:
-#        logging.warning("Expired cookie %r", value)
-#        return None
-#    try:
-#        return base64.b64decode(parts[0]).strip()
-#    except:
-#        return None
-#    
-#
-#def cookie_signature(*parts):
-#    """Generates a cookie signature.
-#
-#    We use the Facebook app secret since it is different for every app (so
-#    people using this example don't accidentally all use the same secret).
-#    """
-#    hash = hmac.new(FACEBOOK_APP_SECRET, digestmod=hashlib.sha1)
-#    for part in parts: hash.update(part)
-#    return hash.hexdigest()

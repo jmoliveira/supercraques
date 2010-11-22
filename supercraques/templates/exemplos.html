@@ -66,7 +66,7 @@
         FB.api(
           {
             method: 'fql.query',
-            query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
+            query: 'SELECT name, pic FROM profile WHERE id=' +  
           },
           function(response) {
             var user = response[0];
@@ -104,6 +104,208 @@ Desafios
 	</form>
     
 
+<fb:serverFbml>
+<script type="text/fbml">
+<fb:fbml>
+
+
+    <fb:request-form    method="POST" 
+                        target= "_top"
+                        action="http://apps.facebook.com/xxxx/landing.html" 
+                        type="xxxx" 
+                        content="xxx"> 
+        <fb:multi-friend-selector   rows="3" 
+                                    cols="3" 
+                                    style="width: 350px;" 
+                                    email_invite="false"
+                                    target="_top"
+                                    actiontext="xxx"> 
+        </fb:multi-friend-selector>
+    </fb:request-form>
+    
+
+</fb:fbml>
+</script>
+</fb:serverFbml>
+
  
+ 
+ <fb:serverfbml> 
+<script type="text/fbml">
+    <fb:fbml> 
+        <fb:request-form
+                action="http://supercraques.com.br:8082/home"
+                method="POST"
+                invite="true"
+                type="Super Craques"
+                content="Try out my app!
+                        <fb:req-choice url='http://your-facebook-canvas-url'
+                        label='ABC'
+                        /> 
+                " > 
+                <fb:multi-friend-selector
+                        showborder="false"
+                        actiontext="Convite seu amigo para jogar"
+                        rows="3"
+                        cols="3"
+                        bypass="Cancel"
+                        actiontext="teste neoenoe"
+                        style="width: 350px;"
+                /> 
+        </fb:request-form> 
+    </fb:fbml>
+</script> 
+</fb:serverfbml>
+
+
+<fb:serverfbml> 
+<script type="text/fbml">
+    <fb:fbml> 
+        <fb:request-form
+                action="http://supercraques.com.br:8082/home"
+                method="POST"
+                invite="true"
+                type="Super Craques"
+                content='Venha jogar no Super Craques
+                    <fb:req-choice url="http://supercraques.com.br:8082/login" 
+                    label="Yes" />
+                <fb:req-choice url="http://supercraques.com.br:8082/login" 
+                    label="No" />
+                    '> 
+                
+                
+                <fb:multi-friend-selector
+                        showborder="false"
+                        actiontext="Convite seu amigo para jogar"
+                        rows="3"
+                        cols="3"
+                        bypass="Cancel"
+                        actiontext="teste neoenoe"
+                        style="width: 350px;"
+                /> 
+        </fb:request-form> 
+    </fb:fbml>
+</script> 
+</fb:serverfbml>
+
+
+
+<fb:serverfbml>
+  <script type="text/fbml">
+    <fb:request-form action="http://supercraques.com.br:8082/home"
+                     method="POST"
+                     invite="true"
+                     type="Super Craques"
+                     content='Venha jogar no Super Craques. <fb:req-choice url="http://supercraques.com.br:8082/login" label="Yes" /> <fb:req-choice url="http://supercraques.com.br:8082/login" 
+                    label="No" />'
+      <fb:multi-friend-selector showborder="false"
+                                bypass="cancel"
+                                rows="3"
+                                cols="3"
+                                max="1"
+                                style="width: 350px;"
+                                actiontext="Convite seu amigo para jogar"/>
+    </fb:request-form>
+  </script>
+</fb:serverfbml>
+
+
+
+       var profilePicsDiv = document.getElementById('profile_pics');
+  FB.api({ method: 'friends.get' }, function(result) {
+    var markup = '';
+    var numFriends = result ? Math.min(5, result.length) : 0;
+    if (numFriends > 0) {
+      for (var i=0; i<numFriends; i++) {
+        markup += (
+          '<fb:profile-pic size="square" ' +
+                          'uid="' + result[i] + '" ' +
+                          'facebook-logo="true"' +
+          '></fb:profile-pic>'
+        );
+      }
+    }
+    profilePicsDiv.innerHTML = markup;
+    FB.XFBML.parse(profilePicsDiv);
+  });
+
+
+    
+    var
+  info   = document.getElementById('info'),
+  update = function(response) {
+    if (!response.session) {
+      info.innerHTML = '<em>You must login using the controls at the top.</em>';
+      return;
+    }
+
+    FB.api(
+      {
+        method: 'fql.query',
+        query: 'SELECT name, pic_square FROM user WHERE uid=' + response.session.uid
+      },
+      function(response) {
+        info.innerHTML = (
+          '<img src="' + response[0].pic_square + '"> ' +
+          response[0].name
+        );
+      }
+    );
+  };
+
+// update on login, logout, and once on page load
+FB.Event.subscribe('auth.login', update);
+FB.Event.subscribe('auth.logout', update);
+FB.getLoginStatus(update);
+
+
+#fcbklist .itemselected 
+{
+  background-color:#D7F8AC !important;
+  background-image: url(images/checked.png);
+  background-repeat:no-repeat;
+  background-position:right bottom; 
+}
+
+
+
+$(".share-button a").click(function(){
+          
+          FB.login(function(response) {
+              if (response.session) {
+                if (response.perms) {
+                  //message, picture, link, name, caption, description, source
+                  //parms = "?message=message neoneo&name=name noenoene&caption=caption neoneoneoe&description=desciption neoeone&picture=http://s.glbimg.com/es/ge/f/original/2010/05/07/site_flamengo.jpg"
+                  parms = "?link=http://www.supercraques.com.br&caption=Super Craques&description=Vc foi desafiado para jogar no SuperCraques!!Vai correr?!&picture=http://sabadao-santamonica.zip.net/images/craque.jpg"
+                      
+                  FB.api('/100001830967449/feed' + parms, 'post', function(response) {
+                    if (!response || response.error) {
+                      alert('Error occured');
+                    } else {
+                      alert('Post ID: ' + response);
+                    }
+                  });
+                  
+                  
+                  //console.log("permissao ACEITA");
+                  // user is logged in and granted some permissions.
+                  // perms is a comma separated list of granted permissions
+                } else {
+                  //console.log("permissao NEGADA");
+                  alert("permissao NEGADA");
+                  // user is logged in, but did not grant any permissions
+                }
+              } else {
+                //console.log("usuario NAO ESTA LOGADO");
+                alert("usuario NAO ESTA LOGADO");
+                // user is not logged in
+              }
+            }, {perms:'read_stream,publish_stream,offline_access'});
+          
+          
+          
+        });
+
+
 </%def>
 

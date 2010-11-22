@@ -46,9 +46,31 @@ class BancaController (BaseController):
 
     @logged
     def cards_box(self, usuario, *args, **kargs):
-        cards = self.get_atletas_que_possui(usuario.id)
+#        cards = self.get_atletas_que_possui(usuario.id)
+        cards = []
         return self.render_to_template("/cards.html",  usuario=usuario, cards=cards)
 
+
+#    def invite_friends(self. request):
+#        #HTML escape function for invitation content.
+#        from cgi import escape
+#    
+#        facebook_uid = request.facebook.uid
+#        # Convert the array of friends into a comma-delimeted string.  
+#        exclude_ids = ",".join([str(a) for a in request.facebook.friends.getAppUsers()])
+#    
+#        # Prepare the invitation text that all invited users will receive.  
+#        content = """<fb:name uid="%s" firstnameonly="true" shownetwork="false"/>
+#            wants to invite you to play Online board games,
+#                 <fb:req-choice url="%s"
+#         label="Put Online Gaming and Video Chat on your profile!"/>
+#         """ % (facebook_uid, request.facebook.get_add_url())
+#    
+#        invitation_content = escape(content, True)
+#    
+#        return render_to_response('facebook/invite_friends.fbml',
+#                                   {'content': invitation_content, 'exclude_ids': exclude_ids })
+        
 
     #############################################
     def adicionar_status_compra(self, atletas, usuario_id):
@@ -78,12 +100,16 @@ class BancaController (BaseController):
         return self.get_content_service(settings.SEDE['servicos']['scout_do_atleta_na_edicao'] % pessoafuncao_id)
     
     def get_equipe_map(self, equipe_id=None):
-        if not meta.EQUIPE_MAP or (equipe_id and not meta.EQUIPE_MAP.has_key(int(equipe_id))) : self.__load__(equipe_id)
+        if not meta.EQUIPE_MAP or (equipe_id and not meta.EQUIPE_MAP.has_key(int(equipe_id))):
+            self.__load__(equipe_id)
         return meta.EQUIPE_MAP
+
+    def get_atleta_map(self):
+        if not meta.ATLETAS_MAP: self.__load__()
+        return meta.ATLETAS_MAP
     
     def get_atleta(self, atleta_id):
-#        import pdb;pdb.set_trace()
-        return meta.ATLETAS_MAP.get(atleta_id)
+        return self.get_atleta_map().get(atleta_id)
 
     def get_atletas_estatisticas_por_equipe(self, equipe_id):
         equipe_map = self.get_equipe_map(equipe_id)
