@@ -11,8 +11,44 @@
     
     <script type="text/javascript"><!--
 	$(function() {	
+
         //bind dos botoes do social
         $(".share-button a").mediaShare();
+        
+        var $dialog_atletas_card = $("#dialog-atletas-card");
+        var $atletaCardTemplate = $("#atletaCardTemplate");
+        var $contentDialogAtletaCard = $("#contentDialogAtletaCard");
+        
+        $dialog_atletas_card.dialog({
+          autoOpen: false,
+          height: 400,
+          width: 800,
+          modal: true
+        });
+
+
+        $(".aceitarDesafioCard").live("click", function() {
+          $("#atleta_card_id_selecionado", $dialog_atletas_card).val($(this).attr("data"));
+          $('#formDesafio').submit();
+        });
+        
+        // 
+        $(".desafioCard").live("click", function() {
+            $.ajax({
+                url: "/atletas_card.json",
+                success: function(data) {
+                  $("#desafio_id", $dialog_atletas_card).val($(this).attr("data"));
+                  $contentDialogAtletaCard.html("");
+                  $atletaCardTemplate.tmpl( data ).appendTo($contentDialogAtletaCard);
+                  $dialog_atletas_card.dialog('open');
+                },
+                error:function(x,e) {
+                  alert("error:" + e);
+                }
+              });
+        });
+            
+        
 	});
 		
 	--></script>
@@ -43,6 +79,21 @@
 
 <BR><BR><BR>
 
- 
+
+<div id="dialog-atletas-card" title="Meus Cards" style="display:none"><form action="/desafio/aceitar" method="get" id="formDesafio"><input type="hidden" value="" id="desafio_id" name="desafio_id" /><input type="hidden" value="" id="atleta_card_id_selecionado" name="atleta_card_id_selecionado" /><div id="contentDialogAtletaCard"></div></form></div>
+
+<script id="atletaCardTemplate" type="text/x-jquery-tmpl">
+    <div class="atletaCard">
+        <img height="60" width="60" border="0" src="{{= img}}">
+        <BR>
+        <div class="player">Nome: {{= nome}}</div>
+        <div class="position">Posicao: {{= posicao}}</div>
+        <input type="radio" name="radio" value="qualidade" /> Qualidade: {{= qualidade}}<BR>
+        <input type="radio" name="radio" value="assiduidade" /> Assiduidade: {{= assiduidade}}<BR>
+        <input type="radio" name="radio" value="disciplina" /> Disciplina: {{= disciplina}}<BR>
+        <a class="featured aceitarDesafioCard" data="{{= card_id}}">Jogar</a>
+    </div>
+</script> 
+
 </%def>
 

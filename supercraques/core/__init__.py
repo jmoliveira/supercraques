@@ -6,11 +6,9 @@ class SuperCraquesError(Exception):
     def __init__(self, message):
         Exception.__init__(self, message)
 
-
 class SaldoInsuficienteError(Exception):
     def __init__(self, message="Usuário não tem dinheiro suficiente para comprar o card!"):
         Exception.__init__(self, message)
-
 
 class CardJaCompradoError(Exception):
     def __init__(self, message="Card já comprado!"):
@@ -18,4 +16,8 @@ class CardJaCompradoError(Exception):
 
 class DesafioJaExisteError(Exception):
     def __init__(self, message="Desafio já existe!"):
+        Exception.__init__(self, message)
+
+class NotFoundError:
+    def __init__(self, message="Objeto inexistente"):
         Exception.__init__(self, message)

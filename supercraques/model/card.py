@@ -27,13 +27,13 @@ class CardRepository(Repository):
         ids = Card().ids(usuario_id)
         return [Card().get(id) for id in ids]
 
-    @staticmethod
-    def get_atleta_ids(usuario_id):
-        session = meta.get_session()
-        query = " select atleta_id from card"
-        query = query + " where usuario_id=%s" % usuario_id
-        result = session.execute(query)
-        return [row['atleta_id'] for row in result.fetchall()]
+#    @staticmethod
+#    def get_atleta_ids(usuario_id):
+#        session = meta.get_session()
+#        query = " select atleta_id from card"
+#        query = query + " where usuario_id=%s" % usuario_id
+#        result = session.execute(query)
+#        return [row['atleta_id'] for row in result.fetchall()]
 
     
     @staticmethod

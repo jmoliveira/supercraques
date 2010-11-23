@@ -16,7 +16,7 @@
     $('.btn_comprar').live("click",function(){
         var $elem = $(this);
         $.ajax({
-            url: "/card/19/usuario_desafiado/"+ $elem.attr("usuario_id") + "/desafiar",
+            url: "/card/20/usuario_desafiado/"+ $elem.attr("usuario_id") + "/desafiar",
             success: function(data) {
               alert(data.sucesso + " - " + data.message);
               // $elem.hide();

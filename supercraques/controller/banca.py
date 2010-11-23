@@ -40,52 +40,32 @@ class BancaController (BaseController):
    
     @logged
     @render_to_extension
-    def cards(self, usuario, *args, **kargs):
-        return {}
-#        return Card().get_cards(usuario.id)
+    def atletas_card(self, usuario, *args, **kargs):
+        return self.get_atletas_card(usuario.id)
 
     @logged
     def cards_box(self, usuario, *args, **kargs):
-#        cards = self.get_atletas_que_possui(usuario.id)
-        cards = []
+        cards = self.get_atletas_card(usuario.id)
+#        cards = []
         return self.render_to_template("/cards.html",  usuario=usuario, cards=cards)
 
 
-#    def invite_friends(self. request):
-#        #HTML escape function for invitation content.
-#        from cgi import escape
-#    
-#        facebook_uid = request.facebook.uid
-#        # Convert the array of friends into a comma-delimeted string.  
-#        exclude_ids = ",".join([str(a) for a in request.facebook.friends.getAppUsers()])
-#    
-#        # Prepare the invitation text that all invited users will receive.  
-#        content = """<fb:name uid="%s" firstnameonly="true" shownetwork="false"/>
-#            wants to invite you to play Online board games,
-#                 <fb:req-choice url="%s"
-#         label="Put Online Gaming and Video Chat on your profile!"/>
-#         """ % (facebook_uid, request.facebook.get_add_url())
-#    
-#        invitation_content = escape(content, True)
-#    
-#        return render_to_response('facebook/invite_friends.fbml',
-#                                   {'content': invitation_content, 'exclude_ids': exclude_ids })
-        
-
     #############################################
     def adicionar_status_compra(self, atletas, usuario_id):
-        atleta_ids = Card().get_atleta_ids(usuario_id)
+        cards = Card().get_cards(usuario_id)
+        atleta_ids = [c.atleta_id for c in cards]
         for atleta in atletas:
             atleta.update({"possui": str(atleta["atleta_id"]) in atleta_ids})
         
         return atletas
 
-    def get_atletas_que_possui(self, usuario_id):
+    def get_atletas_card(self, usuario_id):
         atletas = []
-        atleta_ids = Card().get_atleta_ids(usuario_id)
-        for id in atleta_ids:
-            atleta = self.get_atleta(id)
+        cards = Card().get_cards(usuario_id)
+        for card in cards:
+            atleta = self.get_atleta(card.atleta_id)
             if atleta:
+                atleta.update({"card_id": card.id})
                 atletas.append(atleta)
                 
         return atletas
@@ -140,7 +120,27 @@ class BancaController (BaseController):
                 meta.ATLETAS_MAP[str(atleta["atleta_id"])] = atleta
 
      
-     
+ 
+#    def invite_friends(self. request):
+#        #HTML escape function for invitation content.
+#        from cgi import escape
+#    
+#        facebook_uid = request.facebook.uid
+#        # Convert the array of friends into a comma-delimeted string.  
+#        exclude_ids = ",".join([str(a) for a in request.facebook.friends.getAppUsers()])
+#    
+#        # Prepare the invitation text that all invited users will receive.  
+#        content = """<fb:name uid="%s" firstnameonly="true" shownetwork="false"/>
+#            wants to invite you to play Online board games,
+#                 <fb:req-choice url="%s"
+#         label="Put Online Gaming and Video Chat on your profile!"/>
+#         """ % (facebook_uid, request.facebook.get_add_url())
+#    
+#        invitation_content = escape(content, True)
+#    
+#        return render_to_response('facebook/invite_friends.fbml',
+#                                   {'content': invitation_content, 'exclude_ids': exclude_ids })
+    
 #        # ordena os itens de acordo com o criterio escolhido
 #        if orderby == 'pontos':
 #            atletas.sort(key=lambda x:x['pontuacao'], reverse=True)
