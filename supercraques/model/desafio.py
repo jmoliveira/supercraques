@@ -3,14 +3,15 @@
 
 import logging
 from datetime import datetime
-from supercraques.core import SuperCraquesError, DesafioJaExisteError, NotFoundError
-from supercraques.model.usuario import Usuario
-from supercraques.model.card import Card
-from supercraques.core import meta
-from supercraques.model.base import Model, Repository
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Float
 from sqlalchemy.orm import relation
-from sqlalchemy.exceptions import IntegrityError, NoResultFound
+from sqlalchemy.exceptions import IntegrityError
+from supercraques.core import SuperCraquesError, DesafioJaExisteError, SuperCraquesNotFoundError
+from supercraques.core import meta
+from supercraques.model.usuario import Usuario
+from supercraques.model.card import Card
+from supercraques.model.base import Model, Repository
+from supercraques.util import date_to_date_br
 
 class DesafioRepository(Repository):
     
@@ -97,7 +98,7 @@ class DesafioRepository(Repository):
             session = meta.get_session()
             session.begin()
         
-            desafio = Desafio().get(desafio_id)
+            desafio = Desafio().get_by_id(desafio_id)
             
             if desafio.usuario_desafiado_id != usuario_desafiado_id:
                 raise SuperCraquesError("usuario que aceitou é diferente do que esta no desafio")
@@ -121,10 +122,10 @@ class DesafioRepository(Repository):
             logging.error("desafio já existe %s " % e)
             raise SuperCraquesError("Ops! Ocorreu um erro na integridade!")
        
-        except NoResultFound, e:
+        except SuperCraquesNotFoundError, e:
             session.rollback()
             logging.error("desafio não existe %s " % e)
-            raise NotFoundError("Desafio não existe")
+            raise e
 
         except SuperCraquesError, e:
             session.rollback()
@@ -135,7 +136,30 @@ class DesafioRepository(Repository):
             logging.error("Erro ao aceitar desafio! %s " % e)
             raise SuperCraquesError("Ops! Ocorreu um erro na transação!")
 
+
+    def get_by_id(self, desafio_id):
+        desafio = Desafio().get(desafio_id)
+        if desafio:
+            return desafio
         
+        raise SuperCraquesNotFoundError("Desafio não existe")
+        
+
+    def as_dict(self):
+        dictionary =  {"id": self.id,
+                       "usuario_desafiou_id": self.usuario_desafiou_id,
+                       "card_desafiou_id": self.card_desafiou_id,
+                       "usuario_desafiado_id": self.usuario_desafiado_id,
+                       "card_desafiado_id": self.card_desafiado_id,
+                       "usuario_vencedor_id":self.usuario_vencedor_id,
+                       "status": self.status,
+                       "valor_ganho": self.valor_ganho,
+                       "descricao": self.descricao,
+                       "data_criacao": date_to_date_br(self.data_criacao),
+                       "data_update": date_to_date_br(self.data_update)}
+        
+        return dictionary
+
 
 
 class Desafio(Model, DesafioRepository):

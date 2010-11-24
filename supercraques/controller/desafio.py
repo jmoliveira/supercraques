@@ -11,6 +11,28 @@ from supercraques.model.card import Card
 class DesafioController (BaseController):
     
     @logged
+    @render_to_extension
+    def busca_desafios_recebidos(self, usuario, *args, **kargs):
+        result = {"data":[]}
+        desafios_recebidos = Desafio().get_desafios_recebidos(usuario.id)
+        for desafio in desafios_recebidos:
+            result["data"].append(desafio.as_dict())
+        
+        return result
+
+
+    @logged
+    @render_to_extension
+    def busca_desafios_enviados(self, usuario, *args, **kargs):
+        result = {"data":[]}
+        desafios_enviados = Desafio().get_desafios_enviados(usuario.id)
+        for desafio in desafios_enviados:
+            result["data"].append(desafio.as_dict())
+        
+        return result
+
+    
+    @logged
     def enviar_desafio(self, usuario, card_id, usuario_desafiado_id, *args, **kargs):
         sucesso = False
         message = ""

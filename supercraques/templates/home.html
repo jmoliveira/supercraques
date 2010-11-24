@@ -1,4 +1,4 @@
-<%inherit file="/base.html"/>
+<%inherit file="/base_logado.html"/>
 
 <%def name="css()">
     ${parent.css()}
@@ -8,6 +8,9 @@
 
 <%def name="javascript()">
     ${parent.javascript()}
+    
+    
+    <script type="text/javascript" src="/media/js/supercraques.barra.js"></script>
     
     <script type="text/javascript"><!--
 	$(function() {	
@@ -19,17 +22,15 @@
         var $atletaCardTemplate = $("#atletaCardTemplate");
         var $contentDialogAtletaCard = $("#contentDialogAtletaCard");
         
-        $dialog_atletas_card.dialog({
-          autoOpen: false,
-          height: 400,
-          width: 800,
-          modal: true
-        });
+        // criar o popin dos meus cards
+        $dialog_atletas_card.dialog({autoOpen: false, height: 400, width: 800, modal: true});
 
-
+       //var barra = $("#supercraque-rodape").barra({}, false});
+        //barra.load();
+        
         $(".aceitarDesafioCard").live("click", function() {
-          $("#atleta_card_id_selecionado", $dialog_atletas_card).val($(this).attr("data"));
-          $('#formDesafio').submit();
+            $("#atleta_card_id_selecionado", $dialog_atletas_card).val($(this).attr("data"));
+            $('#formDesafio').submit();
         });
         
         // 
@@ -47,6 +48,33 @@
                 }
               });
         });
+
+
+        // buscar e exibe os desafios recebidos
+        var $boxDesafiosRecebidosTemplate = $("#box-desafios-recebidos-template");
+        var $boxDesafiosRecebidos = $("#box-desafios-recebidos");
+        $.ajax({
+            url: "/desafio/recebidos.json",
+            success: function(result) {
+                $boxDesafiosRecebidosTemplate.tmpl( result.data ).appendTo($boxDesafiosRecebidos);
+            },
+            error:function(x,e) {
+              alert("error:" + e);
+            }
+        });
+
+        // buscar e exibe os desafios enviados
+        var $boxDesafiosEnviadosTemplate = $("#box-desafios-enviados-template");
+        var $boxDesafiosEnviados = $("#box-desafios-enviados");
+        $.ajax({
+            url: "/desafio/enviados.json",
+            success: function(result) {
+                $boxDesafiosEnviadosTemplate.tmpl( result.data ).appendTo($boxDesafiosEnviados);
+            },
+            error:function(x,e) {
+              alert("error:" + e);
+            }
+        });
             
         
 	});
@@ -60,27 +88,22 @@
 <%def name="content()">
 	<div class="glb-bloco">
 		<BR>
-		<%include file="/box/box_usuario_info.html"/>
+		<!-- %include file="/box/box_usuario_info.html"/-->
 	</div>
 
 <BR>DESAFIOS<BR>
-	<div class="glb-bloco2">
-		<BR>
-		<%include file="/box/box_desafios_recebidos.html"/>
-	</div>
-		
-  <div class="glb-bloco2">
-    <BR>
-    <%include file="/box/box_desafios_enviados.html"/>
-  </div>
+
+<div class="box-desafios-recebidos" id="box-desafios-recebidos"></div>
+<div class="box-desafios-enviados" id="box-desafios-enviados"></div>
 
 
-
-
-<BR><BR><BR>
-
-
-<div id="dialog-atletas-card" title="Meus Cards" style="display:none"><form action="/desafio/aceitar" method="get" id="formDesafio"><input type="hidden" value="" id="desafio_id" name="desafio_id" /><input type="hidden" value="" id="atleta_card_id_selecionado" name="atleta_card_id_selecionado" /><div id="contentDialogAtletaCard"></div></form></div>
+<div id="dialog-atletas-card" title="Meus Cards" style="display:none">
+    <form action="/desafio/aceitar" method="get" id="formDesafio">
+        <input type="hidden" value="" id="desafio_id" name="desafio_id" />
+        <input type="hidden" value="" id="atleta_card_id_selecionado" name="atleta_card_id_selecionado" />
+        <div id="contentDialogAtletaCard"></div>
+    </form>
+</div>
 
 <script id="atletaCardTemplate" type="text/x-jquery-tmpl">
     <div class="atletaCard">
@@ -94,6 +117,27 @@
         <a class="featured aceitarDesafioCard" data="{{= card_id}}">Jogar</a>
     </div>
 </script> 
+
+<script id="box-desafios-enviados-template" type="text/x-jquery-tmpl">
+  <div class="box-card">
+      <div class="info-time">
+      <img border="0" src="https://graph.facebook.com/{{= usuario_desafiou_id}}/picture">X
+      <img border="0" src="https://graph.facebook.com/{{= usuario_desafiado_id}}/picture">
+      </div>
+      <div class='share-button'>
+        <img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='facebook' data-text="Provoque seu amigo no eoneoenoeneo facebook" data-url="http://www.supercraques.com.br/" data-url-name="chico" title='Provoque seu amigo no Facebook'><img src="/media/img/facebook_ico.gif" alt='Provoque seu amigo' /></a>
+        Provoque seu amigo!
+      </div>        
+  </div>
+</script> 
+
+<script id="box-desafios-recebidos-template" type="text/x-jquery-tmpl">
+  <div class="box-card">
+    <img border="0" src="https://graph.facebook.com/{{= usuario_desafiou_id}}/picture"> desafiou vc! 
+    <a title="Click para escolher seu card!" class="featured desafioCard" data="{{= id}}">Escolha seu card!</a>
+  </div>
+</script> 
+
 
 </%def>
 

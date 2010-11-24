@@ -18,6 +18,6 @@ class DesafioJaExisteError(Exception):
     def __init__(self, message="Desafio já existe!"):
         Exception.__init__(self, message)
 
-class NotFoundError:
+class SuperCraquesNotFoundError:
     def __init__(self, message="Objeto inexistente"):
         Exception.__init__(self, message)
