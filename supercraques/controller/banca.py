@@ -8,6 +8,12 @@ from supercraques.core import SaldoInsuficienteError, CardJaCompradoError
 from supercraques.core import meta
 from supercraques.model.card import Card
 
+# Janinne 
+# banco: itau
+# agencia: 7029
+# conta: 23436-1
+
+
 class BancaController (BaseController):
     
     @logged
@@ -49,6 +55,12 @@ class BancaController (BaseController):
 #        cards = []
         return self.render_to_template("/cards.html",  usuario=usuario, cards=cards)
 
+    @logged
+    @render_to_extension
+    def get_supercraque(self, usuario, *args, **kargs):
+        result = usuario.as_dict()
+        result["cards"] = self.get_atletas_card(usuario.id)
+        return result
 
     #############################################
     def adicionar_status_compra(self, atletas, usuario_id):
@@ -96,7 +108,7 @@ class BancaController (BaseController):
         return equipe_map.get(int(equipe_id))["atletas"] 
 
     def __load__(self, equipe_id=None):
-        for equipe in self.get_equipes():
+        for equipe in self.get_equipes()[0:5]:
             if equipe_id and int(equipe["equipe_id"]) != int(equipe_id): continue
             elenco = self.get_elenco(equipe["equipe_id"])
             atletas = []

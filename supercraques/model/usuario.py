@@ -48,6 +48,20 @@ class UsuarioRepository(Repository):
             raise SuperCraquesError("Ops! Ocorreu um erro na transação!")
 
 
+    def as_dict(self):
+        dictionary =  {"id": self.id,
+                       "nome": self.nome,
+                       "primeiro_nome": self.primeiro_nome,
+                       "ultimo_nome": self.ultimo_nome,
+                       "link": self.link,
+                       "localizacao": self.localizacao,
+                       "sexo": self.sexo,
+                       "email": self.email,
+                       "patrimonio": self.patrimonio}
+        
+        return dictionary
+
+
 class Usuario(Model, UsuarioRepository):
     __tablename__ = 'usuario'
     access_token = None
@@ -55,7 +69,7 @@ class Usuario(Model, UsuarioRepository):
     id = Column('usuario_id', String, primary_key=True)
     nome = Column('nome', String)
     primeiro_nome = Column('primeiro_nome', String)
-    ultimo_nome = Column('primeiro_nome', String)
+    ultimo_nome = Column('ultimo_nome', String)
     link = Column('link', String)
     localizacao = Column('localizacao', String)
     sexo = Column('sexo', String)

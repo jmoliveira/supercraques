@@ -15,12 +15,6 @@ FACEBOOK_APP_SECRET = "80342273fa7b84e12c095765fe0e095f"
 class BaseController (TorneiraBaseController):
     SERVICE_CACHE = {}
     
-#    def get_user(self, request):
-#        request_handler = kargs.get('request_handler')
-#        resul = get_user_from_cookie(request_handler.cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
-#        pass
-#        
-    
     def get_content_service(self, url_service):
         
         cache = self.SERVICE_CACHE.get(url_service)

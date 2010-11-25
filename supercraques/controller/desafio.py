@@ -49,12 +49,12 @@ class DesafioController (BaseController):
                 
         return self.render_to_json({"sucesso":sucesso, "message":message}, kargs.get('request_handler'))
 
-#http://supercraques.com.br:8082/home?desafio_id=6&atleta_card_id_selecionado=32&radio=assiduidade
-
     @logged
     def aceitar_desafio(self, usuario, *args, **kw):
-        import pdb;pdb.set_trace()
         desafio_id = kw.get("desafio_id")
         card_desafiado_id = kw.get("card_id_selecionado")
         radio = kw.get("radio")
         Desafio().aceitar_desafio(desafio_id, usuario.id, card_desafiado_id)
+        kw.get('request_handler').redirect("/home")
+        
+        

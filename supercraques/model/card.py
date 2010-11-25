@@ -81,6 +81,17 @@ class CardRepository(Repository):
             raise SuperCraquesError("Ops! Ocorreu um erro na transação!")
 
 
+
+    def as_dict(self):
+        dictionary =  {"id": self.id,
+                       "usuario_id": self.usuario_id,
+                       "atleta_id": self.atleta_id,
+                       "valor": self.valor}
+        
+        return dictionary
+
+
+
 class Card(Model, CardRepository):
     __tablename__ = 'card'
     

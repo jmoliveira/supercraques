@@ -29,21 +29,6 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .glb-conteudo{  margin:0 auto !important;width:80em;text-align:left}
 /* ---- clear ---- */
 .glb-bloco{ overflow:hidden;width:100%}
-/* ---- units ---- */
-.glb-grid-1, .glb-grid-2, .glb-grid-3, .glb-grid-4, .glb-grid-5, .glb-grid-6, .glb-grid-7, .glb-grid-8, .glb-grid-9, .glb-grid-10, .glb-grid-11, .glb-grid-12{  display:inline;float:left;margin:0 .833em}
-.glb-grid-1{min-width:60px;width:5em}
-.glb-grid-2{min-width:140px;width:11.665em}
-.glb-grid-3{min-width:220px;width:18.333em}
-.glb-grid-4{min-width:300px;width:25em;overflow:hidden}
-.glb-grid-5{min-width:380px;width:31.665em}
-.glb-grid-6{min-width:460px;width:38.333em}
-.glb-grid-7{min-width:540px;width:45em}
-.glb-grid-8{min-width:620px;width:51.665em}
-.glb-grid-9{min-width:700px;width:58.333em}
-.glb-grid-10{min-width:780px;width:65em}
-.glb-grid-11{min-width:860px;width:71.665em}
-.glb-grid-12{min-width:940px;width:78.333em}
-
 .glb-primeiro{margin-left:0}
 .glb-ultimo{margin-right:0}
 
@@ -156,7 +141,7 @@ a.featured {
 }
 
 .ui-autocomplete-desafio { position: absolute; cursor: default; } 
-.ui-autocomplete-desafio-loading { background: white url('/media/img/loading.gif') right center no-repeat; }
+.ui-autocomplete-desafio-loading { background: white url('/media/img/loading.gif') center center no-repeat; }
 
 /* workarounds */
 * html .ui-desafio-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */

@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="/media/js/jquery.tmpl.min.js"></script>
 		<script type="text/javascript" src="/media/js/jquery.tmplplus.min.js"></script>
 		<script type="text/javascript" src="/media/js/jquery-ui-1.8.6.custom.min.js"></script>
+		<script type="text/javascript" src="/media/js/json.js"></script>
     </%def>
     ${next.javascript()}
 </head>
@@ -62,14 +63,15 @@
                   <div id="glb-time-dados" class="glb-conteudo conteudo">
                       <div class="glb-conteudo-float">
                           <div id="meus-cards" class="dados">
-                              <a href="/cards">Meus cards</a>
+                              <a href="/cards">meus cards</a> <span id="qtdCards"></span>
                           </div> 
                           <div id="banca" class="dados">
-                              <a href="/banca">Banca</a>
+                              <a href="/banca">banca</a>
                           </div> 
                           <div id="desafiar" class="dados">
-                              <a href="#">Desafiar</a>
-                          </div> 
+                              <a href="#">DESAFIAR AMIGO</a>
+                          </div>
+                          <div class="dados">no seu bolso<strong id="fin-patrimonio"><span class="patrimonio"></span></strong></div>
                           <div class="status-rodape"><a class="barra" title="diminuir barra" href="#"><img width="18" height="18" alt="seta" src="/media/img/icon_mais.gif"></a></div>
                       </div>
                   </div>        
@@ -81,11 +83,6 @@
         
     </div>
 
-	
-	
-	
-	
-	
     
   <div id="fb-root"></div>
 	<script src="http://connect.facebook.net/en_US/all.js"></script>

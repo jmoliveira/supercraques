@@ -10,6 +10,7 @@ urls = (
     url("/home", HomeController, action="home", name="home"),
    
     url("/banca", BancaController, action="banca", name="banca"),
+    url("/supercraque.{extension}", BancaController, action="get_supercraque", name="get_supercraque"),
     url("/atletas_card.{extension}", BancaController, action="atletas_card", name="atletas_card"),
     url("/cards", BancaController, action="cards_box", name="cards_box"),
     url("/atleta/{atleta_id}/comprar", BancaController, action="comprar_card", name="comprar_card"),

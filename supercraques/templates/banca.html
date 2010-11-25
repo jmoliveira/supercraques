@@ -32,31 +32,21 @@
 		});
 		
 		$('.sponsorFlip').live("click",function(){
-			// $(this) point to the clicked .sponsorFlip element (caching it in elem for speed):
 			var elem = $(this);
-			// data('flipped') is a flag we set when we flip the element:
 			if(elem.data('flipped'))
 			{
-				// If the element has already been flipped, use the revertFlip method
-				// defined by the plug-in to revert to the default state automatically:
 				elem.revertFlip();
-				// Unsetting the flag:
 				elem.data('flipped',false)
 			}
 			else
 			{
-				// Using the flip method defined by the plugin:
 				elem.flip({
 					direction:'lr',
 					speed: 350,
 					onBefore: function(){
-						// Insert the contents of the .sponsorData div (hidden from view with display:none)
-						// into the clicked .sponsorFlip div before the flipping animation starts:
-						
 						elem.html(elem.siblings('.sponsorData').html());
 					}
 				});
-				// Setting the flag:
 				elem.data('flipped',true);
 			}
 		});
@@ -64,24 +54,29 @@
 		
 		var $contenTemplate = $("#content-template");
 		var $cardTemplate = $("#cardTemplate");
+		var $contenLoading = $("#content-loading");
 		
-		// Carrega os parametros do metodo escolhido
-		$("#equipes").bind('change keyup',function() {
-			equipe_id = $(this).val()
-			if (equipe_id != "") {
-			
-         $.ajax({
-					  url: "/equipe/"+ equipe_id + "/atletas.json",
-					  success: function(data) {
-      				$contenTemplate.html("");
-              $cardTemplate.tmpl( data ).appendTo($contenTemplate);
-							$contenTemplate.show();
-					  },
-					  error:function(x,e) {
-						  alert(data);
-					  }
-					});
-			}
+		// Carrega os jogadores do time escolhido
+		$("#equipes").bind('change keyup', function() {
+  			equipe_id = $(this).val()
+  			if (equipe_id != "") {
+				   $contenTemplate.html("");
+  			   $contenLoading.show();
+           $.ajax({
+  					  url: "/equipe/"+ equipe_id + "/atletas.json",
+  					  success: function(data) {
+  					      $contenLoading.hide();
+                  $cardTemplate.tmpl( data ).appendTo($contenTemplate);
+  					  },
+  					  error:function(x,e) {
+  					      $contenLoading.hide();
+  						    alert(data);
+  					  }
+  					});
+  			} else {
+  			  $contenLoading.hide();
+  			  $contenTemplate.html("");
+  			}
 		});
 		
 	});
@@ -108,7 +103,8 @@
 	
 	<div class="conteudo-jogadores">
 		<div id="jogadores-lista" class="conteudo-jogadores-lista">
-	    	<div id="content-template" style="display:none"></div>
+	    	<div id="content-template"></div>
+	    	<div id="content-loading" class="ui-autocomplete-desafio-loading" style="display:none;height:100px;"></div>
 		</div>
 	</div> 
 

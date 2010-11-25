@@ -25,20 +25,21 @@
         // criar o popin dos meus cards
         $dialog_atletas_card.dialog({autoOpen: false, height: 400, width: 800, modal: true});
 
-       //var barra = $("#supercraque-rodape").barra({}, false});
-        //barra.load();
+        var barra = $("#supercraque-rodape").barra({}, false);
+        barra.load();
         
         $(".aceitarDesafioCard").live("click", function() {
-            $("#atleta_card_id_selecionado", $dialog_atletas_card).val($(this).attr("data"));
-            $('#formDesafio').submit();
+            $("#card_id_selecionado", $dialog_atletas_card).val($(this).attr("data"));
+            $('#formDesafio', $dialog_atletas_card).submit();
         });
         
         // 
         $(".desafioCard").live("click", function() {
+            var $elem = $(this);
             $.ajax({
                 url: "/atletas_card.json",
                 success: function(data) {
-                  $("#desafio_id", $dialog_atletas_card).val($(this).attr("data"));
+                  $("#desafio_id", $dialog_atletas_card).val($elem.attr("data"));
                   $contentDialogAtletaCard.html("");
                   $atletaCardTemplate.tmpl( data ).appendTo($contentDialogAtletaCard);
                   $dialog_atletas_card.dialog('open');
@@ -98,9 +99,9 @@
 
 
 <div id="dialog-atletas-card" title="Meus Cards" style="display:none">
-    <form action="/desafio/aceitar" method="get" id="formDesafio">
+    <form action="/desafio/aceitar" method="POST" id="formDesafio">
         <input type="hidden" value="" id="desafio_id" name="desafio_id" />
-        <input type="hidden" value="" id="atleta_card_id_selecionado" name="atleta_card_id_selecionado" />
+        <input type="hidden" value="" id="card_id_selecionado" name="card_id_selecionado" />
         <div id="contentDialogAtletaCard"></div>
     </form>
 </div>
