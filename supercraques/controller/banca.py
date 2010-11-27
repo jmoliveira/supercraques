@@ -4,15 +4,10 @@
 import settings
 from torneira.controller import render_to_extension
 from supercraques.controller import BaseController, logged, authenticated
-from supercraques.core import SaldoInsuficienteError, CardJaCompradoError
+from supercraques.core import SuperCraquesError, SaldoInsuficienteError, CardJaCompradoError, AtletaNotFoundError
 from supercraques.core import meta
 from supercraques.model.card import Card
-
-# Janinne 
-# banco: itau
-# agencia: 7029
-# conta: 23436-1
-
+from supercraques.util.helper import PontuacaoHelper
 
 class BancaController (BaseController):
     
@@ -21,47 +16,78 @@ class BancaController (BaseController):
         return self.render_to_template("/banca.html",  usuario=usuario, equipes=self.get_equipes())
 
     @logged
-    def comprar_card(self, usuario, atleta_id, *args, **kargs):
-        sucesso = False
-        message = ""
-        
+    def comprar_card(self, usuario, atleta_id, *args, **kw):
+        handler = kw.get('request_handler')
         try:
             
-            Card().comprar_card(usuario.id, atleta_id, 10.0)
-            sucesso = True
-            message = "Card comprado com sucesso."
-             
-        except SaldoInsuficienteError, e:
-            message = e.message
-        except CardJaCompradoError, e:
-            message = e.message
+            # recura o atleta
+            atleta_json = self.get_atleta(atleta_id)
             
-        return self.render_to_json({"sucesso":sucesso, "message":message}, kargs.get('request_handler'))
+            # comprar o card
+            Card().comprar_card(usuario.id, atleta_json)
+            
+            return self.render_success(message="Card comprado com sucesso", request_handler=handler)
+            
+            
+        except AtletaNotFoundError, e:
+            return self.render_error(message=e.message, request_handler=handler)
 
-    @logged
+        except SaldoInsuficienteError, e:
+            return self.render_error(message=e.message, request_handler=handler)
+        
+        except CardJaCompradoError, e:
+            return self.render_error(message=e.message, request_handler=handler)
+
+        except SuperCraquesError, e:
+            return self.render_error(message=e.message, request_handler=handler)
+            
+
+    @authenticated
     @render_to_extension
-    def busca_atletas_por_equipe(self, usuario, equipe_id, *args, **kargs):
-        atletas = self.get_atletas_estatisticas_por_equipe(equipe_id) 
-        return self.adicionar_status_compra(atletas, usuario.id)
+    def busca_atletas_por_equipe(self, user_cookie, equipe_id, *args, **kargs):
+        usuario_id = user_cookie["uid"]
+        atletas = self.get_atletas_estatisticas(equipe_id=equipe_id) 
+        return self.adicionar_status_compra(atletas, usuario_id)
+
+    @authenticated
+    @render_to_extension
+    def busca_atletas_por_posicao(self, user_cookie, posicao, *args, **kargs):
+        usuario_id = user_cookie["uid"]
+        atletas = self.get_atletas_estatisticas(posicao=posicao) 
+        return self.adicionar_status_compra(atletas, usuario_id)
+
+
+    @authenticated
+    @render_to_extension
+    def busca_atletas_por_equipe_e_posicao(self, user_cookie, equipe_id, posicao, *args, **kargs):
+        usuario_id = user_cookie["uid"]
+        atletas = self.get_atletas_estatisticas(equipe_id, posicao) 
+        return self.adicionar_status_compra(atletas, usuario_id)
+
    
-    @logged
+    @authenticated
     @render_to_extension
-    def atletas_card(self, usuario, *args, **kargs):
-        return self.get_atletas_card(usuario.id)
+    def atletas_card(self, user_cookie, *args, **kargs):
+        usuario_id = user_cookie["uid"]
+        return self.get_atletas_card(usuario_id)
 
     @logged
     def cards_box(self, usuario, *args, **kargs):
         cards = self.get_atletas_card(usuario.id)
-#        cards = []
         return self.render_to_template("/cards.html",  usuario=usuario, cards=cards)
 
     @logged
     @render_to_extension
     def get_supercraque(self, usuario, *args, **kargs):
         result = usuario.as_dict()
-        result["cards"] = self.get_atletas_card(usuario.id)
+        result.update({"qtdCards": len(Card().ids(usuario.id))}) 
         return result
-
+    
+    @authenticated
+    @render_to_extension
+    def busca_equipes(self, user_cookie, *args, **kw):
+        return {"nacional": self.get_equipes()}
+    
     #############################################
     def adicionar_status_compra(self, atletas, usuario_id):
         cards = Card().get_cards(usuario_id)
@@ -102,10 +128,23 @@ class BancaController (BaseController):
     
     def get_atleta(self, atleta_id):
         return self.get_atleta_map().get(atleta_id)
-
-    def get_atletas_estatisticas_por_equipe(self, equipe_id):
-        equipe_map = self.get_equipe_map(equipe_id)
-        return equipe_map.get(int(equipe_id))["atletas"] 
+    
+    def filtrar_atletas(self, atletas, posicao):
+        result = []
+        for atleta in atletas:
+            if atleta["posicao"].upper() == posicao.upper():
+                result.append(atleta)
+        return result
+    
+    def get_atletas_estatisticas(self, equipe_id=None, posicao=None):
+        if equipe_id and posicao:
+            equipe_map = self.get_equipe_map(equipe_id)
+            return self.filtrar_atletas(equipe_map.get(int(equipe_id))["atletas"], posicao)
+        elif equipe_id:
+            equipe_map = self.get_equipe_map(equipe_id)
+            return equipe_map.get(int(equipe_id))["atletas"]
+        else:
+            return self.filtrar_atletas(self.get_atleta_map().values(), posicao)
 
     def __load__(self, equipe_id=None):
         for equipe in self.get_equipes()[0:5]:
@@ -116,13 +155,18 @@ class BancaController (BaseController):
                 if atleta["funcao_id"] == "A":
                     scout = self.get_scout_pessoafuncao(atleta["pessoafuncao_id"])
                     if scout:
+                        qualidade = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_qualidade(scout["eventos"])
+                        assiduidade = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_assiduidade(scout.get("estatisticas"))
+                        disciplina = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_disciplina(scout["eventos"])
                         atletas.append({ "atleta_id": scout["pessoafuncao_id"],
                                          "img": atleta.get("foto_fpath") if atleta.get("foto_fpath") else "/media/img/foto_padrao.gif",
                                          "posicao": scout["funcao"].get("faixa_campo") if scout["funcao"].get("faixa_campo") else "-",
                                          "nome": scout["nome_popular_atleta"],
-                                         "qualidade": scout["estatisticas"]["vitorias"] if scout["estatisticas"].get("vitorias") else "-",
-                                         "assiduidade": scout["estatisticas"]["empates"] if scout["estatisticas"].get("empates") else "-",
-                                         "disciplina": scout["estatisticas"]["derrotas"] if scout["estatisticas"].get("derrotas") else "-"});
+                                         "equipe": equipe,
+                                         "qualidade": qualidade,
+                                         "assiduidade": assiduidade,
+                                         "disciplina": disciplina,
+                                         "valor":  int(qualidade + assiduidade + assiduidade / 3)})
             
             meta.EQUIPE_MAP[int(equipe["equipe_id"])] = {"equipe": equipe, "atletas":atletas}
 
@@ -131,6 +175,10 @@ class BancaController (BaseController):
             for atleta in meta.EQUIPE_MAP[key]["atletas"]:
                 meta.ATLETAS_MAP[str(atleta["atleta_id"])] = atleta
 
+    
+    
+    
+        
      
  
 #    def invite_friends(self. request):

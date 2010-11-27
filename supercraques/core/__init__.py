@@ -21,3 +21,7 @@ class DesafioJaExisteError(Exception):
 class SuperCraquesNotFoundError:
     def __init__(self, message="Objeto inexistente"):
         Exception.__init__(self, message)
+
+class AtletaNotFoundError:
+    def __init__(self, message="Atleta não encontrado!"):
+        Exception.__init__(self, message)

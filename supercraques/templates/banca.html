@@ -3,113 +3,97 @@
 <%def name="css()">
     ${parent.css()}
     <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/cards.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="/media/css/mercados.css" />
+
 </%def>
 
 
 <%def name="javascript()">
     ${parent.javascript()}
     
-	<script type="text/javascript" src="/media/js/jquery.flip.min.js"></script>
+    <script type="text/javascript" src="/media/js/dropdown.js"></script>
+    <script type="text/javascript" src="/media/js/banca.js"></script>
+    <script type="text/javascript" src="/media/js/cufon-yui.js"></script>
     
-    <script type="text/javascript"><!--
+    
+<script type="text/javascript">
+<!--
 	$(function() {	
 		
-		// Vai para o primeiro option do combo de servicos
-		$("#equipes option:first").attr("selected", "selected");
+		var supercraques = $("#supercraque-rodape").barra({}, true);
 		
 		$('.btn_comprar').live("click",function(){
-        var $elem = $(this);
-        $.ajax({
-            url: "/atleta/"+ $elem.attr("atleta_id") + "/comprar",
-            success: function(data) {
-              alert(data.sucesso + " - " + data.message);
-              // $elem.hide();
-            },
-            error:function(x,e) {
-              alert("errosr:" + e);
-            }
-          });
-		});
-		
-		$('.sponsorFlip').live("click",function(){
-			var elem = $(this);
-			if(elem.data('flipped'))
-			{
-				elem.revertFlip();
-				elem.data('flipped',false)
-			}
-			else
-			{
-				elem.flip({
-					direction:'lr',
-					speed: 350,
-					onBefore: function(){
-						elem.html(elem.siblings('.sponsorData').html());
-					}
-				});
-				elem.data('flipped',true);
-			}
-		});
-	
-		
-		var $contenTemplate = $("#content-template");
-		var $cardTemplate = $("#cardTemplate");
-		var $contenLoading = $("#content-loading");
-		
-		// Carrega os jogadores do time escolhido
-		$("#equipes").bind('change keyup', function() {
-  			equipe_id = $(this).val()
-  			if (equipe_id != "") {
-				   $contenTemplate.html("");
-  			   $contenLoading.show();
-           $.ajax({
-  					  url: "/equipe/"+ equipe_id + "/atletas.json",
-  					  success: function(data) {
-  					      $contenLoading.hide();
-                  $cardTemplate.tmpl( data ).appendTo($contenTemplate);
-  					  },
-  					  error:function(x,e) {
-  					      $contenLoading.hide();
-  						    alert(data);
-  					  }
-  					});
-  			} else {
-  			  $contenLoading.hide();
-  			  $contenTemplate.html("");
-  			}
+        supercraques.comprarCard($(this).attr("atleta_id"));
 		});
 		
 	});
 		
-	--></script>
+--></script>
     
 </%def>
 
 
-
 <%def name="content()">
 
-	<form class="form-filtro" action="" method="post">
-		<fieldset>
-	    <legend>filtro de jogadores</legend>
-	    <select id="equipes" name="equipes">
-	        <option value="">Time</option>
-    			% for equipe in equipes:
-    				<option value="${equipe['equipe_id']}">${equipe['nome_popular']}</option>
-    			% endfor
-	        </select>
-	    </fieldset>
-	</form>
-	
-	<div class="conteudo-jogadores">
-		<div id="jogadores-lista" class="conteudo-jogadores-lista">
-	    	<div id="content-template"></div>
-	    	<div id="content-loading" class="ui-autocomplete-desafio-loading" style="display:none;height:100px;"></div>
-		</div>
-	</div> 
+<div id="containerBanca">
+  <div class="box-filtros-mercado">
+          <div id="filtros-time-mercado" class="filtros-mercado">
+            <span class="canto-te"></span>
+            <span class="canto-td"></span>
+            <span class="canto-re"></span>
+            <span class="canto-rd"></span>
+            <div class="filtros-grupo-botao">
+              <span id="filtros-atual-time-mercado" class="filtros-atual-label">
+              todos os <strong>times</strong>
+              </span>
+              <span class="seta-filtro"></span>
+              <input type="hidden" name="filtroTime" id="filtroTime" value=""/>
+            </div>
+            <div class="dropdown-filtro" id="dropdown-times" style="display: none;">
+                <ul id="lista-times">
+                </ul>
+                <div class="dropdown-template">
+                     <li style="" class="lista-itens dropdown-time medio-escudo-padrao medio-{{= slug}}" rel="{{= nome_popular}}">
+                       <div class="escudo" alt="{{= nome_popular}}"></div>
+                    </li>
+                </div>
+                <div class="dropdown-todos">todos os times</div>
+            </div>
+          </div>
+          <div id="filtros-posicao-mercado" class="filtros-mercado filtros-mercado-ultimo" >
+            <span class="canto-te"></span>
+            <span class="canto-td"></span>
+            <span class="canto-re"></span>
+            <span class="canto-rd"></span>
+            <div class="filtros-grupo-botao">
+              <span id="filtros-atual-posicao-transfer" class="filtros-atual-label">
+              todas as <strong>posi&ccedil;&otilde;es</strong>
+              </span>
+              <span class="seta-filtro"></span>
+              <input type="hidden" name="filtroPosicao" id="filtroPosicao" value=""/>
+            </div>
+            <div class="dropdown-filtro" id="dropdown-posicoes" style="display: none;">
+                <ul id="lista-posicoes">
+                </ul>
+                <div class="dropdown-template">
+                   <li style="" class="lista-itens dropdown-posicoes" rel="{{= sigla}}">
+                   {{= nome_completo}}
+                   </li>
+                </div>
+                <div class="dropdown-todos"><strong>todas as posi&ccedil;&otilde;es</strong></div>
+            </div>
+          </div>
+   </div>
+   
+  <div id="content-template-banca"></div>
+ 
+  <div id="content-loading" class="ui-autocomplete-desafio-loading" style="overflow:auto;display:none;height:100px;"></div>
 
+</div>
+          
+	
 <script id="cardTemplate" type="text/x-jquery-tmpl">
-    <div class="sponsor" title="Click to flip">
+    <div class="sponsor">
       <div class="sponsorFlip">
         <img height="60" width="60" border="0" src="{{= img}}">
         <BR>
@@ -118,11 +102,14 @@
         <div class="num">Qualidade: {{= qualidade}}</div>
         <div class="num">Assiduidade: {{= assiduidade}}</div>
         <div class="num">Disciplina: {{= disciplina}}</div>
+        <div class="num">VALOR: {{= valor}}</div>
+        <div class="medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
         {{if possui == false}}<a href="javascript:void(0);"><img style="margin-left:120px;margin-top:-20px" border="0" src="/media/img/btn_comprar.jpg" class="btn_comprar" atleta_id="{{= atleta_id}}"></a>{{/if}}
       </div>
-      <div class="sponsorData">NADA AINDA</div>
     </div>
 </script>    
+
     
+
 </%def>
 

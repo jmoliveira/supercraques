@@ -13,6 +13,7 @@ abbr, acronym, img, fieldset{ border:0;}
 sup{ vertical-align:text-top;}
 sub{ vertical-align:text-bottom;}
 input, textarea, select{ font-family:inherit;font-size:inherit;font-weight:inherit;}
+img {border:0 none;}
 /* ---- /reset 0.3 ---- */
 
 
@@ -29,8 +30,26 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .glb-conteudo{  margin:0 auto !important;width:80em;text-align:left}
 /* ---- clear ---- */
 .glb-bloco{ overflow:hidden;width:100%}
+/* ---- units ---- */
+.glb-grid-1, .glb-grid-2, .glb-grid-3, .glb-grid-4, .glb-grid-5, .glb-grid-6, .glb-grid-7, .glb-grid-8, .glb-grid-9, .glb-grid-10, .glb-grid-11, .glb-grid-12{  display:inline;float:left;margin:0 .833em}
+.glb-grid-1{min-width:60px;width:5em}
+.glb-grid-2{min-width:140px;width:11.665em}
+.glb-grid-3{min-width:220px;width:18.333em}
+.glb-grid-4{min-width:300px;width:25em;overflow:hidden}
+.glb-grid-5{min-width:380px;width:31.665em}
+.glb-grid-6{min-width:460px;width:38.333em}
+.glb-grid-7{min-width:540px;width:45em}
+.glb-grid-8{min-width:620px;width:51.665em}
+.glb-grid-9{min-width:700px;width:58.333em}
+.glb-grid-10{min-width:780px;width:65em}
+.glb-grid-11{min-width:860px;width:71.665em}
+.glb-grid-12{min-width:940px;width:78.333em}
+
+
 .glb-primeiro{margin-left:0}
 .glb-ultimo{margin-right:0}
+#glb-cabecalho{background:none repeat scroll 0 0 #4E6E0B; height:40px; margin-bottom: 10px;}
+.marca-produto{color:#FFFFFF}
 
 /* ---- /grid ---- */
 
@@ -41,6 +60,59 @@ a, a * {
   text-decoration:none;
 }
 a:hover{text-decoration:underline;}
+
+
+#glb-diretorio .glb-conteudo .glb-bloco{
+  padding:20px 0;
+}
+#glb-diretorio .glb-conteudo ul li a{
+  border-right:1px solid white;
+  color:#FFF;
+  font-size:0.92em;
+  line-height:1.45em;
+  padding:0 5px;
+}
+#glb-diretorio .glb-conteudo ul li.ultimo a{
+  border-right:none;
+}
+#glb-diretorio .glb-conteudo ul li a:hover{
+  text-decoration:underline;
+}
+#glb-diretorio .glb-conteudo ul li{
+  display:inline;
+}
+
+#glb-rodape{
+  overflow:hidden;
+}
+#glb-rodape .glb-conteudo{
+  height:9.73em;
+  padding-top:2.3em;
+}
+
+
+#glb-diretorio{
+  background:#538428;
+}
+#glb-rodape, #glb-rodape ul li a, #glb-rodape ul li a:link, #glb-rodape ul li a:hover, #glb-rodape ul li a:visited{
+  color:#FFF;
+}
+#glb-diretorio .glb-conteudo, #glb-rodape .glb-conteudo{
+  text-align:center;
+}
+#glb-rodape div.copy{
+  background: transparent url(../i/logotipo_sporTV.gif) no-repeat scroll 0 0;
+  font-size:1em;
+  height:2.2em;
+  margin:auto;
+  padding-top:5px;
+  text-align:right;
+  width:38.5em;
+}
+#glb-rodape, #glb-rodape .glb-conteudo{
+  background-color:#456E20;
+}
+
 
 a.featured {
   -moz-border-radius:3px 3px 3px 3px;
@@ -53,6 +125,7 @@ a.featured {
   text-align:center;
 }
 
+.uiProfilePhotoMedium {height:32px;width:32px;}
 
 
 /* ---- Flip Card ---- */
@@ -125,6 +198,8 @@ a.featured {
 	clear:both;
 }
 
+#content-template-banca {margin-top:20px;}
+#containerBanca {margin-top: -30px;}
 
 .atletaCard{
  float:left;
@@ -145,6 +220,7 @@ a.featured {
 
 /* workarounds */
 * html .ui-desafio-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+
 
 
 

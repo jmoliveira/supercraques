@@ -7,6 +7,7 @@ from supercraques.core import SuperCraquesError, DesafioJaExisteError
 from supercraques.core import meta
 from supercraques.model.desafio import Desafio
 from supercraques.model.card import Card
+from supercraques.core.facebook import GraphAPI
 
 class DesafioController (BaseController):
     
@@ -33,21 +34,30 @@ class DesafioController (BaseController):
 
     
     @logged
-    def enviar_desafio(self, usuario, card_id, usuario_desafiado_id, *args, **kargs):
-        sucesso = False
-        message = ""
+    def enviar_desafio(self, usuario, card_id, usuario_desafiado_id, *args, **kw):
+        handler = kw.get('request_handler')
         try:
             
+            # Criar o desafio
             Desafio().criar_desafio(card_id, usuario_desafiado_id)
-            sucesso = True
-            message = "Card comprado com sucesso."
+            
+            # enviar notificacao para o mural
+            attachment = {"link":"http://www.supercraques.com.br", 
+                          "caption":"Desafio Super Craques!", 
+                          "description": "Você foi desafiado por %s para jogar no Super Craques!! Vai jogar ou vair correr?!" % usuario.primeiro_nome, 
+                          "picture": "http://sabadao-santamonica.zip.net/images/craque.jpg"}
+            graphAPI = GraphAPI(access_token=usuario.access_token)
+            graphAPI.put_wall_post(message="", attachment=attachment, profile_id=usuario_desafiado_id)
+            
+            # mensagem de sucesso
+            return self.render_success(message="Desafio enviado com sucesso", request_handler=handler)
              
         except DesafioJaExisteError, e:
-            message = e.message
+            return self.render_error(message=e.message, request_handler=handler)
+        
         except SuperCraquesError, e:
-            message = e.message
-                
-        return self.render_to_json({"sucesso":sucesso, "message":message}, kargs.get('request_handler'))
+            return self.render_error(message=e.message, request_handler=handler)
+
 
     @logged
     def aceitar_desafio(self, usuario, *args, **kw):

@@ -5,17 +5,23 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <%def name="css()">
 		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/supercraques.css" />
+		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/cortina.css" />
+		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/escudos.css" />
+		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/glb-barra.css" />
 		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/cupertino/jquery-ui-1.8.6.custom.css" />
     </%def>
     ${next.css()}
 
     <%def name="javascript()">
 		<script type="text/javascript" src="/media/js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="/media/js/supercraques.js"></script>
+		<script type="text/javascript" src="/media/js/glb.extend.js"></script>
+		<script type="text/javascript" src="/media/js/glb.message.js"></script>
+    <script type="text/javascript" src="/media/js/glb.text.formatter.js"></script>
 		<script type="text/javascript" src="/media/js/jquery.media.share.js"></script>
 		<script type="text/javascript" src="/media/js/jquery.tmpl.min.js"></script>
-		<script type="text/javascript" src="/media/js/jquery.tmplplus.min.js"></script>
 		<script type="text/javascript" src="/media/js/jquery-ui-1.8.6.custom.min.js"></script>
-		<script type="text/javascript" src="/media/js/json.js"></script>
+		
     </%def>
     ${next.javascript()}
 </head>
@@ -24,6 +30,42 @@
 <body>
 
     <div id="glb-doc">
+        <div id="glb-barra-widget">
+            <div class="glb-barra-conteudo">
+                <div class="glb-barra-escopo">
+                    <div id="glb-barra-logo">
+                        <a target="_top" title="globo.com" href="http://www.globo.com"><strong></strong>globo.com</a>
+                    </div>
+                    <!--glb-barra-logo-->
+                    <ul id="glb-barra-menu">
+                        <li class="glb-item-menu"><a target="_top" id="menu-noticias" accesskey="n" title="not&iacute;cias" href="http://g1.globo.com">not&iacute;cias</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-esportes" accesskey="e" title="esportes" href="http://globoesporte.globo.com">esportes</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-entretenimento" accesskey="t" title="entretenimento" href="http://entretenimento.globo.com">entretenimento</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-videos" accesskey="v" title="v&iacute;deos" href="http://video.globo.com">v&iacute;deos</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-sportv" class="menu-sportv" accesskey="s" title="sportv.com" href="http://sportv.com"><img src='/media/img/logo_sportv_barra.jpg' title='sportv.com' /></a></li>
+                    </ul>
+                    <!--glb-barra-menu-->
+                    <ul id="glb-barra-servicos">
+                        <li id="menu-globomail">
+                            <a class="glb-mail" title="globomail" href="#"><img width="16" height="11" src="/media/img/ico_globomail.gif" alt="e-mail"><strong>e-mail</strong></a>
+                            <ul id="globomail-subcontexto">
+                                <li><a target="_top" accesskey="p" title="globomail pro" href="http://login.globo.com/login/1">Globomail Pro</a></li>
+                                <li><a target="_top" accesskey="f" title="globomail free" href="http://login.globo.com/login/1948">Globomail Free</a></li>
+                                <li><a target="_top" accesskey="c" title="criar um e-mail" href="http://cadastrofree.globo.com/resources2/panfletos/comparativo_globomail/comparativo_globomail.html">Criar um e-mail</a></li>
+                            </ul>
+                        </li>
+                        <li class="glb-item-servicos central-globocom"><a target="_top" accesskey="r" title="central globo.com" href="http://atendimento.globo.com">central globo.com</a></li>
+                        <li class="glb-item-servicos"><a target="_top" accesskey="a" title="assina j&aacute;" href="http://atendimento.globo.com/Portal/ISP/assineja/panfletos/panfleto_home_globo">assine j&aacute;</a></li>
+                        <li class="glb-item-servicos"><a target="_top" accesskey="s" title="todos os sites" href="http://www.globo.com/Globo.com/sites/0,,5623,00.html">todos os sites</a></li>
+                    </ul>
+                    <!--glb-barra-servicos-->
+                </div>
+                <!--glb-barra-escopo-->
+            </div>
+            <!--glb-barra-conteudo-->
+        </div>
+      
+      
         <div id="glb-topo">
         
             <!-- header -->
@@ -34,6 +76,8 @@
 	                        <h1><a class="marca-produto" title="Home do Super Craques" href="http://supercraques.com.br:8082/home">Super Craques</a></h1>
 		                </div>
 		            </div>
+		            <img src="https://graph.facebook.com/${usuario.id}/picture" class="uiProfilePhotoMedium">
+                Pronto para jogar<BR><strong class="nome-usuario">${usuario.nome}?</strong>
 	            </div>
             </div>
             <!-- /header -->
@@ -51,10 +95,44 @@
         </div>
 
         
-        <!-- rodape -->
-        <%def name="rodape()">
-	        <div id="supercraque-rodape">
-	            <div class="min">
+    	
+        <div class="clear"></div>
+    <!-- diretorios -->
+        <div id="glb-diretorio">
+            <div class="glb-conteudo">
+                <div class="glb-bloco">
+
+                <div class="glb-grid-12">
+                  <ul>
+                    <li><a href="http://atendimento.globo.com/Portal/ISP/assineja/panfletos/panfleto_home_globo">Assine a globo.com</a></li>
+                    <li><a href="http://www.globo.com/Portal/anuncie/glb_anuncie_panfleto">Anuncie conosco</a></li>
+                    <li><a href="http://atendimento.globo.com">D&uacute;vidas</a></li>
+                    <li><a href="http://atendimento.globo.com">Meus Dados</a></li>
+                    <li><a href="http://www.globo.com/Globo.com/homev6/0,,PL0-0,00-POLTICA+DE+PRIVACIDADE.html">Pol&iacute;tica de Privacidade Globo.com</a></li>
+                    <li><a href="javascript:void(window.open('http://globosat.globo.com/sportv/pop/pop_politica.htm','politica','height=378,width=404'));" title="Pol&iacute;tica de Privacidade" target="_self">Pol&iacute;tica de Privacidade SporTV</a></li>
+                    <li class="ultimo"><a href="https://meuperfil.globo.com">central globo.com</a></li>
+                  </ul>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- diretorios -->    	
+    	        <!-- rodape -->
+        <div id="glb-rodape">
+            <div class="glb-conteudo">
+                <div class="glb-bloco">
+                  <div class="glb-grid-12">
+                  <div class="copy">&copy; Copyright 2010 - SporTV Todos os direitos reservados.</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!-- / rodape -->
+        
+            <!-- rodape -->
+          <div id="supercraque-rodape">
+              <div class="min">
                   <div class="glb-conteudo">
                       <div class="status-rodape"><div>ampliar barra</div><a class="barra" title="ampliar barra" href="#"><img width="18" height="18" alt="seta" src="/media/img/icon_menos.gif"></a></div>
                   </div>
@@ -76,9 +154,8 @@
                       </div>
                   </div>        
               </div>
-	        </div>
-    	</%def>
-    	${next.rodape()}
+          </div>
+
         <!-- / rodape -->
         
     </div>

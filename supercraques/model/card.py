@@ -3,7 +3,7 @@
 
 import logging
 from supercraques.core import meta
-from supercraques.core import SuperCraquesError, SaldoInsuficienteError, CardJaCompradoError
+from supercraques.core import SuperCraquesError, SaldoInsuficienteError, CardJaCompradoError, AtletaNotFoundError
 from supercraques.model.usuario import Usuario
 from supercraques.model.base import Model, Repository
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Float
@@ -37,30 +37,37 @@ class CardRepository(Repository):
 
     
     @staticmethod
-    def comprar_card(usuario_id, atleta_id, valor):
+    def comprar_card(usuario_id, atleta_json):
         
         try:
+            
+            if not atleta_json:
+                raise AtletaNotFoundError()
             
             session = meta.get_session()
             session.begin()
         
             usuario = Usuario().get(usuario_id)
+            
             # valida o patrimonio
-            if usuario.patrimonio < float(valor):
+            valor = float(atleta_json["valor"])
+            if usuario.patrimonio < valor or usuario.patrimonio - valor < 0:
+                logging.debug("usuario.patrimonio < float(valor): %s < %s" % (usuario.patrimonio, valor))
                 raise SaldoInsuficienteError()
             
             # seta as informacoes
             card = Card()
             card.usuario_id = usuario.id
-            card.atleta_id = atleta_id
-            card.valor = float(valor)
+            card.atleta_id = atleta_json["atleta_id"]
+            card.valor = valor
             
             # cria o card. 
             session.add(card)
             
             # atualiza o patrimonio
-            session.execute("update usuario set patrimonio = patrimonio-%f where usuario_id=%s" % (card.valor, usuario.id))
-            
+            usuario.patrimonio = usuario.patrimonio - card.valor
+            session.add(usuario)
+             
             # faz commit
             session.commit()
     

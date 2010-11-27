@@ -9,12 +9,16 @@ urls = (
     url("/auth/login", HomeController, action="auth_login", name="auth_login"),
     url("/home", HomeController, action="home", name="home"),
    
+    url("/equipes.{extension}", BancaController, action="busca_equipes", name="busca_equipes"),
+    url("/equipe/{equipe_id}/atletas.{extension}", BancaController, action="busca_atletas_por_equipe", name="busca_atletas_por_equipe"),
+    url("/equipe/{equipe_id}/posicao/{posicao}/atletas.{extension}", BancaController, action="busca_atletas_por_equipe_e_posicao", name="busca_atletas_por_equipe_e_posicao"),
+    url("/posicao/{posicao}/atletas.{extension}", BancaController, action="busca_atletas_por_posicao", name="busca_atletas_por_posicao"),
+    
     url("/banca", BancaController, action="banca", name="banca"),
     url("/supercraque.{extension}", BancaController, action="get_supercraque", name="get_supercraque"),
     url("/atletas_card.{extension}", BancaController, action="atletas_card", name="atletas_card"),
     url("/cards", BancaController, action="cards_box", name="cards_box"),
     url("/atleta/{atleta_id}/comprar", BancaController, action="comprar_card", name="comprar_card"),
-    url("/equipe/{equipe_id}/atletas.{extension}", BancaController, action="busca_atletas_por_equipe", name="busca_atletas_por_equipe"),
     
     url("/desafio/card/{card_id}/usuario_desafiado/{usuario_desafiado_id}/desafiar", DesafioController, action="enviar_desafio", name="enviar_desafio"),
     url("/desafio/aceitar", DesafioController, action="aceitar_desafio", name="aceitar_desafio"),

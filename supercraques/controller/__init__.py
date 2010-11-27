@@ -59,6 +59,12 @@ class BaseController (TorneiraBaseController):
                 # fecha a conexao
                 curl.close()
 
+    def render_success(self, message="Operação realizada com sucesso!", **kw):
+        return self.render_to_json({"tipoAviso": "sucesso", "message": message}, **kw)
+
+    def render_error(self, message="Ops! Ocorreu um erro!", **kw):
+        return self.render_to_json({"tipoAviso": "erro", "errors":{"error":{"message": message}}}, **kw)
+
 
 def authenticated(fn):
     def authenticated_fn(self, *args, **kw):
@@ -77,15 +83,15 @@ def logged(fn):
         usuario = None
         user_cookie = get_user_from_cookie(kw.get('request_handler').cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
         if user_cookie:
+#            logging.debug("user_cookie: %s" % user_cookie)
             usuario = Usuario().get(user_cookie["uid"])
+            logging.debug("usuario: %s" % usuario.as_dict())
             if not usuario:
-                kw.get('request_handler').redirect("/login")
-                return
+                return kw.get('request_handler').redirect("/login")
             else:
                 usuario.access_token = user_cookie["access_token"]
         else:
-            kw.get('request_handler').redirect("/login")
-            return
+            return kw.get('request_handler').redirect("/login")
         
         return fn(self, usuario=usuario, *args, **kw)
     

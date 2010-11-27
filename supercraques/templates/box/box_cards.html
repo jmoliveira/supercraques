@@ -1,7 +1,7 @@
 <div class="glb-grid-8" id="card-info">
 
 	% for card in cards:
-    <div class="sponsor" title="Click to flip">
+    <div class="sponsor" title="Click to flip" data="${card['card_id']}">
       <div class="sponsorFlip">
         <img height="60" width="60" border="0" src="${card['img']}">
         <BR>
@@ -10,8 +10,9 @@
         <div class="num">Qualidade: ${card['qualidade']}</div>
         <div class="num">Assiduidade: ${card['assiduidade']}</div>
         <div class="num">Disciplina: ${card['disciplina']}</div>
+        <div class="num">VALOR: ${card['valor']}</div>
+        <div class="medio-escudo-padrao medio-${card['equipe']['slug']}"><div class="escudo" alt="${card['equipe']['nome_popular']}"></div></div>
       </div>
-      <div class="sponsorData">NADA AINDA</div>
     </div>
 	
 	% endfor

@@ -307,5 +307,20 @@ $(".share-button a").click(function(){
         });
 
 
+
+
+      $.ajax({
+            url: "/fb/friends.json",
+            success: function(result) {
+              $contenTemplate.html("");
+              $cardTemplate.tmpl( result ).appendTo($contenTemplate);
+              $contenTemplate.show();
+            },
+            error:function(x,e) {
+              alert("errosr:" + e);
+            }
+          });
+  
+
 </%def>
 

@@ -11,38 +11,35 @@
     
     <script type="text/javascript"><!--
 	$(function() {	
-// https://graph.facebook.com/100001830967449/picture
+
+    var barra = $("#supercraque-rodape").barra({}, true);
+    
+    var card_selecionado_id = null;
+    $('.sponsor').live("click",function(){
+        card_selecionado_id = $(this).attr("data");    
+     });
 
     $('.btn_comprar').live("click",function(){
         var $elem = $(this);
         $.ajax({
-            url: "/card/20/usuario_desafiado/"+ $elem.attr("usuario_id") + "/desafiar",
+            url: "/desafio/card/" + card_selecionado_id + "/usuario_desafiado/"+ $elem.attr("usuario_id") + "/desafiar",
             success: function(data) {
-              alert(data.sucesso + " - " + data.message);
-              // $elem.hide();
+                $("#glb-doc").showMessage({response:data});
             },
             error:function(x,e) {
-              alert("errosr:" + e);
+              $("#glb-doc").showMessage();
             }
           });
     });
-    
-    var $contenTemplate = $("#content-template");
-    var $cardTemplate = $("#friendTemplate");
+      
+      var $contenTemplate = $("#content-template");
+      var $cardTemplate = $("#friendTemplate");
 
-
-      $.ajax({
-            url: "/fb/friends.json",
-            success: function(result) {
-              $contenTemplate.html("");
-              $cardTemplate.tmpl( result ).appendTo($contenTemplate);
-              $contenTemplate.show();
-            },
-            error:function(x,e) {
-              alert("errosr:" + e);
-            }
-          });
-
+      FB.api('/me/friends', function(response) {
+          $contenTemplate.empty();
+          $cardTemplate.tmpl( response.data ).appendTo($contenTemplate);
+          $contenTemplate.show();
+      });
         
 	});
 		
@@ -53,7 +50,7 @@
 
 
 <%def name="content()">
-  MEUS CARDS<BR>
+  DESAFIAR AMIGOS<BR>
 	<div class="glb-bloco">
 		<%include file="/box/box_cards.html"/>
 	</div>
@@ -66,9 +63,9 @@
 <BR>AMIGOS
 <script id="friendTemplate" type="text/x-jquery-tmpl">
     <div>
-        <img height="60" width="60" border="0"  src="https://graph.facebook.com/{{= id}}/picture">
+        <img height="60" width="60" border="0"  src="https://graph.facebook.com/{{= id}}/picture" >
         {{= name}}
-      <a href="javascript:void(0);"><img border="0" src="/media/img/btn_comprar.jpg" class="btn_comprar" usuario_id="{{= id}}"></a>
+      <a href="javascript:void(0);"><img border="0" src="/media/img/ico_jogar.gif" class="btn_comprar" usuario_id="{{= id}}"></a>
     </div>
 </script>    
 
