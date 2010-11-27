@@ -11,25 +11,11 @@ CURRENT_VERSION
 report.html
 cache/
 fotos/
-static/
-editorias/
-docs/build
 
 settings_wsgi.py
 project.wsgi
 version.txt
 
-*.orig
-*joined*.css
-*joined*.js
-
-espdados/conf/httpd-be/conf/httpd-globoesporte02-adm.conf
-espdados/conf/httpd-be/conf/httpd-globoesporte02-be.conf
-
-espdados/conf/httpd-be/conf/vh-globoesporte02-adm.conf
-espdados/conf/httpd-be/conf/vh-globoesporte02-be.conf
-espdados/esportes/tests/report-pylint.txt
-espdados_textmate.tmproj
 .settings/*
 .coverage*
 .DS_Store
