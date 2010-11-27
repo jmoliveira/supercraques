@@ -13,6 +13,16 @@ class DesafioController (BaseController):
     
     @logged
     @render_to_extension
+    def busca_desafios_todos(self, usuario, *args, **kw):
+        result = {"data":[]}
+        desafios_recebidos = Desafio().get_desafios_todos(usuario.id)
+        for desafio in desafios_recebidos:
+            result["data"].append(desafio.as_desafio_dict(usuario.id))
+        
+        return result
+
+    @logged
+    @render_to_extension
     def busca_desafios_recebidos(self, usuario, *args, **kargs):
         result = {"data":[]}
         desafios_recebidos = Desafio().get_desafios_recebidos(usuario.id)

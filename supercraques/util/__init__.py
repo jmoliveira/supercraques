@@ -1,3 +1,4 @@
+
 def date_to_date_br(data=None):
     '''
     Transforma um tipo date em string no formato 'dd-mm-yyyy'
@@ -6,6 +7,12 @@ def date_to_date_br(data=None):
     * util.date_to_date_iso(data_realizacao) --> '25/12/2009'
     '''
     if data:
-        return data.strftime('%d-%m-%Y')
+        return data.strftime('%d/%m/%Y')
+    else:
+        return None
+
+def datetime_to_format(dataTime=None, format="%m/%d/%Y ÁS %IH%MMIN"):
+    if dataTime:
+        return dataTime.strftime(format)
     else:
         return None

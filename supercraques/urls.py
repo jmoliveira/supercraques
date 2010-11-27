@@ -24,6 +24,7 @@ urls = (
     url("/desafio/aceitar", DesafioController, action="aceitar_desafio", name="aceitar_desafio"),
     url("/desafio/enviados.{extension}", DesafioController, action="busca_desafios_enviados", name="busca_desafios_enviados"),
     url("/desafio/recebidos.{extension}", DesafioController, action="busca_desafios_recebidos", name="busca_desafios_recebidos"),
+    url("/desafio/todos.{extension}", DesafioController, action="busca_desafios_todos", name="busca_desafios_todos"),
 
     url("/fb/friends.{extension}", FacebookController, action="friends", name="friends"),
 )

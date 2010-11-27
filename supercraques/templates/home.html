@@ -47,32 +47,18 @@
         });
 
 
-        // buscar e exibe os desafios recebidos
-        var $boxDesafiosRecebidosTemplate = $("#box-desafios-recebidos-template");
-        var $boxDesafiosRecebidos = $("#box-desafios-recebidos");
+        // buscar e exibe os desafios
+        var $boxDesafiosTemplate = $("#box-desafios-template");
+        var $boxDesafios = $("#box-desafios");
         $.ajax({
-            url: "/desafio/recebidos.json",
+            url: "/desafio/todos.json",
             success: function(result) {
-                $boxDesafiosRecebidosTemplate.tmpl( result.data ).appendTo($boxDesafiosRecebidos);
+                $boxDesafiosTemplate.tmpl( result.data ).appendTo($boxDesafios);
             },
             error:function(x,e) {
               alert("error:" + e);
             }
         });
-
-        // buscar e exibe os desafios enviados
-        var $boxDesafiosEnviadosTemplate = $("#box-desafios-enviados-template");
-        var $boxDesafiosEnviados = $("#box-desafios-enviados");
-        $.ajax({
-            url: "/desafio/enviados.json",
-            success: function(result) {
-                $boxDesafiosEnviadosTemplate.tmpl( result.data ).appendTo($boxDesafiosEnviados);
-            },
-            error:function(x,e) {
-              alert("error:" + e);
-            }
-        });
-            
         
 	});
 		
@@ -88,11 +74,9 @@
 		<!-- %include file="/box/box_usuario_info.html"/-->
 	</div>
 
-<BR>acompanhe seus desafios<BR>
+<div class="desafio-title">acompanhe seus <span class="mensagem-principal">desafios</span></div>
 
-<div class="box-desafios-recebidos" id="box-desafios-recebidos"></div>
-<div class="box-desafios-enviados" id="box-desafios-enviados"></div>
-
+<div class="box-desafios" id="box-desafios"></div>
 
 <div id="dialog-atletas-card" title="Meus Cards" style="display:none">
     <form action="/desafio/aceitar" method="POST" id="formDesafio">
@@ -115,30 +99,41 @@
     </div>
 </script> 
 
-<script id="box-desafios-enviados-template" type="text/x-jquery-tmpl">
+<script id="box-desafios-template" type="text/x-jquery-tmpl">
+{{if desafio_enviado == true}}
   <div class="box-card-enviado">
-      <div class="info-time">
-        <img border="0" src="https://graph.facebook.com/{{= usuario_desafiou_id}}/picture">X
-        <img border="0" src="https://graph.facebook.com/{{= usuario_desafiado_id}}/picture">
+      
+      <div class="desafio-enviado">você <span class="mensagem-principal">desafiou</span></div>
+      <div class="box-desafio-usuario">
+        <img border="0" src="https://graph.facebook.com/{{= usuario_desafiado.id}}/picture">
+        <span class="nome-usuario-desafiado cufon">{{= usuario_desafiado.nome}}<p class="data-usuario-desafiado cufon">Em {{= data_criacao}}</p></span>
+        
+        <div class='share-button'>
+          <img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='facebook' data-text="Provoque seu amigo no eoneoenoeneo facebook" data-url="http://www.supercraques.com.br/" data-url-name="chico" title='Provoque seu amigo no Facebook'><img src="/media/img/facebook_ico.gif" alt='Provoque seu amigo' /></a>
+          Provoque seu amigo!
+        </div>
       </div>
-      <div class='share-button'>
-        <img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='facebook' data-text="Provoque seu amigo no eoneoenoeneo facebook" data-url="http://www.supercraques.com.br/" data-url-name="chico" title='Provoque seu amigo no Facebook'><img src="/media/img/facebook_ico.gif" alt='Provoque seu amigo' /></a>
-        Provoque seu amigo!
-      </div>        
+                
+        <div class="box-cards-desafio">
+            <div class="card desafio-card-aguardando"></div>
+            <div class="card desafio-versus"></div>
+            <div class="card desafio-card-selecionado"></div>
+        </div>
+            
   </div>
-</script> 
-
-<script id="box-desafios-recebidos-template" type="text/x-jquery-tmpl">
+{{else}}
   <div class="box-card-recebido">
     <div class="usuario-desafiado">
       você foi <b>desafiado</b>
       <div> 
-        <img class="uiProfilePhotoMedium" src="https://graph.facebook.com/{{= usuario_desafiou_id}}/picture"> por <b>Newton Fleury</b>
-        <div>Em 10/12/2010 AS 16H20MIN</div>
+        <img class="uiProfilePhotoMedium" src="https://graph.facebook.com/{{= usuario_desafiou.id}}/picture"> por <b>{{= usuario_desafiou.nome}}</b>
+        <div>Em {{= data_criacao}}</div>
       </div> 
     </div>
     <a title="Click para escolher seu card!" class="featured desafioCard" data="{{= id}}">Escolha seu card!</a>
   </div>
+
+{{/if}}
 </script> 
 
 
