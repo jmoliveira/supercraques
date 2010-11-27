@@ -1,0 +1,59 @@
+#glb-barra-widget {background-color:#F3F3F3;margin:0 auto; z-index:2; position:relative; }
+#glb-barra-widget #glb-barra-logo {float:left;height:18px;margin:10px 7px 0 10px;width:74px;}
+#glb-barra-widget #glb-barra-logo a {color:#06d;display:block;font-size:.83em;height:100%;position:relative;text-decoration:none;}
+#glb-barra-widget #glb-barra-logo a:hover {color:#09f;}
+#glb-barra-widget #glb-barra-logo a strong {background:url(/media/img/logo-glb.gif) no-repeat;cursor:pointer;display:block;height:100%;position:absolute;width:100%;}
+#glb-barra-widget #glb-barra-logo a:hover strong {background-position:0 -18px;}
+#glb-barra-widget #glb-barra-menu {float:left;}
+#glb-barra-widget #glb-barra-menu .glb-item-menu {background:url(/media/img/separador-menu.gif) no-repeat left 15px;display:inline;float:left;position:relative;}
+#glb-barra-widget #glb-barra-menu .glb-item-menu a {border-top:.2em solid #F3F3F3;color:#06d;display:block;font-size:1.3em;letter-spacing:-0.02em;font-weight:bold;margin-left:1px;padding:6px 7px 12px;}
+#glb-barra-widget #glb-barra-menu .glb-item-menu a:hover {border-color:#06d;}
+#glb-barra-widget #glb-barra-menu li #menu-noticias {color:#a80000;}
+#glb-barra-widget #glb-barra-menu li #menu-noticias:hover {border-color:#a80000;}
+#glb-barra-widget #glb-barra-menu li #menu-esportes {color:#3e831e;}
+#glb-barra-widget #glb-barra-menu li #menu-esportes:hover {border-color:#3e831e;}
+#glb-barra-widget #glb-barra-menu li #menu-entretenimento {color:#f90;}
+#glb-barra-widget #glb-barra-menu li #menu-entretenimento:hover {border-color:#f90;}
+#glb-barra-widget #glb-barra-menu li #menu-videos {color:#005cef;}
+#glb-barra-widget #glb-barra-menu li #menu-videos:hover {border-color:#005cef;}
+#glb-barra-widget #glb-barra-menu li .menu-sportv {color:#3f69b5;}
+#glb-barra-widget #glb-barra-menu li .menu-sportv:hover {color:#3f69b5;}
+#glb-barra-widget #glb-barra-og, #glb-barra-widget #glb-og-contexto strong {text-transform:lowercase;}
+#glb-barra-widget #glb-barra-og {background:url(/media/img/separador-menu.gif) no-repeat left 15px;display:inline;float:left;position:relative;}
+#glb-barra-widget #glb-barra-og a {border-top:.2em solid #F3F3F3;color:#06d;display:block;font-size:1.3em;letter-spacing:-0.02em;font-weight:bold;margin-left:1px;padding:6px 7px 12px;}
+#glb-barra-widget #glb-barra-og a:hover {border-color:#06d;}
+#glb-barra-widget #glb-barra-og img {margin:-4px 3px 0 0;_margin-top:0px;vertical-align:middle;border:0;}
+#glb-barra-widget #glb-og-contexto {background:url(/media/img/separador-menu.gif) no-repeat left 15px;display:inline;float:left;margin-left:3px;}
+#glb-barra-widget #glb-og-contexto #menu-og-contexto {border-top:.2em solid #f3f3f3;color:#06d;display:block;font-size:1em;margin-left:0;padding:6px 0 12px;position:relative;z-index:98;}
+#glb-barra-widget #glb-og-contexto #menu-og-contexto strong {padding:6.5px 7px 12px;}
+#glb-barra-widget #glb-og-contexto #menu-og-contexto:hover {background:#fff url(/media/img/separador-menu.gif) repeat-y left 15px  !important;border-color:#06d;}
+#glb-barra-widget #glb-og-contexto #menu-og-contexto:hover strong {background:url(/media/img/separador-menu.gif) repeat-y right 15px !important;}
+#glb-barra-widget #glb-og-contexto #menu-og-contexto {display:none;}
+#glb-barra-widget #glb-subcontextos {background-color:#fff;border:1px solid #dddddd;display:none;margin-top:-1px;position:absolute;padding:7px 0 15px 1px;}
+#glb-barra-widget #glb-subcontextos li {display:inline;float:none;white-space:nowrap;}
+#glb-barra-widget #glb-subcontextos li a {border:none;color:#595959;display:block;font-size:1em;font-weight:normal;padding:2px 30px 0 5px;position:relative;}
+#glb-barra-widget #glb-subcontextos li a:hover {border:none;color:#005cef;text-decoration:underline;}
+#glb-barra-widget #glb-barra-servicos {float:right;margin-right:3px;}
+#glb-barra-widget #glb-barra-servicos .glb-item-servicos {background:url(/media/img/separador-menu.gif) no-repeat left 15px;display:inline;float:left;position:relative;}
+#glb-barra-widget #glb-barra-servicos .glb-item-servicos a {color:#666666;font-size:.92em;display:block;font-weight:bold;margin-top:2px;padding:11px 7px;}
+#glb-barra-widget #glb-barra-servicos .glb-item-servicos a:hover {text-decoration:underline;}
+#glb-barra-widget #glb-barra-servicos .central-globocom {background:none;}
+#glb-barra-widget #glb-barra-servicos #menu-globomail {float:left;margin-top:-2px;position:relative;}
+#glb-barra-widget #glb-barra-servicos #menu-globomail .glb-mail {border-top:.2em solid #F3F3F3;color:#666666;display:block;font-size:.92em;margin-top:2px;position:relative;padding:11px 0 13px 25px;z-index:99}
+#glb-barra-widget #glb-barra-servicos #menu-globomail .glb-mail:hover {background:#fff url(/media/img/separador-menu.gif) repeat-y left 14px !important;border-top:.2em solid #06d;text-decoration:none;}
+#glb-barra-widget #glb-barra-servicos #menu-globomail .hovered {background:#fff url(/media/img/separador-menu.gif) repeat-y left 14px !important;border-top:.2em solid #06d;text-decoration:none;}
+#glb-barra-widget #glb-barra-servicos #menu-globomail .glb-mail strong {background:url(/media/img/separador-menu.gif) no-repeat right 14px;padding:11.3px 7px 13px;}
+#glb-barra-widget #glb-barra-servicos #menu-globomail .glb-mail:hover strong {background:url(/media/img/separador-menu.gif) repeat-y right 14px !important;}
+#glb-barra-widget #glb-barra-servicos #menu-globomail .glb-mail .hovered strong {background:url(/media/img/separador-menu.gif) repeat-y right 14px !important;}
+#glb-barra-widget #glb-barra-servicos #menu-globomail .glb-mail img {margin-left:-16px;position:absolute;top:13px;*top:26px;border:none}
+#glb-barra-widget #glb-barra-servicos  #menu-globomail #globomail-subcontexto {background-color:#fff;border:1px solid #ddd;display:none;margin-top:-1px;padding:7px 0 15px 0;position:absolute;z-index:98}
+#glb-barra-widget #glb-barra-servicos  #menu-globomail #globomail-subcontexto li {background-image:none;border:none;display:inline;float:none;margin-bottom:2px;white-space:nowrap;}
+#glb-barra-widget #glb-barra-servicos  #menu-globomail #globomail-subcontexto li a {border:none;color:#595959;display:block;font-size:1em;font-weight:normal;padding:5px 30px 0 7px;*padding:6px 30px 0 7px;position:relative;}
+#glb-barra-widget #glb-barra-servicos  #menu-globomail #globomail-subcontexto li a:hover {border:none;color:#005cef;text-decoration:underline;}
+#glb-barra-widget .glb-oculto {display:none !important;}
+#glb-barra-widget {background-color:#F3F3F3;display:table;font:12px arial,helvetica,freesans,sans-serif;min-width:960px;width:100%;}
+#glb-barra-widget .conteudo-barra {margin:0 auto;width:80em;}
+#glb-barra-widget .glb-barra-escopo * {margin:0;outline:0;padding:0;}
+#glb-barra-widget li {list-style:none;}
+#glb-barra-widget a {text-decoration:none;}
+.glb-barra-conteudo {margin:0 auto !important;text-align:left;width:960px;}

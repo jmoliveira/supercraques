@@ -1,0 +1,23 @@
+.box-jogadores {width:55.36em;font:normal 11px arial;}
+.box-jogadores h2 {font:bold 18px/28px arial;color:#666;border-top:4px solid #666;letter-spacing:-1px;margin-bottom:5px; border-bottom:none;}
+.box-jogadores span.titulo{color:#666;font:normal 12px/36px arial;display:block;position:absolute;margin:-48px 0 0 15px}
+.box-jogadores ul.info {display:table;border-bottom:1px solid #e7e7e7;width:55.36em;}
+.box-jogadores ul.info li.box {width:166px;float:left;padding:0 0 0 15px;}
+.box-jogadores ul.info li img {width:60px;float:left}
+.box-jogadores ul.info li .player-header {height:87px}
+.box-jogadores ul.info li .right {width:110px;margin-right:5px;margin-left:5px;float:left;height:60px;position:relative}
+.box-jogadores ul.info li .right div {position:absolute;bottom:0}
+.box-jogadores ul.info li .position {color:#666;display:block;}
+.box-jogadores ul.info li .player {font:bold 16px/16px arial;}
+.box-jogadores ul.info li .player a {color:#217b21;letter-spacing:-1px;}
+.box-jogadores ul.info li .player a:hover {text-decoration:underline}
+.box-jogadores ul.info li ul.numbers {border-top:1px solid #e7e7e7;clear:both;display:block}
+.box-jogadores ul.info li ul.numbers li {border-bottom:1px solid #e7e7e7;font:normal 12px/30px arial;color:#666}
+.box-jogadores ul.info li ul.numbers li .num {position:absolute;text-align:right;width:153px;;*margin-top:-9px;_margin-top:-9px}
+.box-jogadores ul.info li ul.numbers li .grd {font:bold 18px/30px arial;}
+.box-jogadores ul.info li ul.numbers li.last {border-bottom:0 !important;}
+.box-jogadores .vertodos {font:bold 11px/22px arial;color:#060;}
+.box-jogadores .vertodos:hover {text-decoration:underline}
+.box-jogadores .sem-jogadores {background:url(/media/img/sem_jogador.gif) repeat-x;width: 55.36em;height: 19.25em;}
+.box-jogadores .sem-jogadores p {padding-top: 2.5em;text-align: center;color:#666;font-weight: bold;font-size: 2.33em}
+.box-jogadores .cards {margin-bottom:20px;}

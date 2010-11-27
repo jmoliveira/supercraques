@@ -1,0 +1,49 @@
+#box-mercados{background:url("/media/globoesporte2010/img/borda-base-abas.gif") repeat-x 0 61px;margin-bottom:2.5em;overflow:hidden;padding-top:19px;}
+
+
+/** DROPDOWN */
+
+/* filtros mercados */
+.box-filtros-mercado{height:89px;}
+.filtros-mercado{cursor:pointer;float:left;font-size:17px;height:33px;letter-spacing:-1.02px;margin-right:8px;margin-top:39px;position:relative;width:11.878em;}
+.filtros-mercado .filtros-atual-label{border-right:1px dotted #333333;display:block;height:27px;letter-spacing:-1.02px;margin-top:0;padding:8px 0 0 3px;width:157px;}
+.seta-filtro{display:block;height:8px;left:176px;position:absolute;top:23px;width:17px;background:url("/media/img/banca/delivery/icones.png") no-repeat
+scroll -194px -68px;}
+#filtros-time-mercado .filtros-atual-label div,.filtros-mercado .filtros-atual-label img{float:left;overflow:hidden;}
+#filtros-time-mercado .filtros-atual-label div{padding-left:5px;width:132px;}
+.filtros-mercado-ultimo{margin-right:-2px;}
+.dropdown-todos{color:#666666;font-size:0.7em;font-weight:bold;text-align:center;border-top:1px solid #D1D1D1;line-height:25px;clear:left;display: none;position:relative;z-index:1;background-color:#fff;}
+.filtros-grupo-botao{background:url("/media/img/banca/delivery/sprite_botoes_mercado.png") no-repeat scroll 0 0 transparent;height:42px;padding:9px 0 0 9px;width:193px;}
+
+/* filtros mercados ativo */
+.filtros-grupo-botao-active{background:url("/media/img/banca/delivery/sprite_botoes_mercado.png") no-repeat scroll 0 -273px transparent;}
+.filtros-grupo-botao-active .filtros-atual-label{color:#258554;}
+.filtros-grupo-botao-active .seta-filtro{background:url("/media/img/banca/delivery/icones.png") no-repeat scroll -194px -55px;}
+
+/* filtros mercados > times */
+#dropdown-times{position:absolute;left:0px;top:50px;border:1px solid #D1D1D1;display:block;background-color:#fff;}
+#dropdown-times ul{padding:0;margin:0;}
+#dropdown-times li{display:block;float:left;width:39px;height:39px;line-height:39px;border:1px solid #D1D1D1;border-width:0px 1px 1px 0px;text-align:center;overflow:hidden;}
+#dropdown-times li.primeiro-item{clear:left;}
+#dropdown-times li.ultimo-item{border-right-width:0px;width:40px;}
+#dropdown-times li.ultima-linha{border-bottom-width:0px;}
+#dropdown-times li.mouseover{background:url("/media/img/banca/delivery/sprite_botoes_mercado.png") no-repeat -106px -74px;}
+.dropdown-filtro ul li{position:relative;z-index:1;background:#fff;}
+
+/* filtros mercados > tipos */
+#dropdown-tipos{position:absolute;left:0;top:50px;border:1px solid #D1D1D1;display:none;background-color:#fff;}
+#dropdown-tipos ul{padding:0;margin:0;}
+#dropdown-tipos li{color:#666666;font-size:0.7em;font-weight:bold;letter-spacing:0;border-color:#D1D1D1;border-style:solid;border-width:0 1px 1px 0;display:block;float:left;line-height:59px;overflow:hidden;text-align:center;width:100px;}
+#dropdown-tipos li.mouseover{background:url("/media/img/banca/delivery/sprite_botoes_mercado.png") no-repeat scroll -1px -54px transparent;}
+#dropdown-tipos li.ultimo-item{border-right-width:0px;width:99px;}
+#dropdown-tipos li.ultima-linha{border-bottom-width:0px;}
+#filtros-status-mercado span.in {background:url("/media/img/banca/delivery/icones.png") no-repeat scroll -194px -113px transparent;padding-left:20px;width:20px;margin-right: 5px;}
+#filtros-status-mercado span.out {background:url("/media/img/banca/delivery/icones.png") no-repeat scroll -194px -92px transparent;padding-left:20px;width:20px;margin-right: 5px;}
+
+/* filtros mercados > posicao */
+#dropdown-posicoes{position:absolute;left:0;top:50px;border:1px solid #D1D1D1;display:none;background-color:#fff;width:200px;z-index:2;}
+#dropdown-posicoes ul{padding:0;margin:0;}
+#dropdown-posicoes li{color:#666666;display:block;float:left;font-size:0.7em;font-weight:bold;letter-spacing:0;line-height:30px;overflow:hidden;text-align:center;width:100px;border-color:#D1D1D1;border-style:solid;border-width:0 1px 1px 0;}
+#dropdown-posicoes li.mouseover{background:url("/media/img/banca/delivery/sprite_botoes_mercado.png") no-repeat -1px -113px;}
+#dropdown-posicoes li.ultimo-item{border-right-width:0px;width:99px;}
+#dropdown-posicoes li.ultima-linha{border-bottom-width:0px;}
