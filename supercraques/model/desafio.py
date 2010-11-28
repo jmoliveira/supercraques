@@ -177,11 +177,13 @@ class DesafioRepository(Repository):
         dictionary =  {"id": self.id,
                        "desafio_enviado": True if usuario_id == self.usuario_desafiou_id else False,
                        "usuario_desafiou_id": self.usuario_desafiou_id,
-                       "usuario_desafiou": self.usuario_desafiou.as_dict(),
+                       "usuario_desafiou": self.usuario_desafiou.as_dict(), 
                        "card_desafiou_id": self.card_desafiou_id,
+                       "card_desafiou": self.card_desafiou.as_dict(),
                        "usuario_desafiado_id": self.usuario_desafiado_id,
                        "usuario_desafiado": self.usuario_desafiado.as_dict() if self.usuario_desafiado_id else None,
                        "card_desafiado_id": self.card_desafiado_id,
+                       "card_desafiado": self.card_desafiou.as_dict() if self.card_desafiado_id else None,
                        "usuario_vencedor_id": self.usuario_vencedor_id,
                        "is_finalizado": True if self.status == self.STATUS_FINALIZADO else False, 
                        "ganhou": True if self.usuario_vencedor_id == usuario_id else False,
@@ -207,9 +209,9 @@ class Desafio(Model, DesafioRepository):
     
     id = Column('desafio_id', Integer, primary_key=True)
     usuario_desafiou_id = Column('usuario_desafiou_id', String, ForeignKey("usuario.usuario_id"))
-    card_desafiou_id = Column('card_desafiou_id', String)
+    card_desafiou_id = Column('card_desafiou_id', String, ForeignKey("card.card_id"))
     usuario_desafiado_id = Column('usuario_desafiado_id', String, ForeignKey("usuario.usuario_id"))
-    card_desafiado_id = Column('card_desafiado_id', String)
+    card_desafiado_id = Column('card_desafiado_id', String, ForeignKey("card.card_id"))
     usuario_vencedor_id = Column('usuario_vencedor_id', String, ForeignKey("usuario.usuario_id"))
     status = Column('status', String)
     valor_ganho = Column('valor_ganho', Float)
@@ -217,5 +219,13 @@ class Desafio(Model, DesafioRepository):
     data_criacao = Column('data_criacao', DateTime)
     data_update = Column('data_update', DateTime)
 
+
     usuario_desafiou = relation(Usuario, primaryjoin=usuario_desafiou_id==Usuario.id)
+    card_desafiou = relation(Card, primaryjoin=card_desafiou_id==Card.id)
     usuario_desafiado = relation(Usuario, primaryjoin=usuario_desafiado_id==Usuario.id)
+#    card_desafiado = relation(Card, primaryjoin=card_desafiado_id==Card.id)
+    
+    
+    
+    
+    

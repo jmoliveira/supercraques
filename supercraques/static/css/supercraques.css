@@ -41,13 +41,18 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .card-desafio-recebido {background-position:0 0px;}
 .card-desafio-recebido-aguardando {background-position:0 0px;}
 .card-desafio-recebido-messagem {margin-left:15px; margin-top:80px;}
-.card-desafio-versus {float:left;height:74px;width:100px;background-position:-183px 0;margin-top:111px;}
+.card-desafio-versus {float:left;margin-top:111px;}
 .messagem-aguardando-recebido {font-size: 20px;letter-spacing: -1.79px;color: #666;margin-bottom:20px;margin-top:10px;text-align:center;}
 .messagem-aguardando-enviado {font-size: 20px;letter-spacing: -1.79px;color: #666;margin-bottom:20px;margin-top:10px;text-align:center;width:160px;}
-.img-alert {background-position:-118px -173px;height:17px;width:20px;margin-left:80px}
+.img-alert {background-position:-118px -173px;height:17px;width:20px;margin-left:90px}
+.img-versus {height:74px;width:100px;background-position:-183px 0;}
+.img-interrogacao {height:94px;width:52px;background-position:-207px -100px;}
 .btn-escolher-card {background-position:-297px -119px;height:32px;width:104px;float:left;}
 .btn-pular-fora {background-position:-297px -163px;height:32px;width:84px;float:left;margin-left:5px;}
 .btn-cancelar-desafio {background-position:-297px -204px;height:32px;width:115px;float:left;margin-left:25px;}
+.escudo-atleta {position:relative;top:-26px;left:175px;}
+.faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;}
+.faixa-posicao-nome {font-size: 10px;letter-spacing: -0.2px;color: #FFF; }
 
 /* ---- grid ---- */
 

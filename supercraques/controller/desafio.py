@@ -8,6 +8,7 @@ from supercraques.core import meta
 from supercraques.model.desafio import Desafio
 from supercraques.model.card import Card
 from supercraques.core.facebook import GraphAPI
+from supercraques.util.helper import PontuacaoHelper, SDEHelper
 
 class DesafioController (BaseController):
     
@@ -17,7 +18,9 @@ class DesafioController (BaseController):
         result = {"data":[]}
         desafios_recebidos = Desafio().get_desafios_todos(usuario.id)
         for desafio in desafios_recebidos:
-            result["data"].append(desafio.as_desafio_dict(usuario.id))
+            desafio_json = desafio.as_desafio_dict(usuario.id)
+            desafio_json["card_desafiou"]["atleta"] =  SDEHelper().get_atleta(desafio_json["card_desafiou"]["atleta_id"])
+            result["data"].append(desafio_json)
         
         return result
 

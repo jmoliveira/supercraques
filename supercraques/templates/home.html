@@ -105,12 +105,21 @@
       
       <div class="box-desafio-usuario">
         <div class="desafio-enviado">você <span class="mensagem-principal">desafiou</span></div>
-        <img border="0" src="https://graph.facebook.com/{{= usuario_desafiado.id}}/picture">
+        <img height="40" width="40" border="0" src="https://graph.facebook.com/{{= usuario_desafiado.id}}/picture">
         <span class="nome-usuario-desafiado cufon">{{= usuario_desafiado.nome}}<p class="data-usuario-desafiado cufon">Em {{= data_criacao}}</p></span>
       </div>
       <div class="box-cards-desafio">
-          <div class="card card-desafio-enviado"></div>
-          <div class="super-sprite card-desafio-versus"></div>
+          <div class="card card-desafio-enviado">
+              <div style="margin-top:10px;margin-left:10px">
+                <img height="200" width="200" border="0" src="/media/img/jogador_default.jpg">
+                <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
+                <div class="faixa-posicao faixa-posicao-nome">
+                    {{= card_desafiou.atleta.posicao}}                
+               </div>
+                {{= card_desafiou.atleta.nome}}
+              </div>
+          </div>
+          <div class="super-sprite img-versus card-desafio-versus"></div>
           <div class="card card-desafio-enviado-aguardando">
               <div class="card-desafio-enviado-messagem">
                   <div class="messagem-aguardando-enviado">AGUARDANDO SEU AMIGO... <BR><b>DÊ UMA CHAMADA NELE!</b></div>
@@ -138,8 +147,12 @@
                   <span class="super-sprite btn-pular-fora"></span>
               </div>
           </div>
-          <div class="super-sprite card-desafio-versus"></div>
-          <div class="card card-desafio-recebido"></div>
+          <div class="super-sprite img-versus card-desafio-versus"></div>
+          <div class="card super-sprite card-desafio-recebido">
+             <div style="margin-top:100px;margin-left:85px">
+                <div class="super-sprite img-interrogacao"></div>                
+             </div>
+          </div>
       </div>
   </div>
 
