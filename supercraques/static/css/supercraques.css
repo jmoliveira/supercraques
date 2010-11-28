@@ -50,9 +50,46 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .btn-escolher-card {background-position:-297px -119px;height:32px;width:104px;float:left;}
 .btn-pular-fora {background-position:-297px -163px;height:32px;width:84px;float:left;margin-left:5px;}
 .btn-cancelar-desafio {background-position:-297px -204px;height:32px;width:115px;float:left;margin-left:25px;}
-.escudo-atleta {position:relative;top:-26px;left:175px;}
-.faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;}
-.faixa-posicao-nome {font-size: 10px;letter-spacing: -0.2px;color: #FFF; }
+.escudo-atleta {position:relative;top:-30px;left:174px;z-index:5;}
+.faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;position:relative;top:-20px;}
+.faixa-posicao-nome {font-size: 14px;letter-spacing: -0.2px;color: #FFF; }
+.card-atleta-nome {font-size: 20px;letter-spacing: -0.2px;color: #666666; position:relative;top:-12px;left:-32px;}
+.card-atleta-qualidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:24px;left:10px;}
+.card-atleta-assiduidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:7px;left:90px;}
+.card-atleta-disciplina {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:-9px;left:164px;}
+
+#glb-cabecalho {
+  margin:0 auto;
+  width:960px;
+  padding-top: 10px
+}
+
+.cabecalho-esquerda {
+  float:left;
+  width:300px;
+}
+
+.cabecalho-direita {
+  float: right;
+  margin:0;
+  width:200px;
+  font-family: Helvetica,Arial;
+  font-size: 12px;
+  color: #fff;
+  padding-top: 15px;
+}
+
+.cabecalho-direita p {
+  float: left;
+  padding-top: 5px;
+}
+
+.cabecalho-direita img {
+  float: left;
+  padding-right: 10px;
+}
+
+#glb-topo{background-image: url('/media/img/bg_header.png'); height:83px;}
 
 /* ---- grid ---- */
 
@@ -79,7 +116,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 
 .glb-primeiro{margin-left:0}
 .glb-ultimo{margin-right:0}
-#glb-cabecalho{background:none repeat scroll 0 0 #4E6E0B; height:40px; margin-bottom: 10px;}
+/*#glb-cabecalho{background:none repeat scroll 0 0 #4E6E0B; height:40px; margin-bottom: 10px;}*/
 .marca-produto{color:#FFFFFF}
 
 /* ---- /grid ---- */
