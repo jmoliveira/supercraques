@@ -30,48 +30,25 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .data-usuario-desafiado{font-size: 10px;letter-spacing: -0.2px;color: #666; }
 
 /*.desafio {}*/
+
+.super-sprite {text-indent:-10000px;display:block;background-image:url('/media/img/supercraques_sprite.png');background-repeat:no-repeat;background-position:0 0;}
 .box-desafio-usuario {display:block;float:left;margin-right:80px}
 .box-cards-desafio {display:block;float:left;}
-.card { 
-    float:left; 
-    text-indent:-10000px;
-    height:310px; 
-    width:222px; 
-    display:block; 
-    background-image:url('/media/img/bg_card.png');
-    background-repeat:no-repeat;
-    background-position:0 0;
-}
+.card {float:left;height:310px;width:222px;display:block;background-image:url('/media/img/bg_card.png');background-repeat:no-repeat;background-position:0 0;}
+.card-desafio-enviado {background-position:-232px 0px;}
+.card-desafio-enviado-aguardando {background-position:0 0px;}
+.card-desafio-enviado-messagem {margin-left:30px; margin-top:80px;}
+.card-desafio-recebido {background-position:0 0px;}
+.card-desafio-recebido-aguardando {background-position:0 0px;}
+.card-desafio-recebido-messagem {margin-left:15px; margin-top:80px;}
+.card-desafio-versus {float:left;height:74px;width:100px;background-position:-183px 0;margin-top:111px;}
+.messagem-aguardando-recebido {font-size: 20px;letter-spacing: -1.79px;color: #666;margin-bottom:20px;margin-top:10px;text-align:center;}
+.messagem-aguardando-enviado {font-size: 20px;letter-spacing: -1.79px;color: #666;margin-bottom:20px;margin-top:10px;text-align:center;width:160px;}
+.img-alert {background-position:-118px -173px;height:17px;width:20px;margin-left:80px}
+.btn-escolher-card {background-position:-297px -119px;height:32px;width:104px;float:left;}
+.btn-pular-fora {background-position:-297px -163px;height:32px;width:84px;float:left;margin-left:5px;}
+.btn-cancelar-desafio {background-position:-297px -204px;height:32px;width:115px;float:left;margin-left:25px;}
 
-.desafio-card-aguardando {
-  
-    background-position:0 0px;
-}
-
-.desafio-versus {
-    float:left; 
-    text-indent:-10000px;
-    height:74px; 
-    width:100px; 
-    display:block; 
-    background-image:url('/media/img/supercraques_sprite.png');
-    background-repeat:no-repeat;
-    background-position:-183px 0;
-}
-
-.desafio-card-selecionado {
-    background-position:0 -0px;
-}
-
-/*.mini-atletico-go .escudo { background-position:0 -22px; }
-#ge-mosaico .mini-atletico-go .escudo:hover { background-position:-20px -22px; }
-
-
-
-.desafio-card-aguardando {background:url("/media/img/supercraques_sprite.png") no-repeat center center}
-.desafio-versus {background:url("/media/img/supercraques_sprite.png") no-repeat center center}
-.desafio-card-selecionado {background:url("/media/img/supercraques_sprite.png") no-repeat center center} 
-*/
 /* ---- grid ---- */
 
 #glb-doc{ text-align:center;width:100%}

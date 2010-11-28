@@ -107,30 +107,40 @@
         <div class="desafio-enviado">você <span class="mensagem-principal">desafiou</span></div>
         <img border="0" src="https://graph.facebook.com/{{= usuario_desafiado.id}}/picture">
         <span class="nome-usuario-desafiado cufon">{{= usuario_desafiado.nome}}<p class="data-usuario-desafiado cufon">Em {{= data_criacao}}</p></span>
-        
-        <div class='share-button'>
-          <img src="/media/img/social_div.gif" /> <a href='javascript:void(0)' class='facebook' data-text="Provoque seu amigo no eoneoenoeneo facebook" data-url="http://www.supercraques.com.br/" data-url-name="chico" title='Provoque seu amigo no Facebook'><img src="/media/img/facebook_ico.gif" alt='Provoque seu amigo' /></a>
-          Provoque seu amigo!
-        </div>
       </div>
-                
-        <div class="box-cards-desafio">
-            <div class="card desafio-card-aguardando"></div>
-            <div class="card desafio-versus"></div>
-            <div class="card desafio-card-selecionado"></div>
-        </div>
-            
+      <div class="box-cards-desafio">
+          <div class="card card-desafio-enviado"></div>
+          <div class="super-sprite card-desafio-versus"></div>
+          <div class="card card-desafio-enviado-aguardando">
+              <div class="card-desafio-enviado-messagem">
+                  <div class="messagem-aguardando-enviado">AGUARDANDO SEU AMIGO... <BR><b>DÊ UMA CHAMADA NELE!</b></div>
+                  <span class="super-sprite btn-cancelar-desafio"></span>
+              </div>
+          </div>
+      </div>          
+
   </div>
 {{else}}
   <div class="box-card-recebido">
-    <div class="usuario-desafiado">
-      você foi <b>desafiado</b>
-      <div> 
-        <img class="uiProfilePhotoMedium" src="https://graph.facebook.com/{{= usuario_desafiou.id}}/picture"> por <b>{{= usuario_desafiou.nome}}</b>
-        <div>Em {{= data_criacao}}</div>
-      </div> 
-    </div>
-    <a title="Click para escolher seu card!" class="featured desafioCard" data="{{= id}}">Escolha seu card!</a>
+      <div class="box-desafio-usuario">
+          <div class="desafio-enviado">você foi <span class="mensagem-principal">desafiado!</span></div>
+          <div class="box-fantastico">
+            <img class="uiProfilePhotoMedium" src="https://graph.facebook.com/{{= usuario_desafiou.id}}/picture">
+            <span class="nome-usuario-desafiado cufon">por {{= usuario_desafiado.nome}}<p class="data-usuario-desafiado cufon">Em {{= data_criacao}}</p></span>
+          </div>
+      </div>
+      <div class="box-cards-desafio">
+          <div class="card card-desafio-recebido-aguardando">
+              <div class="card-desafio-recebido-messagem">
+                  <span class="super-sprite img-alert"></span>
+                  <div class="messagem-aguardando-recebido">SEU AMIGO ESTÁ AGUARDANDO... <BR><b>E AÍ?</b></div>
+                  <span class="super-sprite btn-escolher-card"></span>
+                  <span class="super-sprite btn-pular-fora"></span>
+              </div>
+          </div>
+          <div class="super-sprite card-desafio-versus"></div>
+          <div class="card card-desafio-recebido"></div>
+      </div>
   </div>
 
 {{/if}}
