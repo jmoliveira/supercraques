@@ -36,6 +36,7 @@
 <%def name="content()">
 
 <div id="containerBanca">
+  <span class="messagem-banca-de-cards"><b>banca</b> de cards</span>
   <div class="box-filtros-mercado">
           <div id="filtros-time-mercado" class="filtros-mercado">
             <span class="canto-te"></span>
@@ -86,26 +87,25 @@
    </div>
    
   <div id="content-template-banca"></div>
- 
-  <div id="content-loading" class="ui-autocomplete-desafio-loading" style="overflow:auto;display:none;height:100px;"></div>
-
+  <div id="content-loading" class="ui-autocomplete-desafio-loading" style="overflow:auto;display:none;height:200px;"></div>
 </div>
           
 	
 <script id="cardTemplate" type="text/x-jquery-tmpl">
-    <div class="sponsor">
-      <div class="sponsorFlip">
-        <img height="60" width="60" border="0" src="{{= img}}">
-        <BR>
-        <div class="player">Nome: {{= nome}}</div>
-        <div class="position">Posicao: {{= posicao}}</div>
-        <div class="num">Qualidade: {{= qualidade}}</div>
-        <div class="num">Assiduidade: {{= assiduidade}}</div>
-        <div class="num">Disciplina: {{= disciplina}}</div>
-        <div class="num">VALOR: {{= valor}}</div>
-        <div class="medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
-        {{if possui == false}}<a href="javascript:void(0);"><img style="margin-left:120px;margin-top:-20px" border="0" src="/media/img/btn_comprar.jpg" class="btn_comprar" atleta_id="{{= atleta_id}}"></a>{{/if}}
-      </div>
+    <div class="card card-banca">
+        <div style="margin-top:10px;margin-left:10px">
+          <img height="200" width="200" border="0" src="/media/img/jogador_default.jpg">
+          <span class="super-sprite btn-comprar-card"></span>
+          <div class="escudo-atleta medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
+          <div class="faixa-posicao faixa-posicao-nome">{{= posicao}}</div>
+          <div class="card-atleta-nome">{{= nome}}</div>
+          <div>
+            <div class="card-atleta-qualidade">{{= qualidade}}</div>
+            <div class="card-atleta-assiduidade">{{= assiduidade}}</div>
+            <div class="card-atleta-disciplina">{{= disciplina}}</div>
+          {{if possui == false}}<a href="javascript:void(0);"><img style="display:none;margin-left:120px;margin-top:-20px" border="0" src="/media/img/btn_comprar.jpg" class="btn_comprar" atleta_id="{{= atleta_id}}"></a>{{/if}}
+          </div>
+        </div>
     </div>
 </script>    
 

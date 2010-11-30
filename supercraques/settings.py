@@ -6,7 +6,7 @@ import logging, os
 
 DEBUG = True
 PROFILING = False
-
+OFFLINE = True
 
 ROOT_URLS = "supercraques.urls"
 

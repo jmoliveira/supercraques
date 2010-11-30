@@ -12,7 +12,7 @@ class BancaController (BaseController):
     
     @logged
     def banca(self, usuario, *args, **kargs):
-        return self.render_to_template("/banca.html",  usuario=usuario, equipes=self.get_equipes())
+        return self.render_to_template("/banca.html",  usuario=usuario, equipes=SDEHelper().get_equipes())
 
     @logged
     def comprar_card(self, usuario, atleta_id, *args, **kw):
@@ -85,7 +85,7 @@ class BancaController (BaseController):
     @authenticated
     @render_to_extension
     def busca_equipes(self, user_cookie, *args, **kw):
-        return {"nacional": self.get_equipes()}
+        return {"nacional": SDEHelper().get_equipes()}
 
     
     def adicionar_status_compra(self, atletas, usuario_id):

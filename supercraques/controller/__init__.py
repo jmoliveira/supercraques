@@ -1,12 +1,13 @@
 # coding: utf-8
 #!/usr/bin/env python
 
-from torneira.controller import BaseController as TorneiraBaseController 
+import settings
 import logging, pycurl, StringIO, simplejson
+from torneira.controller import BaseController as TorneiraBaseController 
 from sqlalchemy.exceptions import IntegrityError
-
 from supercraques.core.facebook import GraphAPI, get_user_from_cookie
 from supercraques.model.usuario import Usuario
+from supercraques.core import meta
 
 FACEBOOK_APP_ID = "166942923329088"
 FACEBOOK_APP_SECRET = "80342273fa7b84e12c095765fe0e095f"
@@ -69,7 +70,12 @@ class BaseController (TorneiraBaseController):
 def authenticated(fn):
     def authenticated_fn(self, *args, **kw):
         request_handler = kw.get('request_handler')
-        user_cookie = get_user_from_cookie(request_handler.cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
+        if meta.USUARIO_OFFLINE:
+            usuario = meta.USUARIO_OFFLINE
+            user_cookie = {"uid":usuario.id}
+        else:
+            user_cookie = get_user_from_cookie(request_handler.cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
+            
         if not user_cookie:
             request_handler.redirect("/login")
             return
@@ -81,17 +87,28 @@ def authenticated(fn):
 def logged(fn):
     def logged_fn(self, *args, **kw):
         usuario = None
-        user_cookie = get_user_from_cookie(kw.get('request_handler').cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
-        if user_cookie:
-#            logging.debug("user_cookie: %s" % user_cookie)
-            usuario = Usuario().get(user_cookie["uid"])
-            logging.debug("usuario: %s" % usuario.as_dict())
-            if not usuario:
-                return kw.get('request_handler').redirect("/login")
+        if settings.OFFLINE == True:
+            if meta.USUARIO_OFFLINE:
+                usuario = meta.USUARIO_OFFLINE
             else:
-                usuario.access_token = user_cookie["access_token"]
+                # recupera da url o uid
+                uid = kw["uid"]
+                logging.debug("uid: %s" % uid)
+                usuario = Usuario().get(uid)
+                meta.USUARIO_OFFLINE = usuario
+                
         else:
-            return kw.get('request_handler').redirect("/login")
+            user_cookie = get_user_from_cookie(kw.get('request_handler').cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
+            if user_cookie:
+                logging.debug("user_cookie: %s" % user_cookie)
+                usuario = Usuario().get(user_cookie["uid"])
+                logging.debug("usuario: %s" % usuario.as_dict())
+                if not usuario:
+                    return kw.get('request_handler').redirect("/login")
+                else:
+                    usuario.access_token = user_cookie["access_token"]
+            else:
+                return kw.get('request_handler').redirect("/login")
         
         return fn(self, usuario=usuario, *args, **kw)
     
