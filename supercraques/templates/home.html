@@ -17,7 +17,7 @@
         
         var $dialog_atletas_card = $("#dialog-atletas-card");
         var $atletaCardTemplate = $("#atletaCardTemplate");
-        var $contentDialogAtletaCard = $("#contentDialogAtletaCard");
+        var $contentDialogAtletaCard = $("#meus-cards-content");
         
         // criar o popin dos meus cards
         $dialog_atletas_card.dialog({autoOpen: false, height: 400, width: 800, modal: true});
@@ -29,21 +29,30 @@
             $('#formDesafio', $dialog_atletas_card).submit();
         });
         
+        
+        isOpenMeusCards = false
         // 
-        $(".desafioCard").live("click", function() {
+        $("#meus-cards-menu").live("click", function() {
             var $elem = $(this);
-            $.ajax({
-                url: "/atletas_card.json",
-                success: function(data) {
-                  $("#desafio_id", $dialog_atletas_card).val($elem.attr("data"));
-                  $contentDialogAtletaCard.html("");
-                  $atletaCardTemplate.tmpl( data ).appendTo($contentDialogAtletaCard);
-                  $dialog_atletas_card.dialog('open');
-                },
-                error:function(x,e) {
-                  alert("error:" + e);
-                }
-              });
+            if (isOpenMeusCards == false) {
+              $.ajax({
+                  url: "/atletas_card.json",
+                  success: function(data) {
+                    // $("#desafio_id", $dialog_atletas_card).val($elem.attr("data"));
+                    $contentDialogAtletaCard.empty();
+                    $atletaCardTemplate.tmpl( data ).appendTo($contentDialogAtletaCard);
+                    $contentDialogAtletaCard.show();
+                    isOpenMeusCards = true;
+                    // $dialog_atletas_card.dialog('open');
+                  },
+                  error:function(x,e) {
+                    alert("error:" + e);
+                  }
+                });
+             }else{
+                $contentDialogAtletaCard.hide();
+                isOpenMeusCards = false; 
+             }
         });
 
 
@@ -87,15 +96,19 @@
 </div>
 
 <script id="atletaCardTemplate" type="text/x-jquery-tmpl">
-    <div class="atletaCard">
-        <img height="60" width="60" border="0" src="{{= img}}">
-        <BR>
-        <div class="player">Nome: {{= nome}}</div>
-        <div class="position">Posicao: {{= posicao}}</div>
-        <input type="radio" name="radio" value="qualidade" /> Qualidade: {{= qualidade}}<BR>
-        <input type="radio" name="radio" value="assiduidade" /> Assiduidade: {{= assiduidade}}<BR>
-        <input type="radio" name="radio" value="disciplina" /> Disciplina: {{= disciplina}}<BR>
-        <a class="featured aceitarDesafioCard" data="{{= card_id}}">Jogar</a>
+    <div class="card card-banca">
+        <div style="margin-top:10px;margin-left:10px">
+          <img height="200" width="200" border="0" src="{{= img}}">
+          <span class="super-sprite btn-comprar-card">{{= valor}}</span>
+          <div class="escudo-atleta medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
+          <div class="faixa-posicao faixa-posicao-nome">{{= posicao}}</div>
+          <div class="card-atleta-nome">{{= nome}}</div>
+          <div>
+            <div class="card-atleta-qualidade">{{= qualidade}}</div>
+            <div class="card-atleta-assiduidade">{{= assiduidade}}</div>
+            <div class="card-atleta-disciplina">{{= disciplina}}</div>
+          </div>
+        </div>
     </div>
 </script> 
 
