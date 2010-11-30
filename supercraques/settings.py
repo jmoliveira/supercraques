@@ -6,8 +6,8 @@ import logging, os
 
 DEBUG = True
 PROFILING = False
-OFFLINE = True
-
+OFFLINE = False
+EXIBIR_FOTO = True 
 ROOT_URLS = "supercraques.urls"
 
 DATABASE_ENGINE = "mysql://root:@localhost:3306/supercraques?charset=utf8&use_unicode=0"

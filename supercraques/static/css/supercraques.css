@@ -53,8 +53,10 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .btn-pular-fora {background-position:-297px -163px;height:32px;width:84px;float:left;margin-left:5px;}
 .btn-desafio-facebook {background-position:-297px -254px;color:#FFFFFF;font-size:15px;height:42px;margin-top:30px;padding-left:12px;padding-top:10px;text-align:center;text-indent:0;width:212px;}
 .btn-cancelar-desafio {background-position:-297px -204px;height:32px;width:115px;float:left;margin-left:25px;}
-.btn-comprar-card {background-position:-518px -72px;height:52px;width:55px;float:right;position:relative;top:-213px;}
-.btn-comprar-card:hover {background-position:-518px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;}
+.btn-desafiar-amigo {background-position:-298px -10px;height:37px;width:136px;float:left;margin-left:25px;}
+.btn-desafiar-amigo:hover {background-position:-298px -62px;height:37px;width:136px;float:left;margin-left:25px;}
+.btn-comprar-card {background-position:-518px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;}
+.btn-comprar-card:hover {background-position:-518px -72px;height:52px;width:55px;float:right;position:relative;top:-213px;}
 .escudo-atleta {position:relative;top:-30px;left:174px;z-index:5;}
 .faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;position:relative;top:-20px;}
 .faixa-posicao-nome {font-size: 14px;letter-spacing: -0.2px;color: #FFF;width:200px; }
@@ -62,6 +64,8 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .card-atleta-qualidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:24px;width:45px;text-align:center;}
 .card-atleta-assiduidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:7px;left:78px;width:45px;text-align:center;}
 .card-atleta-disciplina {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:-9px;left:154px;width:45px;text-align:center;}
+.meus-cards-barra {height: 250px;}
+
 
 /* ---- cabecalho-header ---- */
 #glb-cabecalho {margin:0 auto;width:960px;padding-top: 10px}

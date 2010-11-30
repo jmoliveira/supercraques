@@ -58,7 +58,7 @@ class SDEHelper(BaseController):
                         assiduidade = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_assiduidade(scout.get("estatisticas"))
                         disciplina = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_disciplina(scout["eventos"])
                         atletas.append({ "atleta_id": scout["pessoafuncao_id"],
-                                         "img": atleta.get("foto_fpath") if atleta.get("foto_fpath") else "/media/img/foto_padrao.gif",
+                                         "img": atleta.get("foto_fpath").replace("_FORMATO","_220x220") if atleta.get("foto_fpath") and settings.EXIBIR_FOTO == True else "/media/img/foto_padrao.gif",
                                          "posicao": scout["funcao"].get("faixa_campo") if scout["funcao"].get("faixa_campo") else "-",
                                          "nome": scout["nome_popular_atleta"],
                                          "equipe": equipe,
