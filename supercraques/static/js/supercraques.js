@@ -73,14 +73,16 @@
                 return Math.round((val * 100))/100;
             },
 
-            comprarCard:function(atleta_id){
+            descartarCard:function($elem){
               var self = this;
+              atleta_id = $elem.attr("data");
               $.ajax({
                   method: 'post',
-                  url: "/atleta/"+ atleta_id + "/comprar",
+                  url: "/atleta/"+ atleta_id + "/descartar",
                   success: function(data) {
                     $("#glb-doc").showMessage({response:data});
                     if (data.tipoAviso == "sucesso") {
+                      $elem.removeClass("btn-descartar-card"); $elem.addClass("btn-comprar-card");
                       self.load();
                     }
                   },
@@ -89,6 +91,25 @@
                   }
                 });
 
+            },
+
+            comprarCard:function($elem){
+              var self = this;
+              atleta_id = $elem.attr("data");
+              $.ajax({
+                  method: 'post',
+                  url: "/atleta/"+ atleta_id + "/comprar",
+                  success: function(data) {
+                    $("#glb-doc").showMessage({response:data});
+                    if (data.tipoAviso == "sucesso") {
+                      $elem.removeClass("btn-comprar-card"); $elem.addClass("btn-descartar-card");
+                      self.load();
+                    }
+                  },
+                  error:function(x,e) {
+                    $("#glb-doc").showMessage();
+                  }
+                });
             },
             
             fill: function(supercraque){

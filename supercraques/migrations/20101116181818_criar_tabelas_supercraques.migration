@@ -28,7 +28,9 @@ SQL_UP = """
 	  PRIMARY KEY  (`desafio_id`),
 	  KEY `FK_USUARIO_DESAFIOU` (`usuario_desafiou_id`),
 	  KEY `FK_USUARIO_DESAFIADO` (`usuario_desafiado_id`),
-	  KEY `FK_USUARIO_VENCEDOR` (`usuario_vencedor_id`)
+	  KEY `FK_USUARIO_VENCEDOR` (`usuario_vencedor_id`),
+	  CONSTRAINT `FK_DESAFIO__CARD_DESAFIOU` FOREIGN KEY (`card_desafiou_id`) REFERENCES `card` (`card_id`),
+	  CONSTRAINT `FK_DESAFIO__CARD_DESAFIADO` FOREIGN KEY (`card_desafiado_id`) REFERENCES `card` (`card_id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
   CREATE TABLE  `card` (

@@ -27,6 +27,15 @@ class CardRepository(Repository):
         ids = Card().ids(usuario_id)
         return [Card().get(id) for id in ids]
 
+
+    @staticmethod
+    def delete_card(usuario_id, atleta_id):
+        session = meta.get_session()
+        query = " delete from card"
+        query = query + " where usuario_id=%s and atleta_id" % (usuario_id, atleta_id)
+        result = session.execute(query)
+        return result
+        
 #    @staticmethod
 #    def get_atleta_ids(usuario_id):
 #        session = meta.get_session()
@@ -34,6 +43,50 @@ class CardRepository(Repository):
 #        query = query + " where usuario_id=%s" % usuario_id
 #        result = session.execute(query)
 #        return [row['atleta_id'] for row in result.fetchall()]
+
+    @staticmethod
+    def descartar_card(usuario_id, atleta_id):
+        from supercraques.model.desafio import Desafio
+        
+        try:
+            
+            session = meta.get_session()
+            session.begin()
+
+            # recupera o usuario        
+            usuario = Usuario().get(usuario_id)
+            
+            card_delete = None
+            cards = Card().get_cards(usuario.id)
+            for card in cards:
+                if atleta_id == card.atleta_id:
+                    card_delete = card
+                    break
+                
+            if card_delete:
+                if Desafio().existe_desafio(usuario.id, card.id):
+                    raise SuperCraquesError("Existe um desafio para esse card")
+                else:
+                    # deleta o card.
+                    session.delete(card)
+            else:
+                raise SuperCraquesError()
+
+            # atualiza o patrimonio
+            usuario.patrimonio = usuario.patrimonio + card.valor
+            session.add(usuario)
+             
+            # faz commit
+            session.commit()
+    
+        except SuperCraquesError, e:
+            session.rollback()
+            raise e
+        
+        except Exception, e:
+            session.rollback()
+            logging.error("Erro ao descartar card! %s " % e)
+            raise SuperCraquesError()
 
     
     @staticmethod
@@ -85,7 +138,7 @@ class CardRepository(Repository):
         except Exception, e:
             session.rollback()
             logging.error("Erro ao comprar card! %s " % e)
-            raise SuperCraquesError("Ops! Ocorreu um erro na transação!")
+            raise SuperCraquesError()
 
 
 

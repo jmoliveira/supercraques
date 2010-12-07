@@ -36,6 +36,8 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .box-cards-desafio {display:block;float:left;}
 .card {float:left;height:310px;width:222px;display:block;background-image:url('/media/img/bg_card.png');background-repeat:no-repeat;background-position:0 0;}
 .card-banca {background-position:-232px 0px;margin-bottom:25px;margin-left:7px;}
+.card-banca-menu {background-position:-232px 0px;margin-right:10px;cursor:pointer;}
+.card-banca-menu:hover {background-position:-694px 0px;margin-right:10px;cursor:pointer;}
 .card-desafio-enviado {background-position:-232px 0px;}
 .card-desafio-enviado-aguardando {background-position:0 0px;}
 .card-desafio-enviado-messagem {margin-left:30px; margin-top:80px;}
@@ -55,17 +57,24 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .btn-cancelar-desafio {background-position:-297px -204px;height:32px;width:115px;float:left;margin-left:25px;}
 .btn-desafiar-amigo {background-position:-298px -10px;height:37px;width:136px;float:left;margin-left:25px;}
 .btn-desafiar-amigo:hover {background-position:-298px -62px;height:37px;width:136px;float:left;margin-left:25px;}
-.btn-comprar-card {background-position:-518px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;}
-.btn-comprar-card:hover {background-position:-518px -72px;height:52px;width:55px;float:right;position:relative;top:-213px;}
+.btn-comprar-card {background-position:-518px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
+.btn-comprar-card:hover {background-position:-518px -72px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
+.btn-descartar-card {background-position:-589px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
+.btn-descartar-card:hover {background-position:-589px -71px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
 .escudo-atleta {position:relative;top:-30px;left:174px;z-index:5;}
 .faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;position:relative;top:-20px;}
 .faixa-posicao-nome {font-size: 14px;letter-spacing: -0.2px;color: #FFF;width:200px; }
 .card-atleta-nome {font-size: 20px;letter-spacing: -0.2px;color: #666666; position:relative;top:-12px;}
-.card-atleta-qualidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:24px;width:45px;text-align:center;}
-.card-atleta-assiduidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:7px;left:78px;width:45px;text-align:center;}
-.card-atleta-disciplina {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:-9px;left:154px;width:45px;text-align:center;}
+.card-atleta-qualidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:6px;width:45px;text-align:center;}
+.card-atleta-assiduidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:-11px;left:78px;width:45px;text-align:center;}
+.card-atleta-disciplina {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:-27px;left:154px;width:45px;text-align:center;}
 .meus-cards-barra {height: 250px;}
-
+.valor-card{position: relative; top: -193px; z-index: 10; font-size: 18px;color:#FFF; right:-126px}
+.img-um {background-position:-22px -234px;float:left;height:38px;margin-bottom:3px;margin-right:10px;margin-top:-4px;width:38px;}
+.img-dois {background-position:-22px -284px;float:left;height:38px;margin-bottom:3px;margin-right:10px;margin-top:-4px;width:38px;}
+#desafio-escolher-card {margin-bottom:10px;float:left;margin-right:40px;}
+#desafio-escolher-amigo {margin-bottom:10px;margin-right:40px;opacity:0.4;}
+#desafio-seq-card {font-size: 20px;letter-spacing: -1.79px;color: #666;}
 
 
 /* ---- cabecalho-header ---- */
@@ -212,12 +221,9 @@ a.featured {
 
 
 /*  barra fixa de mercado */
-
 #supercraque-rodape{
   bottom:0;
-  color:#909090;
   left:0;
-  /*verflow:hidden;*/
   position:fixed;
   width:100%;
   z-index: 9999999;
@@ -231,299 +237,74 @@ a.featured {
   height:2.0em;
   background:#FFF url(/media/img/backgrounds.png) repeat scroll 0 6px;
 }
-#supercraque-rodape .alerta {
+
+#supercraque-rodape .conteudo .glb-conteudo-float{
+  position:absolute;
+  padding:2px 0;
+  width: 960px;
+}
+
+#supercraque-rodape a {
+  font-size:28px;
+  font-weight:bold;
+  letter-spacing:-0.01em;
+  color: #4E6E0B;
+}
+
+#supercraque-rodape a:hover {
+  color: #666;
+}
+
+#supercraque-rodape, #meus-cards-menu, #banca, #desafiar, #saldo {
+  float: left;
+  padding-top: 10px;
+}
+
+#supercraque-rodape #meus-cards-menu, #banca, #desafiar, #saldo {
+  width: 220px;
+  text-align: center;
+  height: 52px;
+}
+
+#supercraque-rodape #meus-cards-menu .qtd-cards {
+  background-image: url('/media/img/qtd_cards.png');
+  color: #4E6E0B;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 8px 8px 6px;
+}
+
+#supercraque-rodape #meus-cards-menu .seta-meus-cards {
+  background-image: url('/media/img/seta_meuscards.gif');
+  background-position:left center;
+  background-repeat:no-repeat;
+  height:5px;;
+  padding:0 6px 0 11px;
+}
+
+#supercraque-rodape #saldo{
+  background-color: #999;
+}
+
+#supercraque-rodape #saldo p{
+  font-weight: bold;
+  font-size: 14px;
+  color: #E7E7E7;
+}
+
+#supercraque-rodape #saldo strong{
+  font-size: 28px;
+  color: #fff;
+  font-weight: normal;
+}
+
+#supercraque-rodape #meus-cards-area {
   background: transparent url(/media/img/bg_meus_cards.png) repeat scroll top;
 /*  height: 1.5em;*/
   padding: 1em;
   overflow: hidden; 
-/*  display:none;*/
-    color: #fff;
-}
-#supercraque-rodape .alerta .alerta-mensagem{
-    background:transparent url(/media/img/icones.png) repeat scroll -76px -325px;
-    float:left;
-    font-size:1.168em;
-    font-weight:bold;
-    line-height: 22px;
-    margin-left:20em;
-    padding-left:2em;
-    width:66.7em;
-}
-#supercraque-rodape .alerta .alerta-mensagem span{
-  color: #fff;
-}
-#supercraque-rodape .conteudo .glb-conteudo-float{
-  position:absolute;
-    padding:1em 0;
-}
-#supercraque-rodape .tapume-rodape{
-  width: 100%;
-    height: 100%;
-    border: 0px!important;
-}
-#supercraque-rodape strong{
-  display:block;
-}
-#supercraque-rodape .dados,
-#supercraque-rodape .do-seutime,
-#supercraque-rodape .financeiro-do-seutime,
-#supercraque-rodape .status-mercado,
-#supercraque-rodape .time-status,
-#supercraque-rodape .status-rodape{
-  float:left;
-  letter-spacing:-0.01em;
-}
-#supercraque-rodape .financeiro-do-seutime{
-  font-size:1.15em;
-  margin:0 1.2em;
-  margin-right:0;
-  width:6em;
-}
-#supercraque-rodape .do-seutime{
-  font-size:1.15em;
-  margin:0 0.8em;
-  margin-right:0;
-  width:4.9em;
-}
-#supercraque-rodape .do-seutime strong, #supercraque-rodape .financeiro-do-seutime strong{
-  color:#666;
-  font-size:16px;
-  letter-spacing:-0.07em;
-}
-#supercraque-rodape .dados{
-  border-left:1px solid #D8D8D8;
-  font-size:11px;
-  font-weight:bold;
-  padding:0 1em;
-  width:8.5em;
-  *width:7.5em;
-}
-#supercraque-rodape .dados strong{
-  color:#757575;
-  font-size:1.15em;
-  font-weight:normal;
-  padding-top:3px;
-}
-#supercraque-rodape .preco, #supercraque-rodape .cofre, #supercraque-rodape .patrimonio{
-  background:transparent url(/media/img/icones.png) repeat-x scroll 0 0;
-  display:block;
-  float:left;
-  height:2em;
-  width:2.3em;
-}
-#supercraque-rodape .cofre{
-  background:transparent url(/media/img/icones.png) repeat-x scroll -23px 0;
-}
-#supercraque-rodape .patrimonio{
-  background:transparent url(/media/img/icones.png) repeat-x scroll -54px 0;
-  margin-right:6px;
-}
-#supercraque-rodape .time-status{
-    width:13.1em;
-    margin:0 10px 3px 0px;
-}
-#supercraque-rodape .escalar, #supercraque-rodape .time-escalado, #supercraque-rodape .time-desfalcado{
-  border:1px solid #DDD;
-  border-bottom-color: #B6B6B6;
   display:none;
-  font-size:1.2em;
-  font-weight:bold;
-  padding-top: 5px;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  height:2.96em;
-}
-#supercraque-rodape .escalar{
-  background:url(/media/img/bg_escalar_time.gif) no-repeat;
-  color:#3F9F0F;
-  height:2.45em;
-  padding-top:1em; 
-    text-align:center;
-    border:none;
-}
-#supercraque-rodape .escalar a{
-    color:#FFF;
-    font-size: 0.8em;
-}
-#supercraque-rodape .escalar img{
-    margin-top:-0.5em;
-}
-#supercraque-rodape .time-escalado,#supercraque-rodape .time-desfalcado{
-  height:2.65em;
-  padding-top:0.57em; 
-}
-#supercraque-rodape .time-escalado div{
-  margin-left:0.7em;
-  width: 5em;
-  float: left;
-}
-#supercraque-rodape .time-escalado .time-escalado-social{
-  margin: 4px 0;
-  float: right;
-  width: 4.5em;
-}
-#supercraque-rodape .time-escalado .time-escalado-social .time-escalado-social-div{
-  margin:0;
-  float: left;
-  width: 1px;
-}
-#supercraque-rodape .time-escalado .time-escalado-social .time-escalado-social-twitter{
-  margin:0 4px;
-  float: left;
-  width: 21px;
-}
-#supercraque-rodape .time-escalado .time-escalado-social .time-escalado-social-facebook{
-  margin:0 5px;
-  float: left;
-  width: 21px;
-}
-#supercraque-rodape .time-desfalcado div{
-  margin-left:1.5em;
-  margin-top: 0.5em;
-}
-#supercraque-rodape .time-escalado span, #supercraque-rodape .time-desfalcado span{
-  float:left;
-  font-size:11px;
-  margin-left:7px;
-}
-#supercraque-rodape .time-escalado span.nome-do-time, #supercraque-rodape .time-desfalcado span.nome-do-time{
-  margin-top: 3px;
-  position: absolute;
-  clip: rect(0px 110px 15px 0px);
-}
-#supercraque-rodape .time-escalado strong{
-  color:#3F9F0F;
-  font-size: 0.8em;
-}
-#supercraque-rodape .time-desfalcado strong{
-  color:#C10B0B;
-  font-size: 0.8em;
-}
-#supercraque-rodape .status-mercado{
-  color:#FFF;
-  margin-left:0.9em;
-    width:19.634em;
-}
-#supercraque-rodape .status-mercado div{
-  font-weight:bold;
-  height:29px; 
-  padding: 9px; 
-}
-#supercraque-rodape .status-mercado div.mercado-fechado, #supercraque-rodape .status-mercado div.mercado-aberto, #supercraque-rodape .status-mercado div.mercado-fechamento{
-  border:1px solid;
-  float:left;
-  font-size:11px; 
-  text-align:center; 
-  text-transform: uppercase; 
-  width: 6em;
-  border-top-left-radius:3px;
-  border-bottom-left-radius:3px;
-  -moz-border-radius-bottomleft:3px;
-  -moz-border-radius-topleft:3px;
-  -webkit-border-top-left-radius:3px;
-  -webkit-border-bottom-left-radius:3px;
-}
-#supercraque-rodape .status-mercado div.mercado-fechado{
-  background-color:#E00;
-  border-color:#E00;
-}
-#supercraque-rodape .status-mercado div.mercado-aberto{
-  background-color:#360; 
-  border-color:#360;
-}
-#supercraque-rodape .status-mercado div.mercado-fechamento{
-  background-color:#CA5716; 
-  border-color:#CA5716;
-}
-#supercraque-rodape .status-mercado div.abertura,#supercraque-rodape .status-mercado div.escale,#supercraque-rodape .status-mercado div.abre-em{
-  border:1px solid;
-  font-size:1em;
-  float:right; 
-  width:10.8em;
-  border-top-right-radius:3px;
-  border-bottom-right-radius:3px;
-  -moz-border-radius-bottomright:3px;
-  -moz-border-radius-topright:3px;
-  -webkit-border-top-right-radius:3px;
-  -webkit-border-bottom-right-radius:3px;
-}
-#supercraque-rodape .status-mercado div.abertura{
-  background-color:#000;
-  border-color:#000;
-}
-#supercraque-rodape .status-mercado div.escale{
-  background-color:#390;
-  border-color:#390;
-  height:3.25em;
-  padding:4px 9px;
-}
-#supercraque-rodape .status-mercado div.abre-em{
-  background: #000 url(/media/img/bg_fecto_mercado.jpg) no-repeat scroll 0 0;
-  border-color:#000;
-  height:2.42em;
-}
-#supercraque-rodape .status-mercado div.escale strong{
-  font-size:14px;
-}
-#supercraque-rodape .status-mercado div.escale span{
-  display:block; 
-  font-size:11px;
-  font-weight:normal; 
-  line-height:10px;
-}
-#supercraque-rodape .status-mercado div.abre-em span{
-  color:#FFF;
-  display:block;
-  font-size:2.2em;
-  letter-spacing:2px;
-  margin-left:4px;
-  padding-top:7px;
-}
-#supercraque-rodape .status-rodape{
-  margin-left:1em;
-}
-#supercraque-rodape .linha{
-  background-color:#D8D8D8;
-  float:left;
-  height:5.178em;
-  margin-top:-10px;
-  width:2px;
-}
-#supercraque-rodape .rodape-oferecimento{
-    left:692px;
-    margin-bottom:0 !important;
-    margin-left:0 !important;
-    margin-right:0 !important;
-    margin-top:-73px;
-    padding:0 !important;
-    position:absolute;
-    top:6px;
-    display:none;
-}
-#supercraque-rodape .rodape-oferecimento div{
-  padding:0 !important;
-  margin:0 !important;
-  height:auto !important;
-}
-#supercraque-rodape .conteudo .financeiro{
-  margin:0!important;
-}
-#supercraque-rodape .min .status-rodape{
-  float:right;
-  font-family:Tahoma,Geneva,sans-serif;
-  font-size:11px;
-  height:18px;
-  padding: 3px;
-    width:9.3em;
-}
-#supercraque-rodape .min .status-rodape div{
-    float:left;
-    margin:3px;
-}
-#supercraque-rodape .min .status-rodape a{
-    float:right;
-    margin-top:1px;
+    color: #fff;
 }
 
 /*  /barra fixa de mercado */

@@ -10,15 +10,6 @@ class SDEHelper(BaseController):
     def get_atleta(self, atleta_id):
         return self.get_atleta_map().get(atleta_id)
     
-    def get_equipes(self):
-        return self.get_content_service(settings.SEDE['servicos']['equipes_na_edicao'])
-
-    def get_elenco(self, equipe_id):
-        return self.get_content_service(settings.SEDE['servicos']['elenco_atual_da_equipe'] % equipe_id)
-    
-    def get_scout_pessoafuncao(self, pessoafuncao_id):
-        return self.get_content_service(settings.SEDE['servicos']['scout_do_atleta_na_edicao'] % pessoafuncao_id)
-    
     def get_equipe_map(self, equipe_id=None):
         if not meta.EQUIPE_MAP or (equipe_id and not meta.EQUIPE_MAP.has_key(int(equipe_id))):
             self.__load__(equipe_id)
@@ -44,6 +35,15 @@ class SDEHelper(BaseController):
             return equipe_map.get(int(equipe_id))["atletas"]
         else:
             return self.filtrar_atletas(self.get_atleta_map().values(), posicao)
+
+    def get_equipes(self):
+        return self.get_content_service(settings.SEDE['servicos']['equipes_na_edicao'])
+
+    def get_elenco(self, equipe_id):
+        return self.get_content_service(settings.SEDE['servicos']['elenco_atual_da_equipe'] % equipe_id)
+    
+    def get_scout_pessoafuncao(self, pessoafuncao_id):
+        return self.get_content_service(settings.SEDE['servicos']['scout_do_atleta_na_edicao'] % pessoafuncao_id)
 
     def __load__(self, equipe_id=None):
         for equipe in self.get_equipes()[0:5]:

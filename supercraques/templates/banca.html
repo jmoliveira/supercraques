@@ -22,10 +22,14 @@
 		
 		var supercraques = $("#supercraque-rodape").barra({}, true);
 		
-		$('.btn_comprar').live("click",function(){
-        supercraques.comprarCard($(this).attr("atleta_id"));
+		$('.btn-comprar-card').live("click",function(){
+        supercraques.comprarCard($(this));
 		});
-		
+
+    $('.btn-descartar-card').live("click",function(){
+        supercraques.descartarCard($(this));
+    });
+
 	});
 		
 --></script>
@@ -95,7 +99,8 @@
     <div class="card card-banca">
         <div style="margin-top:10px;margin-left:10px">
           <img height="200" width="200" border="0" src="{{= img}}">
-          <span class="super-sprite btn-comprar-card">{{= valor}}</span>
+          <span class="valor-card">$ {{= valor}}</span>
+          <span class="super-sprite {{if possui == true}}btn-descartar-card{{else}}btn-comprar-card{{/if}}" data="{{= atleta_id}}" {{if possui == true}}card_id="{{= card_id}}"{{/if}}></span>
           <div class="escudo-atleta medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
           <div class="faixa-posicao faixa-posicao-nome">{{= posicao}}</div>
           <div class="card-atleta-nome">{{= nome}}</div>
@@ -103,7 +108,6 @@
             <div class="card-atleta-qualidade">{{= qualidade}}</div>
             <div class="card-atleta-assiduidade">{{= assiduidade}}</div>
             <div class="card-atleta-disciplina">{{= disciplina}}</div>
-          {{if possui == false}}<a href="javascript:void(0);"><img style="display:none;margin-left:120px;margin-top:-20px" border="0" src="/media/img/btn_comprar.jpg" class="btn_comprar" atleta_id="{{= atleta_id}}"></a>{{/if}}
           </div>
         </div>
     </div>

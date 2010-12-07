@@ -3,7 +3,7 @@
 
 
 class SuperCraquesError(Exception):
-    def __init__(self, message):
+    def __init__(self, message="Ops! Ocorreu um erro na transação!"):
         Exception.__init__(self, message)
 
 class SaldoInsuficienteError(Exception):
@@ -25,3 +25,4 @@ class SuperCraquesNotFoundError:
 class AtletaNotFoundError:
     def __init__(self, message="Atleta não encontrado!"):
         Exception.__init__(self, message)
+

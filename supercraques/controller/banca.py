@@ -39,6 +39,25 @@ class BancaController (BaseController):
 
         except SuperCraquesError, e:
             return self.render_error(message=e.message, request_handler=handler)
+
+
+    @logged
+    def descartar_card(self, usuario, atleta_id, *args, **kw):
+        handler = kw.get('request_handler')
+        try:
+            
+            # descartar o card
+            Card().descartar_card(usuario.id, atleta_id)
+            
+            return self.render_success(message="Card descartado com sucesso", request_handler=handler)
+            
+        
+        except CardJaCompradoError, e:
+            return self.render_error(message=e.message, request_handler=handler)
+
+        except SuperCraquesError, e:
+            return self.render_error(message=e.message, request_handler=handler)
+            
             
 
     @authenticated
@@ -95,6 +114,19 @@ class BancaController (BaseController):
             atleta.update({"possui": str(atleta["atleta_id"]) in atleta_ids})
         
         return atletas
+
+#    def adicionar_status_compra(self, atletas, usuario_id):
+#        cards = Card().get_cards(usuario_id)
+#        for atleta in atletas:
+#            for card in cards:
+##                print str(atleta["atleta_id"]), str(card.atleta_id), str(atleta["atleta_id"]) == str(card.atleta_id)
+#                if str(atleta["atleta_id"]) == str(card.atleta_id):
+#                    atleta.update({"possui": True, "card_id": card.id})
+#                    break
+#                else:
+#                    atleta.update({"possui": False})
+#        
+#        return atletas
 
     def get_atletas_card(self, usuario_id):
         atletas = []

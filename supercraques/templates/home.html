@@ -29,28 +29,31 @@
             $('#formDesafio', $dialog_atletas_card).submit();
         });
         
+
+        $(".card-banca-menu").live("click", function() {
+          atleta_id = $(this).attr("data");
+        });
+
         
         isOpenMeusCards = false
-        // 
+        var $meusCardsArea = $("#meus-cards-area");
         $("#meus-cards-menu").live("click", function() {
             var $elem = $(this);
             if (isOpenMeusCards == false) {
               $.ajax({
                   url: "/atletas_card.json",
                   success: function(data) {
-                    // $("#desafio_id", $dialog_atletas_card).val($elem.attr("data"));
                     $contentDialogAtletaCard.empty();
                     $atletaCardTemplate.tmpl( data ).appendTo($contentDialogAtletaCard);
-                    $contentDialogAtletaCard.show();
+                    $meusCardsArea.show();
                     isOpenMeusCards = true;
-                    // $dialog_atletas_card.dialog('open');
                   },
                   error:function(x,e) {
-                    alert("error:" + e);
+                    $("#glb-doc").showMessage();
                   }
                 });
              }else{
-                $contentDialogAtletaCard.hide();
+                $meusCardsArea.hide();
                 isOpenMeusCards = false; 
              }
         });
@@ -65,7 +68,7 @@
                 $boxDesafiosTemplate.tmpl( result.data ).appendTo($boxDesafios);
             },
             error:function(x,e) {
-              alert("error:" + e);
+              $("#glb-doc").showMessage();
             }
         });
         
@@ -96,10 +99,11 @@
 </div>
 
 <script id="atletaCardTemplate" type="text/x-jquery-tmpl">
-    <div class="card card-banca">
+    <div class="card card-banca-menu" data="{{= atleta_id}}">
         <div style="margin-top:10px;margin-left:10px">
           <img height="200" width="200" border="0" src="{{= img}}">
-          <span class="super-sprite btn-comprar-card">{{= valor}}</span>
+          <span class="valor-card">$ {{= valor}}</span>
+          <span class="super-sprite btn-descartar-card"></span>
           <div class="escudo-atleta medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
           <div class="faixa-posicao faixa-posicao-nome">{{= posicao}}</div>
           <div class="card-atleta-nome">{{= nome}}</div>
@@ -115,7 +119,6 @@
 <script id="box-desafios-template" type="text/x-jquery-tmpl">
 {{if desafio_enviado == true}}
   <div class="box-card-enviado">
-      
       <div class="box-desafio-usuario">
         <div class="desafio-enviado">você <span class="mensagem-principal">desafiou</span></div>
         <img height="40" width="40" border="0" src="https://graph.facebook.com/{{= usuario_desafiado.id}}/picture">
@@ -144,7 +147,6 @@
               </div>
           </div>
       </div>          
-
   </div>
 {{else}}
   <div class="box-card-recebido">
