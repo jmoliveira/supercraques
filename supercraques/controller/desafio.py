@@ -55,7 +55,7 @@ class DesafioController (BaseController):
             Desafio().criar_desafio(card_id, usuario_desafiado_id)
             
             # enviar notificacao para o mural
-            attachment = {"link":"http://www.supercraques.com.br", 
+            attachment = {"link":"http://supercraques.com.br:8082/home", 
                           "caption":"Desafio Super Craques!", 
                           "description": "Você foi desafiado por %s para jogar no Super Craques!! Vai jogar ou vair correr?!" % usuario.primeiro_nome, 
                           "picture": "http://sabadao-santamonica.zip.net/images/craque.jpg"}

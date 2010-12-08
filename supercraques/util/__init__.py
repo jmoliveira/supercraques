@@ -16,3 +16,18 @@ def datetime_to_format(dataTime=None, format="%m/%d/%Y ÁS %IH%MMIN"):
         return dataTime.strftime(format)
     else:
         return None
+
+
+    
+
+#def lfind(haystack, needle):
+#    '''Finds something inside a list and returns the indexes as a iterable generator. Use list(lfind(a,b)) to get result as a list.'''
+#    z=-1
+#    hs = list(map(lambda x: x.lower(), haystack))
+#    nd = needle.lower()
+#    while 1:
+#        try:
+#            z = hs.index(nd, z+1)
+#            yield z
+#        except:
+#            break

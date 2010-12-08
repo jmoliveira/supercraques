@@ -16,6 +16,7 @@ _MODELS = {}
 EQUIPE_MAP = {}
 ATLETAS_MAP = {}
 USUARIO_OFFLINE = None
+AMIGOS_FACEBOOK = {}
 
 class TimerProxy(ConnectionProxy):
     def cursor_execute(self, execute, cursor, statement, parameters, context, executemany):

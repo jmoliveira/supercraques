@@ -36,8 +36,10 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .box-cards-desafio {display:block;float:left;}
 .card {float:left;height:310px;width:222px;display:block;background-image:url('/media/img/bg_card.png');background-repeat:no-repeat;background-position:0 0;}
 .card-banca {background-position:-232px 0px;margin-bottom:25px;margin-left:7px;}
-.card-banca-menu {background-position:-232px 0px;margin-right:10px;cursor:pointer;}
-.card-banca-menu:hover {background-position:-694px 0px;margin-right:10px;cursor:pointer;}
+.card-banca-laranja {background-position:-232px 0px;margin-right:10px;cursor:pointer;}
+.card-banca-laranja:hover {background-position:-694px 0px;margin-right:10px;cursor:pointer;}
+.card-banca-verde {background-position:-232px 0px;margin-right:10px;cursor:pointer;}
+.card-banca-verde:hover {background-position:-463px 0;margin-right:10px;cursor:pointer;}
 .card-desafio-enviado {background-position:-232px 0px;}
 .card-desafio-enviado-aguardando {background-position:0 0px;}
 .card-desafio-enviado-messagem {margin-left:30px; margin-top:80px;}
@@ -61,6 +63,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .btn-comprar-card:hover {background-position:-518px -72px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
 .btn-descartar-card {background-position:-589px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
 .btn-descartar-card:hover {background-position:-589px -71px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
+.btn-verde-grande {background-position:-549px -179px;color:#FFFFFF;font-size: 26px;letter-spacing: -1px;height:57px;padding-top:12px;text-align:center;text-indent:0;width:380px;cursor:pointer;}
 .escudo-atleta {position:relative;top:-30px;left:174px;z-index:5;}
 .faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;position:relative;top:-20px;}
 .faixa-posicao-nome {font-size: 14px;letter-spacing: -0.2px;color: #FFF;width:200px; }
@@ -73,9 +76,27 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .img-um {background-position:-22px -234px;float:left;height:38px;margin-bottom:3px;margin-right:10px;margin-top:-4px;width:38px;}
 .img-dois {background-position:-22px -284px;float:left;height:38px;margin-bottom:3px;margin-right:10px;margin-top:-4px;width:38px;}
 #desafio-escolher-card {margin-bottom:10px;float:left;margin-right:40px;}
-#desafio-escolher-amigo {margin-bottom:10px;margin-right:40px;opacity:0.4;}
+#desafio-escolher-amigo {margin-bottom:10px;margin-right:40px;}
 #desafio-seq-card {font-size: 20px;letter-spacing: -1.79px;color: #666;}
+#escolha-amigo {display:block;float:left;}
+.opacity {opacity:0.4}
 
+#escolha-amigo input#project {-moz-border-radius: 10px 10px 10px 10px;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #AAAAAA;color: #333333;font-size: 1.5em;height: 19px;line-height: 1;padding: 2px 5px;width: 362px;}
+.search {background: url("/media/img/icon_searchglass.png") no-repeat scroll 0 -36px transparent;border: 0 none;height: 35px;width: 35px;float: right;position: relative;left: -16px;}
+
+.box-card-enviado, .box-card-recebido {border-bottom:1px solid #666666; height:325px;margin-top:20px}
+
+.ui-autocomplete {
+  max-height: 230px;
+  overflow-y: auto;
+  z-index: 20;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+  height: 230px;
+}
 
 /* ---- cabecalho-header ---- */
 #glb-cabecalho {margin:0 auto;width:960px;padding-top: 10px}
@@ -90,7 +111,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 
 #glb-doc{ text-align:center;width:100%}
 #glb-corpo{min-height:500px}
-.glb-conteudo{  margin:0 auto !important;width:92em;text-align:left}
+.glb-conteudo{  margin:0 auto !important;width:93em;text-align:left}
 /* ---- clear ---- */
 .glb-bloco{ overflow:hidden;width:100%}
 /* ---- units ---- */
@@ -226,7 +247,7 @@ a.featured {
   left:0;
   position:fixed;
   width:100%;
-  z-index: 9999999;
+  z-index: 10;
 }
 #supercraque-rodape .max{
   height:5.36em;
@@ -255,23 +276,24 @@ a.featured {
   color: #666;
 }
 
-#supercraque-rodape, #meus-cards-menu, #banca, #desafiar, #saldo {
+#supercraque-rodape, #meus-cards-menu, #banca, #desafiar-amigos-menu, #saldo {
   float: left;
   padding-top: 10px;
 }
 
-#supercraque-rodape #meus-cards-menu, #banca, #desafiar, #saldo {
+#supercraque-rodape #meus-cards-menu, #banca, #desafiar-amigos-menu, #saldo {
   width: 220px;
   text-align: center;
   height: 52px;
 }
 
-#supercraque-rodape #meus-cards-menu .qtd-cards {
+#supercraque-rodape #meus-cards-menu #qtdCards {
   background-image: url('/media/img/qtd_cards.png');
+  background-repeat:no-repeat;
   color: #4E6E0B;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: normal;
-  padding: 8px 8px 6px;
+  padding: 8px 12px 6px;
 }
 
 #supercraque-rodape #meus-cards-menu .seta-meus-cards {
@@ -298,13 +320,28 @@ a.featured {
   font-weight: normal;
 }
 
-#supercraque-rodape #meus-cards-area {
+#supercraque-rodape #meus-cards-area, #supercraque-rodape #desafios-area {
   background: transparent url(/media/img/bg_meus_cards.png) repeat scroll top;
 /*  height: 1.5em;*/
   padding: 1em;
   overflow: hidden; 
   display:none;
-    color: #fff;
+  color: #fff;
 }
 
+#supercraque-rodape .status-rodape{
+  float:left;
+  letter-spacing:-0.01em;
+}
+#supercraque-rodape .status-rodape{
+  margin-left:1em;
+}
+#supercraque-rodape .min .status-rodape div{
+    float:left;
+    margin:3px;
+}
+#supercraque-rodape .min .status-rodape a{
+    float:right;
+    margin-top:1px;
+}
 /*  /barra fixa de mercado */

@@ -14,10 +14,19 @@
             init:function($this, options, autoload, callback){
                 $.extend(this.options, options);
                 
+                this.isOpenDesafio = false;
+                this.isOpenMeusCards = false;
                 this.$patrimonio = $("#fin-patrimonio",$this);
                 this.$qtdCards = $("#qtdCards", $this);
                 this.cards = this.options.cards;
                 this.callback = callback || false;
+                this.$desafioArea = $("#desafios-area");
+                this.$desafioContent = $("#desafio-content");
+                this.$meusCardsArea = $("#meus-cards-area");
+                this.$meusCardsContent = $("#meus-cards-content");
+                this.$escolhaAmigo = $("#escolha-amigo");
+                this.$atletaCardTemplate = $("#atletaCardTemplate");
+                
                 var self = this;
                 
                 if (autoload){
@@ -43,6 +52,122 @@
                     self.statusBar = "open";
                     return false;
                 });
+                
+                $("#desafiar-amigos-menu").click(function() {
+                    // console.log(self.isOpenDesafio);
+                    if (self.isOpenMeusCards == true){self.$meusCardsArea.hide();self.isOpenMeusCards = false};
+                    
+                    if (self.isOpenDesafio == false) {
+                      $.ajax({
+                          url: "/atletas_card.json",
+                          success: function(data) {
+                            self.$desafioContent.empty();
+                            self.opaco(1);
+                            self.$atletaCardTemplate.tmpl(data).appendTo(self.$desafioContent);
+                            self.$desafioArea.show();
+                            self.isOpenDesafio = true;
+                          },
+                          error:function(x,e) {
+                            $("#glb-doc").showMessage();
+                          }
+                        });
+                     }else{
+                        self.$desafioArea.hide();
+                        //self.$escolhaAmigo.hide()
+                        self.isOpenDesafio = false; 
+                     }
+                   
+                    return false;
+                });
+                
+                $("#meus-cards-menu").click(function() {
+                  if (self.isOpenDesafio == true){self.$desafioArea.hide();self.isOpenDesafio = false};
+                    if (self.isOpenMeusCards == false) {
+                      $.ajax({
+                          url: "/atletas_card.json",
+                          success: function(data) {
+                            self.$meusCardsContent.empty();
+                            self.$atletaCardTemplate.tmpl(data).appendTo(self.$meusCardsContent);
+                            self.$meusCardsArea.show();
+                            self.isOpenMeusCards = true;
+                          },
+                          error:function(x,e) {
+                            $("#glb-doc").showMessage();
+                          }
+                        });
+                     }else{
+                        self.$meusCardsArea.hide();
+                        self.isOpenMeusCards = false; 
+                     }
+                   
+                    return false;
+                });
+                
+                $(".card-banca-verde").live("click", function() {
+                    $("#card_id_selecionado", self.$escolhaAmigo).val($(this).attr("data"));
+                    self.$desafioContent.empty();
+                    self.$desafioContent.append($(this));
+                    self.opaco(2);
+                    $clone  = $('#escolha-amigo');
+                    self.$desafioContent.append($clone);
+                    $clone.show();
+                    
+                    return false;
+                });
+
+                    
+                $( "#project" ).autocomplete({
+                    minLength: 2,
+                    source: "/fb/friends.json",
+                    focus: function( event, ui ) {
+                      $( "#project" ).val( ui.item.name );
+                      return false;
+                    },
+                    select: function( event, ui ) {
+                      $( "#project" ).val("");
+                      $( "#project-id" ).val( ui.item.id );
+                      $( "#project-description" ).html( ui.item.name );
+                      $( "#project-icon" ).html('<img height="40" width="40" border="0"  src="https://graph.facebook.com/'+ ui.item.id + '/picture" >');
+                      return false;
+                    }
+                  })
+                  .data( "autocomplete" )._renderItem = function( ul, item ) {
+                      text_item = '<a>';
+                      text_item +=  '<img height="40" width="40" border="0"  src="https://graph.facebook.com/'+ item.id + '/picture" >';
+                      text_item +=  item.name;
+                      text_item += '</a>';
+                      return $("<li></li>").data("item.autocomplete", item).append(text_item).appendTo(ul);
+                   };
+               
+                   $('#btn-desafiar-amigo').live("click",function(){
+                      usuario_id = $( "#project-id", self.$escolhaAmigo).val();
+                      card_selecionado_id = $("#card_id_selecionado", self.$escolhaAmigo).val();
+                      if (usuario_id != "") {
+                        $.ajax({
+                            url: "/desafio/card/" + card_selecionado_id + "/usuario_desafiado/"+ usuario_id + "/desafiar",
+                            success: function(data) {
+                                $("#glb-doc").showMessage({response:data});
+                                
+                            },
+                            error:function(x,e) {
+                              $("#glb-doc").showMessage();
+                            }
+                          });
+                      }else {
+                          $("#glb-doc").showMessage();
+                      }
+                    });
+                
+            },
+            
+            opaco: function(etapa){
+                if (etapa == 1) {
+                  $("#desafio-escolher-card").removeClass("opacity");
+                  $("#desafio-escolher-amigo").addClass("opacity");  
+                }else{
+                  $("#desafio-escolher-card").addClass("opacity");
+                  $("#desafio-escolher-amigo").removeClass("opacity");
+                }
             },
             
             load: function(){
@@ -111,6 +236,28 @@
                   }
                 });
             },
+            
+            exibirDesafios:function(){
+              var self = this;
+              // buscar e exibe os desafios
+              var $boxDesafios = $("#box-desafios");
+              $boxDesafios.addClass("ui-autocomplete-desafio-loading");
+              var $boxDesafiosTemplate = $("#box-desafios-template");
+              
+              
+              $.ajax({
+                  url: "/desafio/todos.json",
+                  success: function(result) {
+                      $boxDesafiosTemplate.tmpl( result.data ).appendTo($boxDesafios);
+                      $boxDesafios.removeClass("ui-autocomplete-desafio-loading");
+                  },
+                  error:function(x,e) {
+                    $("#glb-doc").showMessage();
+                    $boxDesafios.removeClass("ui-autocomplete-desafio-loading");
+                  }
+              });
+              
+            },            
             
             fill: function(supercraque){
                 var self = this;

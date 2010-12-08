@@ -115,7 +115,8 @@
             </div>
         </div>
         <!-- diretorios -->    	
-    	        <!-- rodape -->
+        
+      <!-- rodape -->
         <div id="glb-rodape">
             <div class="glb-conteudo">
                 <div class="glb-bloco">
@@ -129,41 +130,83 @@
         
             <!-- rodape -->
             <div id="supercraque-rodape">
-              <div id="meus-cards-area">
+
+              <div id="meus-cards-area" style="display:none;">
                   <div class="glb-conteudo">
-                      <div id="desafio-escolher-card"> <span class="super-sprite img-um"></span><span id="desafio-seq-card">escolha seu card</span></div>
-                      <div id="desafio-escolher-amigo"> <span class="super-sprite img-dois"></span><span id="desafio-seq-card">escolha o amigo</span></div>
                       <div id="meus-cards-content" class="clear"></div>
                   </div>
               </div>
+              
+              <div id="desafios-area" style="display:none;">
+                  <div class="glb-conteudo">
+                      <div id="desafio-escolher-card"> <span class="super-sprite img-um"></span><span id="desafio-seq-card">escolha seu card</span></div>
+                      <div id="desafio-escolher-amigo" class="opacity"> <span class="super-sprite img-dois"></span><span id="desafio-seq-card">escolha o amigo</span></div>
+                      <div id="desafio-content" class="clear"></div>
+                  </div>
+              </div>
+              
               <div class="min">
                   <div class="glb-conteudo">
                       <div class="status-rodape"><div>ampliar barra</div><a class="barra" title="ampliar barra" href="#"><img width="18" height="18" alt="seta" src="/media/img/icon_menos.gif"></a></div>
                   </div>
               </div>
+              
               <div class="max">
                   <div id="glb-time-dados" class="glb-conteudo conteudo">
                       <div class="glb-conteudo-float">
                           <div id="meus-cards-menu">
-                              <span class="seta-meus-cards"></span><a href="#">meus cards</a> <span id="qtdCards"></span>
+                              <a href="#">meus cards</a> <span id="qtdCards"></span>
                           </div> 
                           <div id="banca">
                               <a href="/banca">banca</a>
                           </div> 
-                          <div id="desafiar">
+                          <div id="desafiar-amigos-menu">
                               <a href="#"><span class="super-sprite btn-desafiar-amigo"></span></a>
                           </div>
                           <div id="saldo"><p>no seu bolso: <strong id="fin-patrimonio"><span class="patrimonio"></span></strong></p></div>
+                          <div class="status-rodape"><a href="#" title="diminuir barra" class="barra"><img src="/media/img/icon_mais.gif" alt="seta" width="18" height="18" /></a></div>
                       </div>
-                  </div>        
+                  </div>
               </div>
+              
+              <div id="escolha-amigo" style="display:none">
+                  <input type="hidden" value="" id="card_id_selecionado" name="card_id_selecionado" />
+                    <div style="height:250px">
+                      <input type="text" class="" id="project" title="Pesquisar amigo" value="">
+                      <span class="search"></span>
+                      <input type="hidden" id="project-id"/>
+                      <p id="project-description"></p>
+                      <p id="project-icon"></p>
+                    </div>
+                    <div id="btn-desafiar-amigo" class="super-sprite btn-verde-grande">desafiar amigo</div>
+              </div>
+              
           </div>
           
 
         <!-- / rodape -->
         
+
+        
     </div>
 
+    <script id="atletaCardTemplate" type="text/x-jquery-tmpl">
+        <div class="card card-banca-verde" data="{{= card_id}}">
+            <div style="margin-top:10px;margin-left:10px">
+              <img height="200" width="200" border="0" src="{{= img}}">
+              <span class="valor-card">$ {{= valor}}</span>
+              <span class="super-sprite btn-descartar-card"></span>
+              <div class="escudo-atleta medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
+              <div class="faixa-posicao faixa-posicao-nome">{{= posicao}}</div>
+              <div class="card-atleta-nome">{{= nome}}</div>
+              <div>
+                <div class="card-atleta-qualidade">{{= qualidade}}</div>
+                <div class="card-atleta-assiduidade">{{= assiduidade}}</div>
+                <div class="card-atleta-disciplina">{{= disciplina}}</div>
+              </div>
+            </div>
+        </div>
+    </script>
     
   <div id="fb-root"></div>
 	<script src="http://connect.facebook.net/en_US/all.js"></script>
