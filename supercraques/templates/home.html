@@ -1,0 +1,103 @@
+<%inherit file="/base_logado.html"/>
+
+<%def name="css()">
+    ${parent.css()}
+    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/cards.css" />
+</%def>
+
+
+<%def name="javascript()">
+    ${parent.javascript()}
+    
+    <script type="text/javascript"><!--
+	$(function() {	
+
+        //bind dos botoes do social
+        $(".share-button a").mediaShare();
+        
+        var supercraques = $("#supercraque-rodape").barra({}, true);
+        
+        // exibe os desafios
+        supercraques.exibirDesafios();
+         
+	});
+		
+	--></script>
+    
+</%def>
+
+
+
+<%def name="content()">
+
+<div class="desafio-title">acompanhe seus <span class="mensagem-principal">desafios</span></div>
+<div class="box-desafios" id="box-desafios" style="min-height:200px;"></div>
+
+ 
+
+<script id="box-desafios-template" type="text/x-jquery-tmpl">
+{{if desafio_enviado == true}}
+  <div class="box-card-enviado">
+      <div class="box-desafio-usuario">
+        <div class="desafio-enviado">você <span class="mensagem-principal">desafiou</span></div>
+        <img height="40" width="40" border="0" src="https://graph.facebook.com/{{= usuario_desafiado.id}}/picture">
+        <span class="nome-usuario-desafiado cufon">{{= usuario_desafiado.nome}}<p class="data-usuario-desafiado cufon">Em {{= data_criacao}}</p></span>
+        <span class="super-sprite btn-desafio-facebook">provoque seu amigo!</span>
+      </div>
+      <div class="box-cards-desafio">
+          <div class="card card-desafio-enviado">
+              <div style="margin-top:10px;margin-left:10px">
+                <img height="200" width="200" border="0" src="{{= card_desafiou.atleta.img}}">
+                <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
+                <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiou.atleta.posicao}}</div>
+                <div class="card-atleta-nome">{{= card_desafiou.atleta.nome}}</div>
+                <div>
+                  <div class="card-atleta-qualidade">{{= card_desafiou.atleta.qualidade}}</div>
+                  <div class="card-atleta-assiduidade">{{= card_desafiou.atleta.assiduidade}}</div>
+                  <div class="card-atleta-disciplina">{{= card_desafiou.atleta.disciplina}}</div>
+                </div>
+              </div>
+          </div>
+          <div class="super-sprite img-versus card-desafio-versus"></div>
+          <div class="card card-desafio-enviado-aguardando">
+              <div class="card-desafio-enviado-messagem">
+                  <div class="messagem-aguardando-enviado">AGUARDANDO SEU AMIGO... <BR><b>DÊ UMA CHAMADA NELE!</b></div>
+                  <span class="super-sprite btn-cancelar-desafio"></span>
+              </div>
+          </div>
+      </div>          
+  </div>
+{{else}}
+  <div class="box-card-recebido">
+      <div class="box-desafio-usuario">
+          <div class="desafio-enviado">você foi <span class="mensagem-principal">desafiado!</span></div>
+          <div class="box-fantastico">
+            <img class="uiProfilePhotoMedium" src="https://graph.facebook.com/{{= usuario_desafiou.id}}/picture">
+            <span class="nome-usuario-desafiado cufon">por {{= usuario_desafiado.nome}}<p class="data-usuario-desafiado cufon">Em {{= data_criacao}}</p></span>
+            <span class="super-sprite btn-desafio-facebook">provoque seu amigo!</span>
+          </div>
+      </div>
+      <div class="box-cards-desafio">
+          <div class="card card-desafio-recebido-aguardando">
+              <div class="card-desafio-recebido-messagem">
+                  <span class="super-sprite img-alert"></span>
+                  <div class="messagem-aguardando-recebido">SEU AMIGO ESTÁ AGUARDANDO... <BR><b>E AÍ?</b></div>
+                  <span class="super-sprite btn-escolher-card"></span>
+                  <span class="super-sprite btn-pular-fora"></span>
+              </div>
+          </div>
+          <div class="super-sprite img-versus card-desafio-versus"></div>
+          <div class="card super-sprite card-desafio-recebido">
+             <div style="margin-top:100px;margin-left:85px">
+                <div class="super-sprite img-interrogacao"></div>                
+             </div>
+          </div>
+      </div>
+  </div>
+
+{{/if}}
+</script> 
+
+
+</%def>
+
