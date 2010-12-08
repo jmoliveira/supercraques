@@ -26,21 +26,28 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .desafio-title {font-size: 30px;letter-spacing: -1.79px;color: #666; border-bottom:2px solid #666666; margin-bottom:21px; padding-bottom:6px;}
 .desafio-title span.mensagem-principal, .desafio-enviado span.mensagem-principal{font-weight: bold;}
 .desafio-enviado {font-size: 18px;letter-spacing: -1px;color: #666; margin-bottom:6px;}
-.nome-usuario-desafiado{font-size: 14px;letter-spacing: -1px;color: #666; font-weight: bold;vertical-align:top;}
-.data-usuario-desafiado{font-size: 10px;letter-spacing: -0.2px;color: #666; }
+.nome-usuario-desafiado, .nome-usuario-desafiou {font-size: 14px;letter-spacing: -1px;color: #666; font-weight: bold;vertical-align:top;}
+.data-usuario-desafiado, .data-usuario-desafiou {font-size: 10px;letter-spacing: -0.2px;color: #666; }
 
 /*.desafio {}*/
 
+.msg-desafio-na-rede {font-size: 24px;letter-spacing: -1.79px;color: #666; width:200px;margin-top:20px;}
+.msg-desafio-na-rede span.principal {font-weight: bold;color: #538428;font-size:30px}
+
+.msg-desafio-bola-fora {font-size: 24px;letter-spacing: -1.79px;color: #666; width:220px;margin-top:20px;}
+.msg-desafio-bola-fora span.principal {font-weight: bold;color: #666;font-size:30px}
+
+
 .super-sprite {text-indent:-10000px;display:block;background-image:url('/media/img/supercraques_sprite.png');background-repeat:no-repeat;background-position:0 0;}
 .box-desafio-usuario {display:block;float:left;margin-right:60px}
-.box-cards-desafio {display:block;float:left;}
+.box-cards-desafio {display:block;float:left;margin-bottom:10px}
 .card {float:left;height:310px;width:222px;display:block;background-image:url('/media/img/bg_card.png');background-repeat:no-repeat;background-position:0 0;}
 .card-banca {background-position:-232px 0px;margin-bottom:25px;margin-left:7px;}
 .card-banca-laranja {background-position:-232px 0px;margin-right:10px;cursor:pointer;}
 .card-banca-laranja:hover {background-position:-694px 0px;margin-right:10px;cursor:pointer;}
 .card-banca-verde {background-position:-232px 0px;margin-right:10px;cursor:pointer;}
 .card-banca-verde:hover {background-position:-463px 0;margin-right:10px;cursor:pointer;}
-.card-desafio-enviado {background-position:-232px 0px;}
+.card-desafio-enviado, .card-desafio-aceito {background-position:-232px 0px;}
 .card-desafio-enviado-aguardando {background-position:0 0px;}
 .card-desafio-enviado-messagem {margin-left:30px; margin-top:80px;}
 .card-desafio-recebido {background-position:0 0px;}
@@ -53,8 +60,8 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .img-alert {background-position:-118px -173px;height:17px;width:20px;margin-left:90px}
 .img-versus {height:74px;width:100px;background-position:-183px 0;}
 .img-interrogacao {height:94px;width:52px;background-position:-207px -100px;}
-.btn-escolher-card {background-position:-297px -119px;height:32px;width:104px;float:left;}
-.btn-pular-fora {background-position:-297px -163px;height:32px;width:84px;float:left;margin-left:5px;}
+.btn-escolher-card {background-position:-297px -119px;height:32px;width:104px;float:left;cursor:pointer;}
+.btn-pular-fora {background-position:-297px -163px;height:32px;width:84px;float:left;margin-left:5px;cursor:pointer;}
 .btn-desafio-facebook {background-position:-297px -254px;color:#FFFFFF;font-size:15px;height:42px;margin-top:30px;padding-left:12px;padding-top:10px;text-align:center;text-indent:0;width:212px;}
 .btn-cancelar-desafio {background-position:-297px -204px;height:32px;width:115px;float:left;margin-left:25px;}
 .btn-desafiar-amigo {background-position:-298px -10px;height:37px;width:136px;float:left;margin-left:25px;}
@@ -63,7 +70,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .btn-comprar-card:hover {background-position:-518px -72px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
 .btn-descartar-card {background-position:-589px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
 .btn-descartar-card:hover {background-position:-589px -71px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
-.btn-verde-grande {background-position:-549px -179px;color:#FFFFFF;font-size: 26px;letter-spacing: -1px;height:57px;padding-top:12px;text-align:center;text-indent:0;width:380px;cursor:pointer;}
+.btn-verde-grande {background-position:-549px -179px;color:#FFFFFF;font-size: 26px;letter-spacing: -1px;height:45px;padding-top:12px;text-align:center;text-indent:0;width:380px;cursor:pointer;}
 .escudo-atleta {position:relative;top:-30px;left:174px;z-index:5;}
 .faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;position:relative;top:-20px;}
 .faixa-posicao-nome {font-size: 14px;letter-spacing: -0.2px;color: #FFF;width:200px; }
@@ -84,7 +91,9 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 #escolha-amigo input#project {-moz-border-radius: 10px 10px 10px 10px;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #AAAAAA;color: #333333;font-size: 1.5em;height: 19px;line-height: 1;padding: 2px 5px;width: 362px;}
 .search {background: url("/media/img/icon_searchglass.png") no-repeat scroll 0 -36px transparent;border: 0 none;height: 35px;width: 35px;float: right;position: relative;left: -16px;}
 
-.box-card-enviado, .box-card-recebido {border-bottom:1px solid #666666; height:325px;margin-top:20px}
+/*.box-card-enviado, .box-card-recebido {border-bottom:1px solid #666666; height:325px;margin-top:20px}*/
+.linha {border-bottom:1px solid #666666;margin-top:20px;margin-bottom:10px;}
+#btn-visualizar-desafio {margin-left:370px}
 
 .ui-autocomplete {
   max-height: 230px;

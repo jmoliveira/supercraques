@@ -61,9 +61,9 @@
                       $.ajax({
                           url: "/atletas_card.json",
                           success: function(data) {
-                            self.$desafioContent.empty();
-                            self.opaco(1);
+                            self.$desafioContent.empty(); self.opaco(1);
                             self.$atletaCardTemplate.tmpl(data).appendTo(self.$desafioContent);
+                            $(".card", self.$desafioContent).addClass("cardDesafio");
                             self.$desafioArea.show();
                             self.isOpenDesafio = true;
                           },
@@ -88,6 +88,7 @@
                           success: function(data) {
                             self.$meusCardsContent.empty();
                             self.$atletaCardTemplate.tmpl(data).appendTo(self.$meusCardsContent);
+                            $(".card", self.$meusCardsContent).addClass("cardMeusCards");
                             self.$meusCardsArea.show();
                             self.isOpenMeusCards = true;
                           },
@@ -103,7 +104,7 @@
                     return false;
                 });
                 
-                $(".card-banca-verde").live("click", function() {
+                $(".cardDesafio").live("click", function() {
                     $("#card_id_selecionado", self.$escolhaAmigo).val($(this).attr("data"));
                     self.$desafioContent.empty();
                     self.$desafioContent.append($(this));
@@ -111,6 +112,56 @@
                     $clone  = $('#escolha-amigo');
                     self.$desafioContent.append($clone);
                     $clone.show();
+                    
+                    return false;
+                });
+                
+                $(".cardMeusCards").live("click", function() {
+                    $("#glb-doc").showMessage({message: "Card neoneo", tipoAviso: "sucesso"});
+                    
+                    return false;
+                });
+                
+
+                $(".btn-escolher-card").live("click", function() {
+                    desafio_id = $(this).attr("data");
+                    
+                    $.ajax({
+                        url: "/atletas_card.json",
+                        success: function(data) {
+                          self.$meusCardsContent.empty();
+                          self.$atletaCardTemplate.tmpl(data).appendTo(self.$meusCardsContent);
+                          $(".card", self.$meusCardsContent).addClass("cardEscolherCards").attr("desafio_id", desafio_id);
+                          self.$meusCardsArea.show();
+                          self.isOpenMeusCards = true;
+                        },
+                        error:function(x,e) {
+                          $("#glb-doc").showMessage();
+                        }
+                      });
+                     
+                      return false;
+                });
+                
+            
+            
+                $(".cardEscolherCards").live("click", function() {
+                    card_id = $(this).attr("data");
+                    desafio_id = $(this).attr("desafio_id");
+                    console.log(card_id, desafio_id);
+                    $.ajax({
+                          method: 'post',
+                          url: "/desafio/"+ desafio_id + "/card/"+ card_id + "/aceitar",
+                          success: function(data) {
+                            $("#glb-doc").showMessage({response:data});
+                            if (data.tipoAviso == "sucesso") {
+                              //self.load();
+                            }
+                          },
+                          error:function(x,e) {
+                            $("#glb-doc").showMessage();
+                          }
+                     });
                     
                     return false;
                 });
@@ -159,6 +210,8 @@
                     });
                 
             },
+            
+       
             
             opaco: function(etapa){
                 if (etapa == 1) {

@@ -20,6 +20,9 @@ class DesafioController (BaseController):
         for desafio in desafios_recebidos:
             desafio_json = desafio.as_desafio_dict(usuario.id)
             desafio_json["card_desafiou"]["atleta"] =  SDEHelper().get_atleta(desafio_json["card_desafiou"]["atleta_id"])
+            if desafio_json.get("card_desafiado_id"):
+                desafio_json["card_desafiado"]["atleta"] =  SDEHelper().get_atleta(desafio_json["card_desafiado"]["atleta_id"])
+                
             result["data"].append(desafio_json)
         
         return result
@@ -45,6 +48,23 @@ class DesafioController (BaseController):
         
         return result
 
+    @logged
+    @render_to_extension
+    def desafios_resultado(self, usuario, *args, **kw):
+        handler = kw.get('request_handler')
+        
+        try:
+            
+            Desafio().abrir_cards(usuario.id)
+        
+            # mensagem de sucesso
+            return self.render_success(message="Desafios aberto com sucesso", request_handler=handler)
+             
+        except SuperCraquesError, e:
+            return self.render_error(message=e.message, request_handler=handler)
+
+    
+    
     
     @logged
     def enviar_desafio(self, usuario, card_id, usuario_desafiado_id, *args, **kw):
@@ -73,11 +93,16 @@ class DesafioController (BaseController):
 
 
     @logged
-    def aceitar_desafio(self, usuario, *args, **kw):
-        desafio_id = kw.get("desafio_id")
-        card_desafiado_id = kw.get("card_id_selecionado")
-        radio = kw.get("radio")
-        Desafio().aceitar_desafio(desafio_id, usuario.id, card_desafiado_id)
-        kw.get('request_handler').redirect("/home")
+    def aceitar_desafio(self, usuario, desafio_id, card_id, *args, **kw):
+        handler = kw.get('request_handler')
+        try:
+            
+            Desafio().aceitar_desafio(desafio_id, usuario.id, card_id)
+        
+        except SuperCraquesError, e:
+            return self.render_error(message=e.message, request_handler=handler)
+
+        # mensagem de sucesso
+        return self.render_success(message="Desafio aceito com sucesso", request_handler=handler)
         
         
