@@ -7,7 +7,7 @@ class SuperCraquesError(Exception):
         Exception.__init__(self, message)
 
 class SaldoInsuficienteError(Exception):
-    def __init__(self, message="Usuário não tem dinheiro suficiente para comprar o card!"):
+    def __init__(self, message="Voçê não tem dinheiro suficiente para comprar o card!"):
         Exception.__init__(self, message)
 
 class CardJaCompradoError(Exception):

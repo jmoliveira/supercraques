@@ -46,7 +46,7 @@ class SDEHelper(BaseController):
         return self.get_content_service(settings.SEDE['servicos']['scout_do_atleta_na_edicao'] % pessoafuncao_id)
 
     def __load__(self, equipe_id=None):
-        for equipe in self.get_equipes()[0:5]:
+        for equipe in self.get_equipes():
             if equipe_id and int(equipe["equipe_id"]) != int(equipe_id): continue
             elenco = self.get_elenco(equipe["equipe_id"])
             atletas = []

@@ -23,8 +23,9 @@ body{ font:x-small arial, helvetica, freesans, sans-serif; *font-size:1.25ex;}
 select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 /* ---- /fonts 0.3 ---- */
 
-.desafio-title {font-size: 30px;letter-spacing: -1.79px;color: #666; border-bottom:2px solid #666666; margin-bottom:21px; padding-bottom:6px;}
-.desafio-title span.mensagem-principal, .desafio-enviado span.mensagem-principal{font-weight: bold;}
+.desafio-title {font-size: 30px;letter-spacing: -1.79px;color: #666; border-bottom:2px solid #666666; margin-bottom:21px; padding-bottom:6px;margin-top:20px}
+#desafios-vazio-area {font-size: 24px;letter-spacing: -1.79px;color: #999; text-align:center; display:none}
+.desafio-title span.mensagem-principal, .desafio-enviado span.mensagem-principal, #desafios-vazio-area span.mensagem-principal {font-weight: bold;}
 .desafio-enviado {font-size: 18px;letter-spacing: -1px;color: #666; margin-bottom:6px;}
 .nome-usuario-desafiado, .nome-usuario-desafiou {font-size: 14px;letter-spacing: -1px;color: #666; font-weight: bold;vertical-align:top;}
 .data-usuario-desafiado, .data-usuario-desafiou {font-size: 10px;letter-spacing: -0.2px;color: #666; }
@@ -38,7 +39,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .msg-desafio-bola-fora span.principal {font-weight: bold;color: #666;font-size:30px}
 
 
-.super-sprite {text-indent:-10000px;display:block;background-image:url('/media/img/supercraques_sprite.png');background-repeat:no-repeat;background-position:0 0;}
+.super-sprite {text-indent:-10000px;display:block;background-image:url('/media/img/super_sprite.png');background-repeat:no-repeat;background-position:0 0;}
 .box-desafio-usuario {display:block;float:left;margin-right:60px}
 .box-cards-desafio {display:block;float:left;margin-bottom:10px}
 .card {float:left;height:310px;width:222px;display:block;background-image:url('/media/img/bg_card.png');background-repeat:no-repeat;background-position:0 0;}
@@ -71,22 +72,32 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .btn-descartar-card {background-position:-589px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
 .btn-descartar-card:hover {background-position:-589px -71px;height:52px;width:55px;float:right;position:relative;top:-213px;cursor:pointer;}
 .btn-verde-grande {background-position:-549px -179px;color:#FFFFFF;font-size: 26px;letter-spacing: -1px;height:45px;padding-top:12px;text-align:center;text-indent:0;width:380px;cursor:pointer;}
-.escudo-atleta {position:relative;top:-30px;left:174px;z-index:5;}
-.faixa-posicao {display:block;background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;position:relative;top:-20px;}
-.faixa-posicao-nome {font-size: 14px;letter-spacing: -0.2px;color: #FFF;width:200px; }
-.card-atleta-nome {font-size: 20px;letter-spacing: -0.2px;color: #666666; position:relative;top:-12px;}
-.card-atleta-qualidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:6px;width:45px;text-align:center;}
-.card-atleta-assiduidade {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:-11px;left:78px;width:45px;text-align:center;}
-.card-atleta-disciplina {font-size: 14px;letter-spacing: -0.2px;color: #666666; position:relative;top:-27px;left:154px;width:45px;text-align:center;}
+.btn-card-vazio {background-position:-451px -10px;height:52px;width:55px;float:right;position:relative;top:-213px;}
+.img-ganhou {background-position:-91px -10px;height:90px;width:90px;float:right;position:relative;top:-213px;}
+/*.btn-card-vazio:hover {background-position:-451px -72px}*/
+
+.escudo-atleta {position:relative;top:-40px;left:164px;z-index:5;}
+.faixa-posicao {background-image:url('/media/img/faixa_jogador.png');background-repeat:no-repeat;background-position:0 0;position:relative;top:-68px;}
+.faixa-posicao-nome {width: 200px;clear: left;font-size: 10px;letter-spacing: -0.2px;color: #FFF;height: 20px;padding-left: 10px;padding-top: 4px; text-transform: uppercase;}
+.card-atleta-nome {width: 200px;font-size: 20px;letter-spacing: -0.2px;color: #4E6E0B; position:relative;top:-60px;}
+.card-atleta-qualidade {position:relative;top:-30px;}
+.card-atleta-assiduidade {position:relative;top:-55px;left:77px;}
+.card-atleta-disciplina {position:relative;top:-79px;left:151px;}
+.valor-card{position: relative; top: -192px; z-index: 2; font-size: 19px;color:#FFF; right:-119px;font-weight: bold;align: center}
+.valor-card-vazio{position: relative; top: -200px; z-index: 2; font-size: 20px;color:#FFF; right:-119px;font-weight: bold;align: center}
+
+.card-content {margin-left: 10px;margin-top: 10px;}
+.card-pontuacao {font-size: 20px;color: #666;letter-spacing: -0.2px;text-align: center;width: 50px;}
+
 .meus-cards-barra {height: 250px;}
-.valor-card{position: relative; top: -193px; z-index: 10; font-size: 18px;color:#FFF; right:-126px}
 .img-um {background-position:-22px -234px;float:left;height:38px;margin-bottom:3px;margin-right:10px;margin-top:-4px;width:38px;}
 .img-dois {background-position:-22px -284px;float:left;height:38px;margin-bottom:3px;margin-right:10px;margin-top:-4px;width:38px;}
 #desafio-escolher-card {margin-bottom:10px;float:left;margin-right:40px;}
 #desafio-escolher-amigo {margin-bottom:10px;margin-right:40px;}
-#desafio-seq-card {font-size: 20px;letter-spacing: -1.79px;color: #666;}
+#desafio-seq-card {font-size: 20px;letter-spacing: -1.79px;color: #FFF;}
 #escolha-amigo {display:block;float:left;}
 .opacity {opacity:0.4}
+.opacity1 {opacity:0.1}
 
 #escolha-amigo input#project {-moz-border-radius: 10px 10px 10px 10px;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #AAAAAA;color: #333333;font-size: 1.5em;height: 19px;line-height: 1;padding: 2px 5px;width: 362px;}
 .search {background: url("/media/img/icon_searchglass.png") no-repeat scroll 0 -36px transparent;border: 0 none;height: 35px;width: 35px;float: right;position: relative;left: -16px;}
@@ -120,7 +131,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 
 #glb-doc{ text-align:center;width:100%}
 #glb-corpo{min-height:500px}
-.glb-conteudo{  margin:0 auto !important;width:93em;text-align:left}
+.glb-conteudo{  margin:0 auto !important;width:96.5em;text-align:left}
 /* ---- clear ---- */
 .glb-bloco{ overflow:hidden;width:100%}
 /* ---- units ---- */
@@ -330,7 +341,7 @@ a.featured {
 }
 
 #supercraque-rodape #meus-cards-area, #supercraque-rodape #desafios-area {
-  background: transparent url(/media/img/bg_meus_cards.png) repeat scroll top;
+  background: transparent url(/media/img/bg_verde.png) repeat scroll top;
 /*  height: 1.5em;*/
   padding: 1em;
   overflow: hidden; 

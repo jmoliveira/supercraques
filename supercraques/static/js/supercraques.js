@@ -26,6 +26,7 @@
                 this.$meusCardsContent = $("#meus-cards-content");
                 this.$escolhaAmigo = $("#escolha-amigo");
                 this.$atletaCardTemplate = $("#atletaCardTemplate");
+                // this.$opaco = $("#glb-corpo, #glb-doc");
                 
                 var self = this;
                 
@@ -54,9 +55,8 @@
                 });
                 
                 $("#desafiar-amigos-menu").click(function() {
-                    // console.log(self.isOpenDesafio);
+                    // self.$opaco.addClass("opacity1");
                     if (self.isOpenMeusCards == true){self.$meusCardsArea.hide();self.isOpenMeusCards = false};
-                    
                     if (self.isOpenDesafio == false) {
                       $.ajax({
                           url: "/atletas_card.json",
@@ -74,6 +74,7 @@
                      }else{
                         self.$desafioArea.hide();
                         //self.$escolhaAmigo.hide()
+                        // self.$opaco.removeClass("opacity1");
                         self.isOpenDesafio = false; 
                      }
                    
@@ -81,6 +82,7 @@
                 });
                 
                 $("#meus-cards-menu").click(function() {
+                  // self.$opaco.addClass("opacity1");
                   if (self.isOpenDesafio == true){self.$desafioArea.hide();self.isOpenDesafio = false};
                     if (self.isOpenMeusCards == false) {
                       $.ajax({
@@ -98,7 +100,8 @@
                         });
                      }else{
                         self.$meusCardsArea.hide();
-                        self.isOpenMeusCards = false; 
+                        self.isOpenMeusCards = false;
+                        // self.$opaco.removeClass("opacity1"); 
                      }
                    
                     return false;
@@ -148,15 +151,12 @@
                 $(".cardEscolherCards").live("click", function() {
                     card_id = $(this).attr("data");
                     desafio_id = $(this).attr("desafio_id");
-                    console.log(card_id, desafio_id);
                     $.ajax({
                           method: 'post',
                           url: "/desafio/"+ desafio_id + "/card/"+ card_id + "/aceitar",
                           success: function(data) {
                             $("#glb-doc").showMessage({response:data});
-                            if (data.tipoAviso == "sucesso") {
-                              //self.load();
-                            }
+                            window.location = "/home";
                           },
                           error:function(x,e) {
                             $("#glb-doc").showMessage();
@@ -198,7 +198,7 @@
                             url: "/desafio/card/" + card_selecionado_id + "/usuario_desafiado/"+ usuario_id + "/desafiar",
                             success: function(data) {
                                 $("#glb-doc").showMessage({response:data});
-                                
+                                window.location = "/home";
                             },
                             error:function(x,e) {
                               $("#glb-doc").showMessage();
@@ -296,12 +296,20 @@
               var $boxDesafios = $("#box-desafios");
               $boxDesafios.addClass("ui-autocomplete-desafio-loading");
               var $boxDesafiosTemplate = $("#box-desafios-template");
-              
+              var $desafiosVazioArea = $("#desafios-vazio-area");
+              $desafiosVazioArea.hide()
               
               $.ajax({
                   url: "/desafio/todos.json",
                   success: function(result) {
-                      $boxDesafiosTemplate.tmpl( result.data ).appendTo($boxDesafios);
+                      if (result.data.length > 0) {
+                        // console.log("desafios-vazio-area");
+                        $boxDesafiosTemplate.tmpl( result.data ).appendTo($boxDesafios);
+                      }else{
+                        // console.log("desafios-vazioasasa");
+                        $desafiosVazioArea.show();
+                      }
+                      
                       $boxDesafios.removeClass("ui-autocomplete-desafio-loading");
                   },
                   error:function(x,e) {

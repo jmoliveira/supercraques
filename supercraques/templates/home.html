@@ -13,7 +13,7 @@
 	$(function() {	
 
         //bind dos botoes do social
-        $(".share-button a").mediaShare();
+        $(".btn-desafio-facebook").mediaShare();
         
         var supercraques = $("#supercraque-rodape").barra({}, true);
         
@@ -24,9 +24,10 @@
               $.ajax({
                   url: "/desafio/resultados",
                   success: function(data) {
-                      $("#glb-doc").showMessage();
+                      //$("#glb-doc").showMessage();
                       if (data.tipoAviso == "sucesso") {
-                        supercraques.exibirDesafios();
+                        window.location = "/home"
+                        //supercraques.exibirDesafios();
                       }
                   },
                   error:function(x,e) {
@@ -48,8 +49,8 @@
 <%def name="content()">
 
 <div class="desafio-title">acompanhe seus <span class="mensagem-principal">desafios</span></div>
+<div id="desafios-vazio-area">ainda não há desafios. <span class="mensagem-principal">comece a desafiar seus amigos!</span></div>
 <div class="box-desafios" id="box-desafios" style="min-height:200px;"></div>
-
  
 
 <script id="box-desafios-template" type="text/x-jquery-tmpl">
@@ -65,6 +66,7 @@
                 <div class="msg-desafio-na-rede">
                   <span class="principal">tá na rede!</span><br>
                   <span class="texto">a carta é sua e<BR> são + $ {{= valor_ganho}} pra conta!!!</span><br>
+                  
                 </div>
                   <span class="super-sprite btn-desafio-facebook">tire uma onda!</span>
               {{else}}
@@ -80,15 +82,18 @@
           </div>
       </div>
       
+
+      
       <div class="box-cards-desafio">
          {{if status == "F"}}
               <div class="card card-desafio-aceito">
-                <div style="margin-top:10px;margin-left:10px">
+                <div class="card-content">
                   <img height="200" width="200" border="0" src="{{= card_desafiou.atleta.img}}">
-                  <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
+                  {{if ganhou == true}}<span class="super-sprite img-ganhou"></span>{{/if}}
+                  <div class="escudo-atleta grande-escudo-padrao grande-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
                   <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiou.atleta.posicao}}</div>
                   <div class="card-atleta-nome">{{= card_desafiou.atleta.nome}}</div>
-                  <div>
+                  <div class="card-pontuacao">
                     <div class="card-atleta-qualidade">{{= card_desafiou.atleta.qualidade}}</div>
                     <div class="card-atleta-assiduidade">{{= card_desafiou.atleta.assiduidade}}</div>
                     <div class="card-atleta-disciplina">{{= card_desafiou.atleta.disciplina}}</div>
@@ -97,12 +102,13 @@
               </div>
               <div class="super-sprite img-versus card-desafio-versus"></div>
               <div class="card card-desafio-aceito">
-                <div style="margin-top:10px;margin-left:10px">
+                <div class="card-content">
                   <img height="200" width="200" border="0" src="{{= card_desafiado.atleta.img}}">
-                  <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiado.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiado.atleta.equipe.nome_popular}}"></div></div>
+                  {{if ganhou == false}}<span class="super-sprite img-ganhou"></span>{{/if}}
+                  <div class="escudo-atleta grande-escudo-padrao grande-{{= card_desafiado.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiado.atleta.equipe.nome_popular}}"></div></div>
                   <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiado.atleta.posicao}}</div>
                   <div class="card-atleta-nome">{{= card_desafiado.atleta.nome}}</div>
-                  <div>
+                  <div class="card-pontuacao">
                     <div class="card-atleta-qualidade">{{= card_desafiado.atleta.qualidade}}</div>
                     <div class="card-atleta-assiduidade">{{= card_desafiado.atleta.assiduidade}}</div>
                     <div class="card-atleta-disciplina">{{= card_desafiado.atleta.disciplina}}</div>
@@ -111,12 +117,12 @@
               </div>
          {{else}}
             <div class="card card-desafio-enviado">
-                <div style="margin-top:10px;margin-left:10px">
+                <div class="card-content">
                   <img height="200" width="200" border="0" src="{{= card_desafiou.atleta.img}}">
-                  <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
+                  <div class="escudo-atleta grande-escudo-padrao grande-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
                   <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiou.atleta.posicao}}</div>
                   <div class="card-atleta-nome">{{= card_desafiou.atleta.nome}}</div>
-                  <div>
+                  <div class="card-pontuacao">
                     <div class="card-atleta-qualidade">{{= card_desafiou.atleta.qualidade}}</div>
                     <div class="card-atleta-assiduidade">{{= card_desafiou.atleta.assiduidade}}</div>
                     <div class="card-atleta-disciplina">{{= card_desafiou.atleta.disciplina}}</div>
@@ -127,7 +133,6 @@
             <div class="card card-desafio-enviado-aguardando">
                 <div class="card-desafio-enviado-messagem">
                     <div class="messagem-aguardando-enviado">AGUARDANDO SEU AMIGO... <BR><b>DÊ UMA CHAMADA NELE!</b></div>
-                    <span class="super-sprite btn-cancelar-desafio" data="{{= id}}"></span>
                 </div>
             </div>
         {{/if}}    
@@ -166,17 +171,17 @@
       <div class="box-cards-desafio">
           {{if status == "A"}}
             <div class="card card-desafio-aceito">
-              <div style="margin-top:10px;margin-left:10px">
-                <img height="200" width="200" border="0" src="{{= card_desafiado.atleta.img}}">
-                <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiado.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiado.atleta.equipe.nome_popular}}"></div></div>
-                <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiado.atleta.posicao}}</div>
-                <div class="card-atleta-nome">{{= card_desafiado.atleta.nome}}</div>
-                <div>
-                  <div class="card-atleta-qualidade">{{= card_desafiado.atleta.qualidade}}</div>
-                  <div class="card-atleta-assiduidade">{{= card_desafiado.atleta.assiduidade}}</div>
-                  <div class="card-atleta-disciplina">{{= card_desafiado.atleta.disciplina}}</div>
+                <div class="card-content">
+                  <img height="200" width="200" border="0" src="{{= card_desafiado.atleta.img}}">
+                  <div class="escudo-atleta grande-escudo-padrao grande-{{= card_desafiado.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiado.atleta.equipe.nome_popular}}"></div></div>
+                  <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiado.atleta.posicao}}</div>
+                  <div class="card-atleta-nome">{{= card_desafiado.atleta.nome}}</div>
+                  <div class="card-pontuacao">
+                    <div class="card-atleta-qualidade">{{= card_desafiado.atleta.qualidade}}</div>
+                    <div class="card-atleta-assiduidade">{{= card_desafiado.atleta.assiduidade}}</div>
+                    <div class="card-atleta-disciplina">{{= card_desafiado.atleta.disciplina}}</div>
+                  </div>
                 </div>
-              </div>
             </div>
               <div class="super-sprite img-versus card-desafio-versus"></div>
               <div class="card super-sprite card-desafio-recebido">
@@ -186,12 +191,13 @@
               </div>
           {{else status == "F"}}
               <div class="card card-desafio-aceito">
-                <div style="margin-top:10px;margin-left:10px">
+                <div class="card-content">
                   <img height="200" width="200" border="0" src="{{= card_desafiado.atleta.img}}">
-                  <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiado.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiado.atleta.equipe.nome_popular}}"></div></div>
+                  {{if ganhou == true}}<span class="super-sprite img-ganhou"></span>{{/if}}
+                  <div class="escudo-atleta grande-escudo-padrao grande-{{= card_desafiado.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiado.atleta.equipe.nome_popular}}"></div></div>
                   <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiado.atleta.posicao}}</div>
                   <div class="card-atleta-nome">{{= card_desafiado.atleta.nome}}</div>
-                  <div>
+                  <div class="card-pontuacao">
                     <div class="card-atleta-qualidade">{{= card_desafiado.atleta.qualidade}}</div>
                     <div class="card-atleta-assiduidade">{{= card_desafiado.atleta.assiduidade}}</div>
                     <div class="card-atleta-disciplina">{{= card_desafiado.atleta.disciplina}}</div>
@@ -200,12 +206,13 @@
               </div>
               <div class="super-sprite img-versus card-desafio-versus"></div>
               <div class="card card-desafio-aceito">
-                <div style="margin-top:10px;margin-left:10px">
+                <div class="card-content">
                   <img height="200" width="200" border="0" src="{{= card_desafiou.atleta.img}}">
-                  <div class="escudo-atleta medio-escudo-padrao medio-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
+                  {{if ganhou == false}}<span class="super-sprite img-ganhou"></span>{{/if}}
+                  <div class="escudo-atleta grande-escudo-padrao grande-{{= card_desafiou.atleta.equipe.slug}}"><div class="escudo" alt="{{= card_desafiou.atleta.equipe.nome_popular}}"></div></div>
                   <div class="faixa-posicao faixa-posicao-nome">{{= card_desafiou.atleta.posicao}}</div>
                   <div class="card-atleta-nome">{{= card_desafiou.atleta.nome}}</div>
-                  <div>
+                  <div class="card-pontuacao">
                     <div class="card-atleta-qualidade">{{= card_desafiou.atleta.qualidade}}</div>
                     <div class="card-atleta-assiduidade">{{= card_desafiou.atleta.assiduidade}}</div>
                     <div class="card-atleta-disciplina">{{= card_desafiou.atleta.disciplina}}</div>
@@ -218,7 +225,6 @@
                       <span class="super-sprite img-alert"></span>
                       <div class="messagem-aguardando-recebido">SEU AMIGO ESTÁ AGUARDANDO... <BR><b>E AÍ?</b></div>
                       <span class="super-sprite btn-escolher-card" data="{{= id}}"></span>
-                      <span class="super-sprite btn-pular-fora" data="{{= id}}"></span>
                   </div>
               </div>
               <div class="super-sprite img-versus card-desafio-versus"></div>
@@ -229,10 +235,11 @@
               </div>
           {{/if}}
       </div>
+      <div class="clear"></div>
       {{if status == "A"}}
-        <div id="btn-visualizar-desafio"><span class="super-sprite btn-verde-grande">visualizar resultado</span> </div>
+        <div id="btn-visualizar-desafio"><span class="super-sprite btn-verde-grande">jogar!!!</span> </div>
       {{/if}}
-      <div class="clear"></div><div class="linha"> </div>
+      <div class="linha"> </div>
   </div>
 
 {{/if}}

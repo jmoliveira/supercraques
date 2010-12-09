@@ -1,29 +1,6 @@
 .escudo{
     text-indent:-10000px;
 }
-.mini-, .mini-escudo-padrao { float:left; }
-.mini- .escudo, .mini-escudo-padrao .escudo{
-    height:20px; 
-    width:20px; 
-    display:block; 
-    background-image:url('/media/img/escudos/sprite_escudos_mini.gif');
-    background-repeat:no-repeat;
-    background-position:0 0;
-    
-}
-#ge-mosaico .mini- .escudo:hover { background-position:-20px 0; }
-.mini-atletico-go, .mini-atletico-mg, .mini-atletico-pr, .mini-avai, .mini-gremio-prudente, .mini-botafogo, .mini-ceara,.mini-corinthians, .mini-cruzeiro, .mini-flamengo, .mini-fluminense, .mini-goias, .mini-gremio, .mini-guarani, .mini-internacional, .mini-palmeiras, .mini-santos, .mini-sao-paulo, .mini-vasco, .mini-vitoria, .mini-america-mg, .mini-america-rn, .mini-asa-arapiraca, .mini-bahia, .mini-bragantino, .mini-brasiliense, .mini-coritiba, .mini-duque-de-caxias, .mini-figueirense, .mini-guaratingueta, .mini-icasa, .mini-ipatinga, .mini-nautico, .mini-parana, .mini-ponte-preta, .mini-portuguesa, .mini-santo-andre, .mini-sao-caetano, .mini-sport, .mini-vila-nova,
-.mini-africa-do-sul, .mini-mexico, .mini-uruguai, .mini-franca, .mini-argentina, .mini-nigeria, .mini-coreia-do-sul, .mini-grecia, .mini-inglaterra, .mini-estados-unidos, .mini-argelia, .mini-eslovenia, .mini-alemanha, .mini-australia, .mini-servia, .mini-gana, .mini-holanda, .mini-dinamarca, .mini-japao, .mini-camaroes, .mini-italia, .mini-paraguai, .mini-nova-zelandia, .mini-eslovaquia, .mini-brasil, .mini-coreia-do-norte, .mini-costa-do-marfim, .mini-portugal, .mini-espanha, .mini-suica, .mini-honduras, .mini-chile { 
-    float:left;
-}
-.mini-atletico-go .escudo, .mini-atletico-mg .escudo, .mini-atletico-pr .escudo, .mini-avai .escudo, .mini-gremio-prudente .escudo, .mini-botafogo .escudo,.mini-ceara .escudo, .mini-corinthians .escudo, .mini-cruzeiro .escudo, .mini-flamengo .escudo, .mini-fluminense .escudo, .mini-goias .escudo, .mini-gremio .escudo, .mini-guarani .escudo, .mini-internacional .escudo, .mini-palmeiras .escudo, .mini-santos .escudo, .mini-sao-paulo .escudo, .mini-vasco .escudo, .mini-vitoria .escudo, .mini-america-mg .escudo, .mini-america-rn .escudo, .mini-asa-arapiraca .escudo, .mini-bahia .escudo, .mini-bragantino .escudo, .mini-brasiliense .escudo, .mini-coritiba .escudo, .mini-duque-de-caxias .escudo, .mini-figueirense .escudo, .mini-guaratingueta .escudo, .mini-icasa .escudo, .mini-ipatinga .escudo, .mini-nautico .escudo, .mini-parana .escudo, .mini-ponte-preta .escudo, .mini-portuguesa .escudo, .mini-santo-andre .escudo, .mini-sao-caetano .escudo, .mini-sport .escudo, .mini-vila-nova .escudo,
-.mini-africa-do-sul .escudo, .mini-mexico .escudo, .mini-uruguai .escudo, .mini-franca .escudo, .mini-argentina .escudo, .mini-nigeria .escudo, .mini-coreia-do-sul .escudo, .mini-grecia .escudo, .mini-inglaterra .escudo, .mini-estados-unidos .escudo, .mini-argelia .escudo, .mini-eslovenia .escudo, .mini-alemanha .escudo, .mini-australia .escudo, .mini-servia .escudo, .mini-gana .escudo, .mini-holanda .escudo, .mini-dinamarca .escudo, .mini-japao .escudo, .mini-camaroes .escudo, .mini-italia .escudo, .mini-paraguai .escudo, .mini-nova-zelandia .escudo, .mini-eslovaquia .escudo, .mini-brasil .escudo, .mini-coreia-do-norte .escudo, .mini-costa-do-marfim .escudo, .mini-portugal .escudo, .mini-espanha .escudo, .mini-suica .escudo, .mini-honduras .escudo, .mini-chile .escudo {
-    text-indent:-10000px; 
-    height:20px; 
-    display:block; 
-    background-image:url('/media/img/escudos/sprite_escudos_mini.gif');
-    background-repeat:no-repeat;
-}
 
 .medio-, .medio-escudo-padrao { float:left; }
 .medio- .escudo, .medio-escudo-padrao .escudo{
@@ -35,379 +12,96 @@
     background-position:0 0;
     
 }
-.medio-atletico-go, .medio-atletico-mg, .medio-atletico-pr, .medio-avai, .medio-gremio-prudente, .medio-botafogo, .medio-ceara, .medio-corinthians, .medio-cruzeiro, .medio-flamengo, .medio-fluminense, .medio-goias, .medio-gremio, .medio-guarani, .medio-internacional, .medio-palmeiras, .medio-santos, .medio-sao-paulo, .medio-vasco, .medio-vitoria, .medio-america-mg, .medio-america-rn, .medio-asa-arapiraca, .medio-bahia, .medio-bragantino, .medio-brasiliense, .medio-coritiba, .medio-duque-de-caxias, .medio-figueirense, .medio-guaratingueta, .medio-icasa, .medio-ipatinga, .medio-nautico, .medio-parana, .medio-ponte-preta, .medio-portuguesa, .medio-santo-andre, .medio-sao-caetano, .medio-sport, .medio-vila-nova,
-.medio-africa-do-sul, .medio-mexico, .medio-uruguai, .medio-franca, .medio-argentina, .medio-nigeria, .medio-coreia-do-sul, .medio-grecia, .medio-inglaterra, .medio-estados-unidos, .medio-argelia, .medio-eslovenia, .medio-alemanha, .medio-australia, .medio-servia, .medio-gana, .medio-holanda, .medio-dinamarca, .medio-japao, .medio-camaroes, .medio-italia, .medio-paraguai, .medio-nova-zelandia, .medio-eslovaquia, .medio-brasil, .medio-coreia-do-norte, .medio-costa-do-marfim, .medio-portugal, .medio-espanha, .medio-suica, .medio-honduras, .medio-chile { 
+.medio-atletico-go, .medio-atletico-mg, .medio-atletico-pr, .medio-avai, .medio-gremio-prudente, .medio-botafogo, .medio-ceara, .medio-corinthians, .medio-cruzeiro, .medio-flamengo, .medio-fluminense, .medio-goias, .medio-gremio, .medio-guarani, .medio-internacional, .medio-palmeiras, .medio-santos, .medio-sao-paulo, .medio-vasco, .medio-vitoria { 
     float:left;
 }
-.medio-atletico-go .escudo, .medio-atletico-mg .escudo, .medio-atletico-pr .escudo, .medio-avai .escudo, .medio-gremio-prudente .escudo, .medio-botafogo .escudo, .medio-ceara .escudo, .medio-corinthians .escudo, .medio-cruzeiro .escudo, .medio-flamengo .escudo, .medio-fluminense .escudo, .medio-goias .escudo, .medio-gremio .escudo, .medio-guarani .escudo, .medio-internacional .escudo, .medio-palmeiras .escudo, .medio-santos .escudo, .medio-sao-paulo .escudo, .medio-vasco .escudo, .medio-vitoria .escudo, .medio-america-mg .escudo, .medio-america-rn .escudo, .medio-asa-arapiraca .escudo, .medio-bahia .escudo, .medio-bragantino .escudo, .medio-brasiliense .escudo, .medio-coritiba .escudo, .medio-duque-de-caxias .escudo, .medio-figueirense .escudo, .medio-guaratingueta .escudo, .medio-icasa .escudo, .medio-ipatinga .escudo, .medio-nautico .escudo, .medio-parana .escudo, .medio-ponte-preta .escudo, .medio-portuguesa .escudo, .medio-santo-andre .escudo, .medio-sao-caetano .escudo, .medio-sport .escudo, .medio-vila-nova .escudo,
-.medio-africa-do-sul .escudo, .medio-mexico .escudo, .medio-uruguai .escudo, .medio-franca .escudo, .medio-argentina .escudo, .medio-nigeria .escudo, .medio-coreia-do-sul .escudo, .medio-grecia .escudo, .medio-inglaterra .escudo, .medio-estados-unidos .escudo, .medio-argelia .escudo, .medio-eslovenia .escudo, .medio-alemanha .escudo, .medio-australia .escudo, .medio-servia .escudo, .medio-gana .escudo, .medio-holanda .escudo, .medio-dinamarca .escudo, .medio-japao .escudo, .medio-camaroes .escudo, .medio-italia .escudo, .medio-paraguai .escudo, .medio-nova-zelandia .escudo, .medio-eslovaquia .escudo, .medio-brasil .escudo, .medio-coreia-do-norte .escudo, .medio-costa-do-marfim .escudo, .medio-portugal .escudo, .medio-espanha .escudo, .medio-suica .escudo, .medio-honduras .escudo, .medio-chile .escudo {
-    width:35px;
-    height:35px;
+.medio-atletico-go .escudo, .medio-atletico-mg .escudo, .medio-atletico-pr .escudo, .medio-avai .escudo, .medio-gremio-prudente .escudo, .medio-botafogo .escudo, .medio-ceara .escudo, .medio-corinthians .escudo, .medio-cruzeiro .escudo, .medio-flamengo .escudo, .medio-fluminense .escudo, .medio-goias .escudo, .medio-gremio .escudo, .medio-guarani .escudo, .medio-internacional .escudo, .medio-palmeiras .escudo, .medio-santos .escudo, .medio-sao-paulo .escudo, .medio-vasco .escudo, .medio-vitoria .escudo, {
+    width:45px;
+    height:45px;
     display:block; 
-    background-image:url('/media/img/escudos/sprite_escudos_medio.gif');
+    background-image:url('/media/img/escudos/sprite_escudos.png');
     background-repeat:no-repeat;
 }
+
 
 .grande-, .grande-escudo-padrao { float:left; }
 .grande- .escudo, .grande-escudo-padrao .escudo{
-    width:60px;
-    height:67px;
+    width:45px;
+    height:45px;
     text-indent:-10000px; 
     display:block;
-    background-image:url('/media/img/escudos/sprite_escudos_grande.jpg');
+    background-image:url('/media/img/escudos/sprite_escudos.png');
     background-repeat:no-repeat;
     background-position:0px -6px;
 }
-.grande-atletico-go, .grande-atletico-mg, .grande-atletico-pr, .grande-avai, .grande-gremio-prudente, .grande-botafogo, .grande-ceara, .grande-corinthians, .grande-cruzeiro, .grande-flamengo, .grande-fluminense, .grande-goias, .grande-gremio, .grande-guarani, .grande-internacional, .grande-palmeiras, .grande-santos, .grande-sao-paulo, .grande-vasco, .grande-vitoria, .grande-america-mg, .grande-america-rn, .grande-asa-arapiraca, .grande-bahia, .grande-bragantino, .grande-brasiliense, .grande-coritiba, .grande-duque-de-caxias, .grande-figueirense, .grande-guaratingueta, .grande-icasa, .grande-ipatinga, .grande-nautico, .grande-parana, .grande-ponte-preta, .grande-portuguesa, .grande-santo-andre, .grande-sao-caetano, .grande-sport, .grande-vila-nova,
-.grande-africa-do-sul, .grande-mexico, .grande-uruguai, .grande-franca, .grande-argentina, .grande-nigeria, .grande-coreia-do-sul, .grande-grecia, .grande-inglaterra, .grande-estados-unidos, .grande-argelia, .grande-eslovenia, .grande-alemanha, .grande-australia, .grande-servia, .grande-gana, .grande-holanda, .grande-dinamarca, .grande-japao, .grande-camaroes, .grande-italia, .grande-paraguai, .grande-nova-zelandia, .grande-eslovaquia, .grande-brasil, .grande-coreia-do-norte, .grande-costa-do-marfim, .grande-portugal, .grande-espanha, .grande-suica, .grande-honduras, .grande-chile { 
+.grande-atletico-go, .grande-atletico-mg, .grande-atletico-pr, .grande-avai, .grande-gremio-prudente, .grande-botafogo, .grande-ceara, .grande-corinthians, .grande-cruzeiro, .grande-flamengo, .grande-fluminense, .grande-goias, .grande-gremio, .grande-guarani, .grande-internacional, .grande-palmeiras, .grande-santos, .grande-sao-paulo, .grande-vasco, .grande-vitoria { 
     float:left;
 }
-.grande-atletico-go .escudo, .grande-atletico-mg .escudo, .grande-atletico-pr .escudo, .grande-avai .escudo, .grande-gremio-prudente .escudo, .grande-botafogo .escudo, .grande-ceara .escudo, .grande-corinthians .escudo, .grande-cruzeiro .escudo, .grande-flamengo .escudo, .grande-fluminense .escudo, .grande-goias .escudo, .grande-gremio .escudo, .grande-guarani .escudo, .grande-internacional .escudo, .grande-palmeiras .escudo, .grande-santos .escudo, .grande-sao-paulo .escudo, .grande-vasco .escudo, .grande-vitoria .escudo, .grande-america-mg .escudo, .grande-america-rn .escudo, .grande-asa-arapiraca .escudo, .grande-bahia .escudo, .grande-bragantino .escudo, .grande-brasiliense .escudo, .grande-coritiba .escudo, .grande-duque-de-caxias .escudo, .grande-figueirense .escudo, .grande-guaratingueta .escudo, .grande-icasa .escudo, .grande-ipatinga .escudo, .grande-nautico .escudo, .grande-parana .escudo, .grande-ponte-preta .escudo, .grande-portuguesa .escudo, .grande-santo-andre .escudo, .grande-sao-caetano .escudo, .grande-sport .escudo, .grande-vila-nova .escudo,
-.grande-africa-do-sul .escudo, .grande-mexico .escudo, .grande-uruguai .escudo, .grande-franca .escudo, .grande-argentina .escudo, .grande-nigeria .escudo, .grande-coreia-do-sul .escudo, .grande-grecia .escudo, .grande-inglaterra .escudo, .grande-estados-unidos .escudo, .grande-argelia .escudo, .grande-eslovenia .escudo, .grande-alemanha .escudo, .grande-australia .escudo, .grande-servia .escudo, .grande-gana .escudo, .grande-holanda .escudo, .grande-dinamarca .escudo, .grande-japao .escudo, .grande-camaroes .escudo, .grande-italia .escudo, .grande-paraguai .escudo, .grande-nova-zelandia .escudo, .grande-eslovaquia .escudo, .grande-brasil .escudo, .grande-coreia-do-norte .escudo, .grande-costa-do-marfim .escudo, .grande-portugal .escudo, .grande-espanha .escudo, .grande-suica .escudo, .grande-honduras .escudo, .grande-chile .escudo {
-    width:60px;
-    height:67px;
+.grande-atletico-go .escudo, .grande-atletico-mg .escudo, .grande-atletico-pr .escudo, .grande-avai .escudo, .grande-gremio-prudente .escudo, .grande-botafogo .escudo, .grande-ceara .escudo, .grande-corinthians .escudo, .grande-cruzeiro .escudo, .grande-flamengo .escudo, .grande-fluminense .escudo, .grande-goias .escudo, .grande-gremio .escudo, .grande-guarani .escudo, .grande-internacional .escudo, .grande-palmeiras .escudo, .grande-santos .escudo, .grande-sao-paulo .escudo, .grande-vasco .escudo, .grande-vitoria .escudo {
+    width:45px;
+    height:45px;
     text-indent:-10000px; 
     display:block; 
-    background-image:url('/media/img/escudos/sprite_escudos_grande.jpg');
+    background-image:url('/media/img/escudos/sprite_escudos.png');
     background-repeat:no-repeat;
 }
 
-.mini-atletico-go .escudo { background-position:0 -22px; }
 .medio-atletico-go .escudo {  background-position:0 -34px;}
-.grande-atletico-go .escudo { background-position:0 -70px; }
-#ge-mosaico .mini-atletico-go .escudo:hover { background-position:-20px -22px; }
+.grande-atletico-go .escudo {  background-position:0 0px;}
 
-.mini-atletico-mg .escudo { background-position:0 -45px; }
 .medio-atletico-mg .escudo {  background-position:0 -70px;}
-.grande-atletico-mg .escudo { background-position:0 -137px; }
-#ge-mosaico .mini-atletico-mg .escudo:hover { background-position:-20px -45px; }
+.grande-atletico-mg .escudo {  background-position:0 -49px;}
 
-.mini-atletico-pr .escudo { background-position:0 -67px; }
 .medio-atletico-pr .escudo {  background-position:0 -105px;}
-.grande-atletico-pr .escudo { background-position:0 -206px; }
-#ge-mosaico .mini-atletico-pr .escudo:hover { background-position:-20px -67px; }
+.grande-atletico-pr .escudo {  background-position:0 -97px;}
 
-.mini-avai .escudo { background-position:0 -89px; }
 .medio-avai .escudo {  background-position:0 -140px;}
-.grande-avai .escudo { background-position:0 -273px; }
-#ge-mosaico .mini-avai .escudo:hover { background-position:-20px -89px; }
+.grande-avai .escudo {  background-position:0 -144px;}
 
-.mini-gremio-prudente .escudo { background-position:0 -111px; }
 .medio-gremio-prudente .escudo {  background-position:0 -175px;}
-.grande-gremio-prudente .escudo { background-position:0 -340px; }
-#ge-mosaico .mini-gremio-prudente .escudo:hover { background-position:-20px -111px; }
+.grande-gremio-prudente .escudo { background-position:0 -577px;}
 
-.mini-botafogo .escudo { background-position:0 -133px; }
 .medio-botafogo .escudo {  background-position:0 -212px;}
-.grande-botafogo .escudo { background-position:0 -408px; }
-#ge-mosaico .mini-botafogo .escudo:hover { background-position:-20px -133px; }
+.grande-botafogo .escudo {  background-position:0 -193px;}
 
-.mini-ceara .escudo { background-position:0 -155px; }
 .medio-ceara .escudo {  background-position:0 -245px;}
-.grande-ceara .escudo { background-position:0 -470px; }
-#ge-mosaico .mini-ceara .escudo:hover { background-position:-20px -155px; }
+.grande-ceara .escudo {  background-position:0 -240px;}
 
-.mini-corinthians .escudo { background-position:0 -177px; }
 .medio-corinthians .escudo {  background-position:0 -281px;}
-.grande-corinthians .escudo { background-position:0 -536px; }
-#ge-mosaico .mini-corinthians .escudo:hover { background-position:-20px -177px; }
+.grande-corinthians .escudo {  background-position:0 -289px;}
 
-.mini-cruzeiro .escudo { background-position:0 -199px;}
 .medio-cruzeiro .escudo {  background-position:0 -316px;}
-.grande-cruzeiro .escudo { background-position:0 -609px; }
-#ge-mosaico .mini-cruzeiro .escudo:hover { background-position:-20px -199px; }
+.grande-cruzeiro .escudo {  background-position:0 -336px;}
 
-.mini-flamengo .escudo { background-position:0 -221px; }
 .medio-flamengo .escudo {  background-position:0 -351px;}
-.grande-flamengo .escudo { background-position:0 -674px; }
-#ge-mosaico .mini-flamengo .escudo:hover { background-position:-20px -221px; }
+.grande-flamengo .escudo {  background-position:0 -384px;}
 
-.mini-fluminense .escudo { background-position:0 -243px; }
 .medio-fluminense .escudo {  background-position:0 -387px;}
-.grande-fluminense .escudo { background-position:0 -743px; }
-#ge-mosaico .mini-fluminense .escudo:hover { background-position:-20px -243px; }
+.grande-fluminense .escudo {  background-position:0 -433px;}
 
-.mini-goias .escudo { background-position:0 -265px; }
 .medio-goias .escudo {  background-position:0 -422px;}
-.grande-goias .escudo { background-position:0 -810px; }
-#ge-mosaico .mini-goias .escudo:hover { background-position:-20px -265px; }
+.grande-goias .escudo {  background-position:0 -480px;}
 
-.mini-gremio .escudo { background-position:0 -287px; }
 .medio-gremio .escudo {  background-position:0 -456px;}
-.grande-gremio .escudo { background-position:0 -877px; }
-#ge-mosaico .mini-gremio .escudo:hover { background-position:-20px -287px; }
+.grande-gremio .escudo {  background-position:0 -528px;}
 
-.mini-guarani .escudo { background-position:0 -309px; }
 .medio-guarani .escudo {  background-position:0 -492px;}
-.grande-guarani .escudo { background-position:0 -944px; }
-#ge-mosaico .mini-guarani .escudo:hover { background-position:-20px -309px; }
+.grande-guarani .escudo {  background-position:0 -624px;}
 
-.mini-internacional .escudo { background-position:0 -331px; }
 .medio-internacional .escudo {  background-position:0 -526px;}
-.grande-internacional .escudo { background-position:0 -1011px; }
-#ge-mosaico .mini-internacional .escudo:hover { background-position:-20px -331px; }
+.grande-internacional .escudo {  background-position:0 -671px;}
 
-.mini-palmeiras .escudo { background-position:0 -353px; }
 .medio-palmeiras .escudo {  background-position:0 -563px;}
-.grande-palmeiras .escudo { background-position:0 -1078px; }
-#ge-mosaico .mini-palmeiras .escudo:hover { background-position:-20px -353px; }
+.grande-palmeiras .escudo {  background-position:0 -721px;}
 
-.mini-santos .escudo { background-position:0 -375px; }
 .medio-santos .escudo {  background-position:0 -595px;}
-.grande-santos .escudo { background-position:0 -1144px; }
-#ge-mosaico .mini-santos .escudo:hover { background-position:-20px -375px; }
+.grande-santos .escudo {  background-position:0 -768px;}
 
-.mini-sao-paulo .escudo { background-position:0 -397px; }
 .medio-sao-paulo .escudo {  background-position:0 -630px;}
-.grande-sao-paulo .escudo { background-position:0 -1211px; }
-#ge-mosaico .mini-sao-paulo .escudo:hover { background-position:-20px -397px; }
+.grande-sao-paulo .escudo {  background-position:0 -816px;}
 
-.mini-vasco .escudo { background-position:0 -419px; }
 .medio-vasco .escudo {  background-position:0 -665px;}
-.grande-vasco .escudo { background-position:0 -1279px; }
-#ge-mosaico .mini-vasco .escudo:hover { background-position:-20px -419px; }
+.grande-vasco .escudo {  background-position:0 -864px;}
 
-.mini-vitoria .escudo { background-position:0 -441px; }
 .medio-vitoria .escudo {  background-position:0 -701px;}
-.grande-vitoria .escudo { background-position:0 -1345px; }
-#ge-mosaico .mini-vitoria .escudo:hover { background-position:-20px -441px; }
-
-.mini-america-mg .escudo { background-position:0 -463px; }
-.medio-america-mg .escudo {  background-position:0 -736px;}
-.grande-america-mg .escudo { background-position:0 -1412px; }
-#ge-mosaico .mini-america-mg .escudo:hover { background-position:-20px -463px; }
-
-.mini-america-rn .escudo { background-position:0 -485px; }
-.medio-america-rn .escudo {  background-position:0 -771px;}
-.grande-america-rn .escudo { background-position:0 -1480px; }
-#ge-mosaico .mini-america-rn .escudo:hover { background-position:-20px -485px; }
-
-.mini-asa-arapiraca .escudo { background-position:0 -507px; }
-.medio-asa-arapiraca .escudo {  background-position:0 -805px;}
-.grande-asa-arapiraca .escudo { background-position:0 -1547px; }
-#ge-mosaico .mini-asa-arapiraca .escudo:hover { background-position:-20px -507px; }
-
-.mini-bahia .escudo { background-position:0 -529px; }
-.medio-bahia .escudo {  background-position:0 -840px;}
-.grande-bahia .escudo { background-position:0 -1614px; }
-#ge-mosaico .mini-bahia .escudo:hover { background-position:-20px -529px; }
-
-.mini-bragantino .escudo { background-position:0 -551px; }
-.medio-bragantino .escudo {  background-position:0 -875px;}
-.grande-bragantino .escudo { background-position:0 -1681px; }
-#ge-mosaico .mini-bragantino .escudo:hover { background-position:-20px -551px; }
-
-.mini-brasiliense .escudo { background-position:0 -573px; }
-.medio-brasiliense .escudo {  background-position:0 -909px;}
-.grande-brasiliense .escudo { background-position:0 -1746px; }
-#ge-mosaico .mini-brasiliense .escudo:hover { background-position:-20px -573px; }
-
-.mini-coritiba .escudo { background-position:0 -595px; }
-.medio-coritiba .escudo {  background-position:0 -946px;}
-.grande-coritiba .escudo { background-position:0 -1814px; }
-#ge-mosaico .mini-coritiba .escudo:hover { background-position:-20px -595px; }
-
-.mini-duque-de-caxias .escudo { background-position:0 -617px; }
-.medio-duque-de-caxias .escudo {  background-position:0 -980px;}
-.grande-duque-de-caxias .escudo { background-position:0px -1880px; }
-#ge-mosaico .mini-duque-de-caxias .escudo:hover { background-position:-20px -617px; }
-
-.mini-figueirense .escudo { background-position:0 -639px; }
-.medio-figueirense .escudo {  background-position:0 -1015px;}
-.grande-figueirense .escudo { background-position:0 -1946px; }
-#ge-mosaico .mini-figueirense .escudo:hover { background-position:-20px -639px; }
-
-.mini-guaratingueta .escudo { background-position:0 -661px; }
-.medio-guaratingueta .escudo {  background-position:0 -1050px;}
-.grande.guaratingueta .escudo { background-position:0 -2013px; }
-#ge-mosaico .mini-guaratingueta .escudo:hover { background-position:-20px -661px; }
-
-.mini-icasa .escudo { background-position:0 -683px; }
-.medio-icasa .escudo {  background-position:0 -1087px;}
-.grande-icasa .escudo { background-position:0 -2083px; }
-#ge-mosaico .mini-icasa .escudo:hover { background-position:-20px -683px; }
-
-.mini-ipatinga .escudo { background-position:0 -705px; }
-.medio-ipatinga .escudo {  background-position:0 -1119px;}
-.grande-ipatinga .escudo { background-position:0 -2150px; }
-#ge-mosaico .mini-ipatinga .escudo:hover { background-position:-20px -705px; }
-
-.mini-nautico .escudo { background-position:0 -727px; }
-.medio-nautico .escudo {  background-position:0 -1154px;}
-.grande-nautico .escudo { background-position:0 -2214px; }
-#ge-mosaico .mini-nautico .escudo:hover { background-position:-20px -727px; }
-
-.mini-parana .escudo { background-position:0 -749px; }
-.medio-parana .escudo {  background-position:0 -1189px;}
-.grande-parana .escudo { background-position:0 -2280px; }
-#ge-mosaico .mini-parana .escudo:hover { background-position:-20px -749px; }
-
-.mini-ponte-preta .escudo { background-position:0 -771px; }
-.medio-ponte-preta .escudo {  background-position:0 -1225px;}
-.grande-ponte-preta .escudo { background-position:0 -2348px; }
-#ge-mosaico .mini-ponte-preta .escudo:hover { background-position:-20px -771px; }
-
-.mini-portuguesa .escudo { background-position:0 -793px; }
-.medio-portuguesa .escudo {  background-position:0 -1260px;}
-.grande-portuguesa .escudo { background-position:0 -2413px; }
-#ge-mosaico .mini-portuguesa .escudo:hover { background-position:-20px -793px; }
-
-.mini-santo-andre .escudo { background-position:0 -815px; }
-.medio-santo-andre .escudo {  background-position:0 -1295px;}
-.grande-santo-andre .escudo { background-position:0 -2479px; }
-#ge-mosaico .mini-santo-andre .escudo:hover { background-position:-20px -815px; }
-
-.mini-sao-caetano .escudo { background-position:0 -837px; }
-.medio-sao-caetano .escudo {  background-position:0 -1331px;}
-.grande-sao-caetano .escudo { background-position:0 -2552px; }
-#ge-mosaico .mini-sao-caetano .escudo:hover { background-position:-20px -837px; }
-
-.mini-sport .escudo { background-position:0 -859px; }
-.medio-sport .escudo {  background-position:0 -1364px;}
-.grande-sport .escudo { background-position:0 -2619px; }
-#ge-mosaico .mini-sport .escudo:hover { background-position:-20px -859px; }
-
-.mini-vila-nova .escudo { background-position:0 -881px; }
-.medio-vila-nova .escudo {  background-position:0 -1401px;}
-.grande-vila-nova .escudo { background-position:0 -2683px; }
-#ge-mosaico .mini-vila-nova .escudo:hover { background-position:-20px -881px; }
-
-
-/* copa */
-
-.medio-bandeira-padrao .escudo {
-    width:35px;
-    height:35px;
-    display:block; 
-    background-image:url('/media/img/escudos/sprite_escudos_medio.gif');
-    background-repeat:no-repeat;
-    background-position:-57px 0px;
-}
-
-.mini-africa-do-sul .escudo { background-position:-50px -23px; }
-.medio-africa-do-sul .escudo {  background-position:-57px -36px;}
-.grande-africa-do-sul .escudo { background-position:-120px -73px; }
-
-.mini-mexico .escudo { background-position:-50px -45px; }
-.medio-mexico .escudo {  background-position:-57px -71px;}
-.grande-mexico .escudo { background-position:-120px -140px; }
-
-.mini-uruguai .escudo { background-position:-50px -67px; }
-.medio-uruguai .escudo {  background-position:-57px -106px;}
-.grande-uruguai .escudo { background-position:-120px -207px; }
-
-.mini-franca .escudo { background-position:-50px -89px; }
-.medio-franca .escudo {  background-position:-57px -141px;}
-.grande-franca .escudo { background-position:-120px -274px; }
-
-.mini-argentina .escudo { background-position:-50px -111px; }
-.medio-argentina .escudo {  background-position:-57px -176px;}
-.grande-argentina .escudo { background-position:-120px -341px; }
-
-.mini-nigeria .escudo { background-position:-50px -133px; }
-.medio-nigeria .escudo {  background-position:-57px -211px;}
-.grande-nigeria .escudo { background-position:-120px -408px; }
-
-.mini-coreia-do-sul .escudo { background-position:-50px -155px; }
-.medio-coreia-do-sul .escudo {  background-position:-57px -246px;}
-.grande-coreia-do-sul .escudo { background-position:-120px -475px; }
-
-.mini-grecia .escudo { background-position:-50px -177px; }
-.medio-grecia .escudo {  background-position:-57px -281px;}
-.grande-grecia .escudo { background-position:-120px -542px; }
-
-.mini-inglaterra .escudo { background-position:-50px -199px;}
-.medio-inglaterra .escudo {  background-position:-57px -316px;}
-.grande-inglaterra .escudo { background-position:-120px -609px; }
-
-.mini-estados-unidos .escudo { background-position:-50px -221px; }
-.medio-estados-unidos .escudo {  background-position:-57px -351px;}
-.grande-estados-unidos .escudo { background-position:-120px -676px; }
-
-.mini-argelia .escudo { background-position:-50px -243px; }
-.medio-argelia .escudo {  background-position:-57px -386px;}
-.grande-argelia .escudo { background-position:-120px -743px; }
-
-.mini-eslovenia .escudo { background-position:-50px -265px; }
-.medio-eslovenia .escudo {  background-position:-57px -421px;}
-.grande-eslovenia .escudo { background-position:-120px -810px; }
-
-.mini-alemanha .escudo { background-position:-50px -287px; }
-.medio-alemanha .escudo {  background-position:-57px -456px;}
-.grande-alemanha .escudo { background-position:-120px -877px; }
-
-.mini-australia .escudo { background-position:-50px -309px; }
-.medio-australia .escudo {  background-position:-57px -491px;}
-.grande-australia .escudo { background-position:-120px -944px; }
-
-.mini-servia .escudo { background-position:-50px -331px; }
-.medio-servia .escudo {  background-position:-57px -526px;}
-.grande-servia .escudo { background-position:-120px -1011px; }
-
-.mini-gana .escudo { background-position:-50px -353px; }
-.medio-gana .escudo {  background-position:-57px -562px;}
-.grande-gana .escudo { background-position:-120px -1078px; }
-
-.mini-holanda .escudo { background-position:-50px -375px; }
-.medio-holanda .escudo {  background-position:-57px -596px;}
-.grande-holanda .escudo { background-position:-120px -1145px; }
-
-.mini-dinamarca .escudo { background-position:-50px -397px; }
-.medio-dinamarca .escudo {  background-position:-57px -631px;}
-.grande-dinamarca .escudo { background-position:-120px -1212px; }
-
-.mini-japao .escudo { background-position:-50px -419px; }
-.medio-japao .escudo {  background-position:-57px -666px;}
-.grande-japao .escudo { background-position:-120px -1279px; }
-
-.mini-camaroes .escudo { background-position:-50px -441px; }
-.medio-camaroes .escudo {  background-position:-57px -701px;}
-.grande-camaroes .escudo { background-position:-120px -1346px; }
-
-.mini-italia .escudo { background-position:-50px -463px; }
-.medio-italia .escudo {  background-position:-57px -736px;}
-.grande-italia .escudo { background-position:-120px -1413px; }
-
-.mini-paraguai .escudo { background-position:-50px -485px; }
-.medio-paraguai .escudo {  background-position:-57px -771px;}
-.grande-paraguai .escudo { background-position:-120px -1480px; }
-
-.mini-nova-zelandia .escudo { background-position:-50px -507px; }
-.medio-nova-zelandia .escudo {  background-position:-57px -806px;}
-.grande-nova-zelandia .escudo { background-position:-120px -1547px; }
-
-.mini-eslovaquia .escudo { background-position:-50px -529px; }
-.medio-eslovaquia .escudo {  background-position:-57px -841px;}
-.grande-eslovaquia .escudo { background-position:-120px -1614px; }
-
-.mini-brasil .escudo { background-position:-50px -551px; }
-.medio-brasil .escudo {  background-position:-57px -876px;}
-.grande-brasil .escudo { background-position:-120px -1681px; }
-
-.mini-coreia-do-norte .escudo { background-position:-50px -573px; }
-.medio-coreia-do-norte .escudo {  background-position:-57px -911px;}
-.grande-coreia-do-norte .escudo { background-position:-120px -1748px; }
-
-.mini-costa-do-marfim .escudo { background-position:-50px -595px; }
-.medio-costa-do-marfim .escudo {  background-position:-57px -946px;}
-.grande-costa-do-marfim .escudo { background-position:-120px -1815px; }
-
-.mini-portugal .escudo { background-position:-50px -617px; }
-.medio-portugal .escudo {  background-position:-57px -981px;}
-.grande-portugal .escudo { background-position:-120px -1882px; }
-
-.mini-espanha .escudo { background-position:-50px -639px; }
-.medio-espanha .escudo {  background-position:-57px -1016px;}
-.grande-espanha .escudo { background-position:-120px -1949px; }
-
-.mini-suica .escudo { background-position:-50px -661px; }
-.medio-suica .escudo {  background-position:-57px -1051px;}
-.grande-suica .escudo { background-position:-120px -2016px; }
-
-.mini-honduras .escudo { background-position:-50px -683px; }
-.medio-honduras .escudo {  background-position:-57px -1086px;}
-.grande-honduras .escudo { background-position:-120px -2083px; }
-
-.mini-chile .escudo { background-position:-50px -705px; }
-.medio-chile .escudo {  background-position:-57px -1121px;}
-.grande-chile .escudo { background-position:-120px -2150px; }
+.grande-vitoria .escudo {  background-position:0 -913px;}

@@ -78,7 +78,7 @@ class DesafioController (BaseController):
             attachment = {"link":"http://supercraques.com.br:8082/home", 
                           "caption":"Desafio Super Craques!", 
                           "description": "Você foi desafiado por %s para jogar no Super Craques!! Vai jogar ou vair correr?!" % usuario.primeiro_nome, 
-                          "picture": "http://sabadao-santamonica.zip.net/images/craque.jpg"}
+                          "picture": "http://lh3.ggpht.com/_OeF_LRL1JqU/TP-tIlvBKVI/AAAAAAAACAU/rDBDXEBCXt8/img_fcbk_post.png"}
             graphAPI = GraphAPI(access_token=usuario.access_token)
             graphAPI.put_wall_post(message="", attachment=attachment, profile_id=usuario_desafiado_id)
             

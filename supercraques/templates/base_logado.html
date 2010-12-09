@@ -192,14 +192,14 @@
 
     <script id="atletaCardTemplate" type="text/x-jquery-tmpl">
         <div class="card card-banca-verde" data="{{= card_id}}">
-            <div style="margin-top:10px;margin-left:10px">
+            <div class="card-content">
               <img height="200" width="200" border="0" src="{{= img}}">
-              <span class="valor-card">$ {{= valor}}</span>
-              <span class="super-sprite btn-descartar-card"></span>
-              <div class="escudo-atleta medio-escudo-padrao medio-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
+              <span class="valor-card-vazio">$ {{= valor}}</span>
+              <span class="super-sprite btn-card-vazio"></span>
+              <div class="escudo-atleta grande-escudo-padrao grande-{{= equipe.slug}}"><div class="escudo" alt="{{= equipe.nome_popular}}"></div></div>
               <div class="faixa-posicao faixa-posicao-nome">{{= posicao}}</div>
               <div class="card-atleta-nome">{{= nome}}</div>
-              <div>
+              <div class="card-pontuacao">
                 <div class="card-atleta-qualidade">{{= qualidade}}</div>
                 <div class="card-atleta-assiduidade">{{= assiduidade}}</div>
                 <div class="card-atleta-disciplina">{{= disciplina}}</div>

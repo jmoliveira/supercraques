@@ -20,7 +20,7 @@ class DesafioRepository(Repository):
     def get_desafios_todos(usuario_id):
         session = meta.get_session()
         query = " select desafio_id from desafio"
-        query = query + " where usuario_desafiado_id=%s or usuario_desafiou_id=%s order by data_update" % (usuario_id, usuario_id)
+        query = query + " where usuario_desafiado_id=%s or usuario_desafiou_id=%s order by data_criacao DESC" % (usuario_id, usuario_id)
         result = session.execute(query)
         return [Desafio().get(r[0]) for r in result.fetchall()]
 
@@ -120,7 +120,6 @@ class DesafioRepository(Repository):
             session.begin()
 
             for desafio in desafios:
-                import pdb;pdb.set_trace()
                 if desafio.card_desafiou.valor >= desafio.card_desafiado.valor:
                     desafio.usuario_vencedor_id = desafio.usuario_desafiou_id
                     desafio.valor_ganho = desafio.card_desafiado.valor
