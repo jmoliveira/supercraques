@@ -1,3 +1,6 @@
+# coding: utf-8
+#!/usr/bin/env python
+
 '''
     setting do projeto api console
 '''

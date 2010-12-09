@@ -247,7 +247,7 @@ class DesafioRepository(Repository):
                        "card_desafiou_id": self.card_desafiou_id,
                        "card_desafiou": self.card_desafiou.as_dict(),
                        "usuario_desafiado_id": self.usuario_desafiado_id,
-                       "usuario_desafiado": self.usuario_desafiado.as_dict() if self.usuario_desafiado_id else None,
+                       "usuario_desafiado": self.usuario_desafiado.as_dict() if self.usuario_desafiado else None,
                        "card_desafiado_id": self.card_desafiado_id,
                        "card_desafiado": self.card_desafiado.as_dict() if self.card_desafiado_id else None,
                        "usuario_vencedor_id": self.usuario_vencedor_id,

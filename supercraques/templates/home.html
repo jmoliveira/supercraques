@@ -59,8 +59,8 @@
       <div class="box-desafio-usuario">
         <div class="box-fantastico">
            <div class="desafio-enviado">você <span class="mensagem-principal">desafiou</span></div>
-           <img height="40" width="40" class="uiProfilePhotoMedium" src="https://graph.facebook.com/{{= usuario_desafiado.id}}/picture">
-           <span class="nome-usuario-desafiado">{{= usuario_desafiado.nome}}<p class="data-usuario-desafiado">Em {{= data_criacao}}</p></span>
+           <img height="40" width="40" class="uiProfilePhotoMedium" src="https://graph.facebook.com/{{= usuario_desafiado_id}}/picture">
+           <span class="nome-usuario-desafiado">{{if usuario_desafiado}} {{= usuario_desafiado.nome}} {{/if}}<p class="data-usuario-desafiado">Em {{= data_criacao}}</p></span>
             {{if is_finalizado == true}}
               {{if ganhou == true}}
                 <div class="msg-desafio-na-rede">

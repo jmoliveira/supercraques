@@ -1,3 +1,6 @@
+# coding: utf-8
+#!/usr/bin/env python
+
 from torneira.core.dispatcher import url
 from supercraques.controller.banca import BancaController
 from supercraques.controller.home import HomeController

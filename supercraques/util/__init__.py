@@ -1,3 +1,5 @@
+# coding: utf-8
+#!/usr/bin/env python
 
 def date_to_date_br(data=None):
     '''
