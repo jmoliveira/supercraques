@@ -12,8 +12,6 @@
     <script type="text/javascript"><!--
 	$(function() {	
 
-        //bind dos botoes do social
-        $(".btn-desafio-facebook").mediaShare();
         
         var supercraques = $("#supercraque-rodape").barra({}, true);
         
@@ -36,7 +34,6 @@
               });
             
         });
-        
         
 	});
 		
@@ -68,16 +65,16 @@
                   <span class="texto">a carta é sua e<BR> são + $ {{= valor_ganho}} pra conta!!!</span><br>
                   
                 </div>
-                  <span class="super-sprite btn-desafio-facebook">tire uma onda!</span>
+                  <span class="super-sprite btn-desafio-facebook" data-text="tire onda!">tire uma onda!</span>
               {{else}}
                 <div class="msg-desafio-bola-fora">
                   <span class="principal">bola fora...</span><br>
                   <span class="texto">sua carta dançou, mas vamos pro 2º tempo!</span><br>
                 </div>
-                <span class="super-sprite btn-desafio-facebook">provoque seu amigo!</span>
+                <span class="super-sprite btn-desafio-facebook" data-text="provoque" >provoque seu amigo!</span>
               {{/if}}
             {{else}}
-                <span class="super-sprite btn-desafio-facebook">provoque seu amigo!</span>
+                <span class="super-sprite btn-desafio-facebook" data-text="provoque" >provoque seu amigo!</span>
             {{/if}}
           </div>
       </div>
@@ -155,16 +152,16 @@
                     <span class="principal">tá na rede!</span><br>
                     <span class="texto">a carta é sua e<BR> são + $ {{= valor_ganho}} pra conta!!!</span><br>
                   </div>
-                    <span class="super-sprite btn-desafio-facebook">tire uma onda!</span>
+                    <span class="super-sprite btn-desafio-facebook" data-text="Janilton tire onda!" >tire uma onda!</span>
                 {{else}}
                   <div class="msg-desafio-bola-fora">
                     <span class="principal">bola fora...</span><br>
                     <span class="texto">sua carta dançou, mas vamos pro 2º tempo!</span><br>
                   </div>
-                  <span class="super-sprite btn-desafio-facebook">provoque seu amigo!</span>
+                  <span class="super-sprite btn-desafio-facebook" data-text="provoque seu amigo!">provoque seu amigo!</span>
                 {{/if}}
               {{else}}
-                  <span class="super-sprite btn-desafio-facebook">provoque seu amigo!</span>
+                  <span class="super-sprite btn-desafio-facebook" data-text="provoque seu amigo">provoque seu amigo!</span>
               {{/if}}
           </div>
       </div>

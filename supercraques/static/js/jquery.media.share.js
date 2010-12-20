@@ -3,7 +3,6 @@
 	$.fn.mediaShare = function(options){
 		
 		var _options = $.extend({
-			twitterURL:'http://twitter.com/share?url={urlShared}&text={textShared}', 
 			facebookURL:'http://facebook.com/sharer.php?u={urlShared}&t={textShared}', 
 			width:550,
 			height:350,
@@ -37,26 +36,22 @@
 			$el = $(this);
 			$el.unbind().bind('click', function(){
 				text = $(this).attr("data-text");
-				urlShare = $(this).attr("data-url");
 				
-				if ($(this).hasClass("facebook")){
-					FB.ui({
-						method: 'stream.publish',
-						message: text,
-						attachment: {
-							media: [{
-								type: 'image',
-								src: '/media/i/cartola_facebook.jpg',
-								href: 'http://cartolafc.globo.com'
-							}]
-						}
-					});
-				}
-				else{
-					openwindow(_options.twitterURL, urlShare,text);
-				}
+				FB.ui({
+					method: 'stream.publish',
+					message: text,
+					attachment: {
+						media: [{
+							type: 'image',
+							src: '/media/img/logo_supercraques.png',
+							href: 'http://supercraques.com.br'
+						}]
+					}
+				});
+				
 				return false;				
 			});
+			
 		});
 	};
 

@@ -156,7 +156,7 @@
                           url: "/desafio/"+ desafio_id + "/card/"+ card_id + "/aceitar",
                           success: function(data) {
                             $("#glb-doc").showMessage({response:data});
-                            window.location = "/home";
+                            setTimeout(function() {window.location = "/home";}, 1500);
                           },
                           error:function(x,e) {
                             $("#glb-doc").showMessage();
@@ -178,7 +178,7 @@
                       $( "#project" ).val("");
                       $( "#project-id" ).val( ui.item.id );
                       $( "#project-description" ).html( ui.item.name );
-                      $( "#project-icon" ).html('<img height="40" width="40" border="0"  src="https://graph.facebook.com/'+ ui.item.id + '/picture" >');
+                      $( "#project-icon" ).html('<img height="60" width="60" border="0"  src="https://graph.facebook.com/'+ ui.item.id + '/picture" >');
                       return false;
                     }
                   })
@@ -191,6 +191,7 @@
                    };
                
                    $('#btn-desafiar-amigo').live("click",function(){
+                      $("#loading-desafio").addClass("loading-desafio");
                       usuario_id = $( "#project-id", self.$escolhaAmigo).val();
                       card_selecionado_id = $("#card_id_selecionado", self.$escolhaAmigo).val();
                       if (usuario_id != "") {
@@ -198,7 +199,7 @@
                             url: "/desafio/card/" + card_selecionado_id + "/usuario_desafiado/"+ usuario_id + "/desafiar",
                             success: function(data) {
                                 $("#glb-doc").showMessage({response:data});
-                                window.location = "/home";
+                                setTimeout(function() {window.location = "/home";}, 1500);
                             },
                             error:function(x,e) {
                               $("#glb-doc").showMessage();
@@ -206,6 +207,7 @@
                           });
                       }else {
                           $("#glb-doc").showMessage();
+                          $("#loading-desafio").removeClass("loading-desafio");
                       }
                     });
                 
@@ -303,13 +305,10 @@
                   url: "/desafio/todos.json",
                   success: function(result) {
                       if (result.data.length > 0) {
-                        // console.log("desafios-vazio-area");
                         $boxDesafiosTemplate.tmpl( result.data ).appendTo($boxDesafios);
                       }else{
-                        // console.log("desafios-vazioasasa");
                         $desafiosVazioArea.show();
                       }
-                      
                       $boxDesafios.removeClass("ui-autocomplete-desafio-loading");
                   },
                   error:function(x,e) {
@@ -318,6 +317,25 @@
                   }
               });
               
+              
+              $(".btn-desafio-facebook").live('click', function(){
+                  text = $(this).attr("data-text");
+                  
+                  FB.ui({
+                    method: 'stream.publish',
+                    message: text,
+                    attachment: {
+                      media: [{
+                        type: 'image',
+                        src: '/media/img/logo_supercraques.png',
+                        href: 'http://supercraques.com.br'
+                      }]
+                    }
+                  });
+                  
+                  return false;       
+              });
+
             },            
             
             fill: function(supercraque){

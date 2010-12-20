@@ -46,7 +46,7 @@ class SDEHelper(BaseController):
         return self.get_content_service(settings.SEDE['servicos']['scout_do_atleta_na_edicao'] % pessoafuncao_id)
 
     def __load__(self, equipe_id=None):
-        for equipe in self.get_equipes():
+        for equipe in self.get_equipes()[0:5]:
             if equipe_id and int(equipe["equipe_id"]) != int(equipe_id): continue
             elenco = self.get_elenco(equipe["equipe_id"])
             atletas = []
@@ -57,16 +57,17 @@ class SDEHelper(BaseController):
                         qualidade = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_qualidade(scout["eventos"])
                         assiduidade = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_assiduidade(scout.get("estatisticas"))
                         disciplina = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_disciplina(scout["eventos"])
-                        atletas.append({ "atleta_id": scout["pessoafuncao_id"],
-                                         "img": atleta.get("foto_fpath").replace("_FORMATO","_220x220") if atleta.get("foto_fpath") and settings.EXIBIR_FOTO == True else "/media/img/jogador_default.jpg",
-                                         "posicao": scout["funcao"].get("faixa_campo") if scout["funcao"].get("faixa_campo") else "-",
-                                         "nome": scout["nome_popular_atleta"],
-                                         "equipe": equipe,
-                                         "qualidade": qualidade,
-                                         "assiduidade": assiduidade,
-                                         "disciplina": disciplina,
-                                         "valor":  int(qualidade + assiduidade + assiduidade / 3)})
-            
+                        if qualidade >0 or assiduidade >0:
+                            atletas.append({ "atleta_id": scout["pessoafuncao_id"],
+                                             "img": atleta.get("foto_fpath").replace("_FORMATO","_220x220") if atleta.get("foto_fpath") and settings.EXIBIR_FOTO == True else "/media/img/jogador_default.jpg",
+                                             "posicao": scout["funcao"].get("faixa_campo") if scout["funcao"].get("faixa_campo") else "-",
+                                             "nome": scout["nome_popular_atleta"],
+                                             "equipe": equipe,
+                                             "qualidade": qualidade,
+                                             "assiduidade": assiduidade,
+                                             "disciplina": disciplina,
+                                             "valor":  int((qualidade + assiduidade + disciplina) / 3)})
+                
             meta.EQUIPE_MAP[int(equipe["equipe_id"])] = {"equipe": equipe, "atletas":atletas}
 
  
@@ -112,7 +113,7 @@ class PontuacaoHelper():
         return int(sum)
 
     def calcular_disciplina(self, eventos):
-        sum = 0
+        sum = 90
         for evento in eventos:
             sigla = evento["sigla"]
             if sigla in self.scouts_disciplina:

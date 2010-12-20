@@ -21,7 +21,7 @@ scroll -194px -68px;}
 .filtros-grupo-botao-active .seta-filtro{background:url("/media/img/banca/delivery/icones.png") no-repeat scroll -194px -55px;}
 
 /* filtros mercados > times */
-#dropdown-times{position:absolute;left:0px;top:50px;border:1px solid #D1D1D1;display:block;background-color:#fff;}
+#dropdown-times{position:absolute;left:0px;top:50px;border:1px solid #D1D1D1;display:block;background-color:#fff;z-index:3}
 #dropdown-times ul{padding:0;margin:0;}
 #dropdown-times li{display:block;float:left;width:39px;height:39px;line-height:39px;border:1px solid #D1D1D1;border-width:0px 1px 1px 0px;text-align:center;overflow:hidden;}
 #dropdown-times li.primeiro-item{clear:left;}
@@ -41,7 +41,7 @@ scroll -194px -68px;}
 #filtros-status-mercado span.out {background:url("/media/img/banca/delivery/icones.png") no-repeat scroll -194px -92px transparent;padding-left:20px;width:20px;margin-right: 5px;}
 
 /* filtros mercados > posicao */
-#dropdown-posicoes{position:absolute;left:0;top:50px;border:1px solid #D1D1D1;display:none;background-color:#fff;width:200px;z-index:2;}
+#dropdown-posicoes{position:absolute;left:0;top:50px;border:1px solid #D1D1D1;display:none;background-color:#fff;width:200px;z-index:3;}
 #dropdown-posicoes ul{padding:0;margin:0;}
 #dropdown-posicoes li{color:#666666;display:block;float:left;font-size:0.7em;font-weight:bold;letter-spacing:0;line-height:30px;overflow:hidden;text-align:center;width:100px;border-color:#D1D1D1;border-style:solid;border-width:0 1px 1px 0;}
 #dropdown-posicoes li.mouseover{background:url("/media/img/banca/delivery/sprite_botoes_mercado.png") no-repeat -1px -113px;}

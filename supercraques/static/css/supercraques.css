@@ -63,7 +63,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .img-interrogacao {height:94px;width:52px;background-position:-207px -100px;}
 .btn-escolher-card {background-position:-297px -119px;height:32px;width:104px;float:left;cursor:pointer;}
 .btn-pular-fora {background-position:-297px -163px;height:32px;width:84px;float:left;margin-left:5px;cursor:pointer;}
-.btn-desafio-facebook {background-position:-297px -254px;color:#FFFFFF;font-size:15px;height:42px;margin-top:30px;padding-left:12px;padding-top:10px;text-align:center;text-indent:0;width:212px;}
+.btn-desafio-facebook {background-position:-297px -254px;color:#FFFFFF;font-size:15px;height:42px;margin-top:30px;padding-left:12px;padding-top:10px;text-align:center;text-indent:0;width:212px;cursor:pointer;}
 .btn-cancelar-desafio {background-position:-297px -204px;height:32px;width:115px;float:left;margin-left:25px;}
 .btn-desafiar-amigo {background-position:-298px -10px;height:37px;width:136px;float:left;margin-left:25px;}
 .btn-desafiar-amigo:hover {background-position:-298px -62px;height:37px;width:136px;float:left;margin-left:25px;}
@@ -98,6 +98,9 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 #escolha-amigo {display:block;float:left;}
 .opacity {opacity:0.4}
 .opacity1 {opacity:0.1}
+
+#project-description{ font-size: 20px;letter-spacing: -1px;color: #FFF;margin-top:5px;text-align:left;}
+#project-icon {margin-top:10px;}
 
 #escolha-amigo input#project {-moz-border-radius: 10px 10px 10px 10px;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #AAAAAA;color: #333333;font-size: 1.5em;height: 19px;line-height: 1;padding: 2px 5px;width: 362px;}
 .search {background: url("/media/img/icon_searchglass.png") no-repeat scroll 0 -36px transparent;border: 0 none;height: 35px;width: 35px;float: right;position: relative;left: -16px;}
@@ -254,6 +257,8 @@ a.featured {
 
 .ui-autocomplete-desafio { position: absolute; cursor: default; } 
 .ui-autocomplete-desafio-loading { background: white url('/media/img/loading.gif') center center no-repeat; }
+
+.loading-desafio { background: transparent url('/media/img/loading_azul.gif') center center no-repeat; }
 
 /* workarounds */
 * html .ui-desafio-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
