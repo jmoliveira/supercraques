@@ -127,6 +127,7 @@ class GraphAPI(object):
         extended permissions.
         """
         assert self.access_token, "Write operations require an access token"
+        import pdb;pdb.set_trace()
         return self.request(parent_object + "/" + connection_name, post_args=data)
 
     def put_wall_post(self, message, attachment={}, profile_id="me"):

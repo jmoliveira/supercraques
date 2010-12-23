@@ -23,6 +23,10 @@ body{ font:x-small arial, helvetica, freesans, sans-serif; *font-size:1.25ex;}
 select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 /* ---- /fonts 0.3 ---- */
 
+.bg-login {background-image:url('/media/img/bghome2.png');background-repeat:repeat-x;background-position:0 0;}
+#content-home {background-image:url('/media/img/home_img2.png');background-repeat:no-repeat;background-position:0 0; height: 990px;width:941px; }
+#fcbkbutton {z-index:2;position:relative;top:-407px;cursor:pointer;}
+
 .desafio-title {font-size: 30px;letter-spacing: -1.79px;color: #666; border-bottom:2px solid #666666; margin-bottom:21px; padding-bottom:6px;margin-top:20px}
 #desafios-vazio-area {font-size: 24px;letter-spacing: -1.79px;color: #999; text-align:center; display:none}
 .desafio-title span.mensagem-principal, .desafio-enviado span.mensagem-principal, #desafios-vazio-area span.mensagem-principal {font-weight: bold;}
@@ -57,7 +61,7 @@ select, input, textarea{ font:0.99em arial, helvetica, clean, sans-serif;}
 .card-desafio-versus {float:left;margin-top:111px;}
 .messagem-aguardando-recebido {font-size: 20px;letter-spacing: -1.79px;color: #666;margin-bottom:20px;margin-top:10px;text-align:center;}
 .messagem-aguardando-enviado {font-size: 20px;letter-spacing: -1.79px;color: #666;margin-bottom:20px;margin-top:10px;text-align:center;width:160px;}
-.messagem-banca-de-cards {font-size: 27px;letter-spacing: -1.79px;color: #666;text-align:center;position:relative;top:81px;left:-279px;}
+.messagem-banca-de-cards {font-size: 27px;letter-spacing: -1.79px;color: #666;text-align:left;position:relative;top:81px;left:-1px;width:180px}
 .img-alert {background-position:-118px -173px;height:17px;width:20px;margin-left:90px}
 .img-versus {height:74px;width:100px;background-position:-183px 0;}
 .img-interrogacao {height:94px;width:52px;background-position:-207px -100px;}
@@ -192,11 +196,11 @@ a:hover{text-decoration:underline;}
 #glb-rodape{
   overflow:hidden;
 }
+
 #glb-rodape .glb-conteudo{
   height:4.73em;
   padding-top:2.3em;
 }
-
 
 #glb-diretorio{
   background:#538428;
@@ -216,6 +220,7 @@ a:hover{text-decoration:underline;}
 }
 #glb-rodape, #glb-rodape .glb-conteudo{
   background-color:#456E20;
+  height: 150px;
 }
 
 

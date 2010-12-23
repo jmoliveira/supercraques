@@ -3,6 +3,7 @@
 <head>
   <title>Super Craques</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/glb-barra.css" />
     <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="/media/css/supercraques.css" />
     <script type="text/javascript" src="/media/js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="/media/js/jquery.media.share.js"></script>
@@ -10,7 +11,7 @@
     <script type="text/javascript"><!--
     $(function() {  
       
-        $('.fb_button').bind('click', function() {
+        $('#fcbkbutton').bind('click', function() {
           FB.login(handleSessionResponse, {perms:'read_stream,publish_stream,offline_access'});
         });
   
@@ -29,13 +30,51 @@
 </head>
 
 
-<body>
+<body class="bg-login">
+<div id="glb-doc">
+        <div id="glb-barra-widget">
+            <div class="glb-barra-conteudo">
+                <div class="glb-barra-escopo">
+                    <div id="glb-barra-logo">
+                        <a target="_top" title="globo.com" href="http://www.globo.com"><strong></strong>globo.com</a>
+                    </div>
+                    <!--glb-barra-logo-->
+                    <ul id="glb-barra-menu">
+                        <li class="glb-item-menu"><a target="_top" id="menu-noticias" accesskey="n" title="not&iacute;cias" href="http://g1.globo.com">not&iacute;cias</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-esportes" accesskey="e" title="esportes" href="http://globoesporte.globo.com">esportes</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-entretenimento" accesskey="t" title="entretenimento" href="http://entretenimento.globo.com">entretenimento</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-videos" accesskey="v" title="v&iacute;deos" href="http://video.globo.com">v&iacute;deos</a></li>
+                        <li class="glb-item-menu"><a target="_top" id="menu-sportv" class="menu-sportv" accesskey="s" title="sportv.com" href="http://sportv.com"><img src='/media/img/logo_sportv_barra.jpg' title='sportv.com' /></a></li>
+                    </ul>
+                    <!--glb-barra-menu-->
+                    <ul id="glb-barra-servicos">
+                        <li id="menu-globomail">
+                            <a class="glb-mail" title="globomail" href="#"><img width="16" height="11" src="/media/img/ico_globomail.gif" alt="e-mail"><strong>e-mail</strong></a>
+                            <ul id="globomail-subcontexto">
+                                <li><a target="_top" accesskey="p" title="globomail pro" href="http://login.globo.com/login/1">Globomail Pro</a></li>
+                                <li><a target="_top" accesskey="f" title="globomail free" href="http://login.globo.com/login/1948">Globomail Free</a></li>
+                                <li><a target="_top" accesskey="c" title="criar um e-mail" href="http://cadastrofree.globo.com/resources2/panfletos/comparativo_globomail/comparativo_globomail.html">Criar um e-mail</a></li>
+                            </ul>
+                        </li>
+                        <li class="glb-item-servicos central-globocom"><a target="_top" accesskey="r" title="central globo.com" href="http://atendimento.globo.com">central globo.com</a></li>
+                        <li class="glb-item-servicos"><a target="_top" accesskey="a" title="assina j&aacute;" href="http://atendimento.globo.com/Portal/ISP/assineja/panfletos/panfleto_home_globo">assine j&aacute;</a></li>
+                        <li class="glb-item-servicos"><a target="_top" accesskey="s" title="todos os sites" href="http://www.globo.com/Globo.com/sites/0,,5623,00.html">todos os sites</a></li>
+                    </ul>
+                    <!--glb-barra-servicos-->
+                </div>
+                <!--glb-barra-escopo-->
+            </div>
+            <!--glb-barra-conteudo-->
+        </div>
+        
+        <center>
+        <div id="content-home"></div>
+        <img src="/media/img/fcbkbutton.png" id="fcbkbutton" border="0" height="42" width="209">
+        </center>
+        
+        
+ </div>   
    
-  <a class="fb_button fb_button_medium"><span class="fb_button_text">Login</span></a>
-  <div><img src="/media/img/facebook.jpeg"> </div>  
-
-
-  
     
   <div id="fb-root"></div>
   <script src="http://connect.facebook.net/en_US/all.js"></script>

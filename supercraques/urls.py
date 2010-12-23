@@ -8,6 +8,8 @@ from supercraques.controller.facebook import FacebookController
 from supercraques.controller.desafio import DesafioController
 
 urls = (
+        
+    url("/", HomeController, action="login", name="login"),
     url("/login", HomeController, action="login", name="login"),
     url("/auth/login", HomeController, action="auth_login", name="auth_login"),
     url("/home", HomeController, action="home", name="home"),
@@ -24,6 +26,7 @@ urls = (
     url("/atleta/{atleta_id}/comprar", BancaController, action="comprar_card", name="comprar_card"),
     url("/atleta/{atleta_id}/descartar", BancaController, action="descartar_card", name="descartar_card"),
     
+    url("/loadAtletas.json", DesafioController, action="load_atletas", name="load_atletas"),
     url("/desafio/card/{card_id}/usuario_desafiado/{usuario_desafiado_id}/desafiar", DesafioController, action="enviar_desafio", name="enviar_desafio"),
     url("/desafio/{desafio_id}/card/{card_id}/aceitar", DesafioController, action="aceitar_desafio", name="aceitar_desafio"),
     url("/desafio/enviados.{extension}", DesafioController, action="busca_desafios_enviados", name="busca_desafios_enviados"),

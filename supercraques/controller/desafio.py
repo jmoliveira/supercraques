@@ -12,6 +12,14 @@ from supercraques.util.helper import PontuacaoHelper, SDEHelper
 
 class DesafioController (BaseController):
     
+    @render_to_extension
+    def load_atletas(self, *args, **kargs):
+        helper = SDEHelper()
+        helper.__load__()
+        
+        return {"msg": "Sucesso"}
+        
+    
     @logged
     @render_to_extension
     def busca_desafios_todos(self, usuario, *args, **kw):

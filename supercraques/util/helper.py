@@ -46,7 +46,7 @@ class SDEHelper(BaseController):
         return self.get_content_service(settings.SEDE['servicos']['scout_do_atleta_na_edicao'] % pessoafuncao_id)
 
     def __load__(self, equipe_id=None):
-        for equipe in self.get_equipes()[0:5]:
+        for equipe in self.get_equipes():
             if equipe_id and int(equipe["equipe_id"]) != int(equipe_id): continue
             elenco = self.get_elenco(equipe["equipe_id"])
             atletas = []
@@ -55,9 +55,33 @@ class SDEHelper(BaseController):
                     scout = self.get_scout_pessoafuncao(atleta["pessoafuncao_id"])
                     if scout:
                         qualidade = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_qualidade(scout["eventos"])
+                        qualidade = 100 if qualidade > 100 else qualidade
                         assiduidade = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_assiduidade(scout.get("estatisticas"))
+                        assiduidade = 100 if assiduidade > 100 else assiduidade
                         disciplina = PontuacaoHelper(scout["funcao"].get("faixa_campo")).calcular_disciplina(scout["eventos"])
+                        disciplina = 100 if disciplina > 100 else disciplina
+                        valor = int((qualidade + assiduidade + disciplina) / 3)
+                        if valor > 90:
+                            valor = valor - 29
+                        elif valor > 80:
+                            valor = valor - 25
+                        elif valor > 70:
+                            valor = valor - 20
+                        elif valor > 60:
+                            valor = valor - 14
+                        elif valor > 50:
+                            valor = valor - 11
+                        elif valor > 40:
+                            valor = valor - 9
+                        elif valor > 30:
+                            valor = valor - 7
+                        elif valor > 20:
+                            valor = valor - 5
+                                
                         if qualidade >0 or assiduidade >0:
+                            if scout["pessoafuncao_id"] == 50348:
+                                valor = valor + 10
+                            
                             atletas.append({ "atleta_id": scout["pessoafuncao_id"],
                                              "img": atleta.get("foto_fpath").replace("_FORMATO","_220x220") if atleta.get("foto_fpath") and settings.EXIBIR_FOTO == True else "/media/img/jogador_default.jpg",
                                              "posicao": scout["funcao"].get("faixa_campo") if scout["funcao"].get("faixa_campo") else "-",
@@ -66,7 +90,7 @@ class SDEHelper(BaseController):
                                              "qualidade": qualidade,
                                              "assiduidade": assiduidade,
                                              "disciplina": disciplina,
-                                             "valor":  int((qualidade + assiduidade + disciplina) / 3)})
+                                             "valor":  valor})
                 
             meta.EQUIPE_MAP[int(equipe["equipe_id"])] = {"equipe": equipe, "atletas":atletas}
 
